@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import { AppHeader } from 'components/src/AppHeader';
-import { Typography } from 'components/src/Typography';
+import { Button, Typography } from 'components/src/ui';
 
 export function App() {
   return (
@@ -25,9 +25,11 @@ export function App() {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <Typography color='yellow' variant='hero'>
-            Welcome to React Native Web + Monorepo
+          <Typography color='black' variant='h2'>
+            Be Honest feat. DJ Omni &amp; DJ Ruivo
           </Typography>
+          <Button text='Click me' variant='primary' />
+
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>

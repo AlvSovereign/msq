@@ -1,7 +1,11 @@
-import { fonts } from './styles/fonts';
+import { colors } from './styles/colors';
+import { typography } from './styles/typography';
+import { spacings } from './styles/spacings';
 
-const theme = {
-  ...fonts,
+const theme: any = {
+  typography,
+  colors,
+  spacings,
 };
 
 export default theme;

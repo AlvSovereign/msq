@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import { useState } from 'react';
 import { useDimensions } from '@react-native-community/hooks';
 
-const useWindowSize = () => {
+const useResponsive = () => {
   const [size, setSize] = useState<TSize>('sm');
   const { width, height } = useDimensions().window;
 
@@ -16,6 +16,6 @@ const useWindowSize = () => {
   return size;
 };
 
-export { useWindowSize };
+export { useResponsive };
 
 export type TSize = 'sm' | 'md' | 'lg';

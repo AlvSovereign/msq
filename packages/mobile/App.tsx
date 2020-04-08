@@ -7,17 +7,17 @@ import {
   Text,
   View,
 } from 'react-native';
-
-import { AppHeader } from './AppHeader';
-import { Typography } from './Typography';
+import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
+import {AppHeader} from 'components/src/AppHeader';
+import {Button, Typography} from 'components/src/ui';
 
 export function App() {
   return (
-    <>
-      <StatusBar barStyle='dark-content' />
+    <MsqThemeContext.Provider value={theme}>
+      <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
-          contentInsetAdjustmentBehavior='automatic'
+          contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <AppHeader />
           {global.HermesInternal == null ? null : (
@@ -25,9 +25,10 @@ export function App() {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <Typography color='yellow' variant='hero'>
-            Welcome to React Native Web + Monorepo
+          <Typography color="black" variant="h2">
+            Be Honest feat. DJ Omni &amp; DJ Ruivo
           </Typography>
+          <Button text="Click me" variant="primary" />
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>
@@ -63,7 +64,7 @@ export function App() {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </MsqThemeContext.Provider>
   );
 }
 
