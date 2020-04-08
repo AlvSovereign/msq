@@ -7,13 +7,13 @@ import {
   Text,
   View,
 } from 'react-native';
-
-import { AppHeader } from './AppHeader';
-import { Typography } from './Typography';
+import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
+import { AppHeader } from 'components/src/AppHeader';
+import { Typography } from 'components/src/Typography';
 
 export function App() {
   return (
-    <>
+    <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle='dark-content' />
       <SafeAreaView>
         <ScrollView
@@ -63,7 +63,7 @@ export function App() {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </MsqThemeContext.Provider>
   );
 }
 

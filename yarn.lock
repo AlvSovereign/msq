@@ -1438,6 +1438,11 @@
   resolved "https://registry.npmjs.org/@react-native-community/eslint-plugin/-/eslint-plugin-1.0.0.tgz#ae9a430f2c5795debca491f15a989fce86ea75a0"
   integrity sha512-GLhSN8dRt4lpixPQh+8prSCy6PYk/MT/mvji/ojAd5yshowDo6HFsimCSTD/uWAdjpUq91XK9tVdTNWfGRlKQA==
 
+"@react-native-community/hooks@^2.4.8":
+  version "2.4.8"
+  resolved "https://registry.yarnpkg.com/@react-native-community/hooks/-/hooks-2.4.8.tgz#3fa0b561c4b7a1138565a26ed9848197bf4fa808"
+  integrity sha512-QTyXYKqpffsQ7QB/hl+ziMDHla6yCDsNfi3+cMPiFqerazRW9mTiEdWQEFLlCL6UN6+mNrSkX9d71sTL93bUHA==
+
 "@sinonjs/commons@^1.7.0":
   version "1.7.0"
   resolved "https://registry.npmjs.org/@sinonjs/commons/-/commons-1.7.0.tgz#f90ffc52a2e519f018b13b6c4da03cbff36ebed6"
@@ -11198,6 +11203,11 @@ slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.npmjs.org/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
   integrity sha1-VusCfWW00tzmyy4tMsTUr8nh1wc=
+
+slsx@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/slsx/-/slsx-0.0.3.tgz#8ca5fa184a61ec809d21a357ee4bb37cc74d71ac"
+  integrity sha512-WlgsZWRJuSp8WJEBiDKt44ueZjRemtVQTI2mZcHx+RB3+GbZLF4gO1RuhitjvpomuzsaHZVTUfQytO05L338oA==
 
 snapdragon-node@^2.0.1:
   version "2.1.1"
