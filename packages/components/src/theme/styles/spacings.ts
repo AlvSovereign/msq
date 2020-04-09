@@ -10,6 +10,15 @@ const spacings = {
       borderRadius: 8,
     },
   },
+  linear: {
+    xxs: 4,
+    xs: 8,
+    sm: 12,
+    md: 16,
+    lg: 20,
+    xl: 24,
+    xxl: 40,
+  },
 };
 
 export { spacings };

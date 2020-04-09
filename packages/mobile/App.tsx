@@ -28,7 +28,12 @@ export function App() {
           <Typography color="black" variant="h2">
             Be Honest feat. DJ Omni &amp; DJ Ruivo
           </Typography>
-          <Button text="Click me" variant="primary" />
+          <Button
+            icon="chevronRight"
+            // label="Click me"
+            onPress={() => {}}
+            variant="secondary"
+          />
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>

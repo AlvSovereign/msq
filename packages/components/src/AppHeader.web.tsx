@@ -5,7 +5,7 @@ import { Typography } from './ui';
 export function AppHeader() {
   return (
     <View style={styles.container}>
-      <Typography color='black' variant='hero'>
+      <Typography color='black' variant='h2'>
         Welcome to React Native Web + Monorepo
       </Typography>
     </View>

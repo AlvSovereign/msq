@@ -1,8 +1,8 @@
 import React, { ReactNode, useContext } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, StyleProp, TextStyle } from 'react-native';
 import { MsqThemeContext, useResponsive } from '../theme/ThemeContext';
 
-const Typography = ({ children, color, variant }: ITypography) => {
+const Typography = ({ children, color, style, variant }: ITypography) => {
   const theme = useContext(MsqThemeContext);
   const windowSize = useResponsive();
   const styles = StyleSheet.create({
@@ -18,20 +18,21 @@ const Typography = ({ children, color, variant }: ITypography) => {
     button: {
       ...theme.typography.text.button,
     },
-    white: { color: theme.colors.white },
     black: { color: theme.colors.black },
+    blue: { color: theme.colors.blue[500] },
+    white: { color: theme.colors.white },
   });
 
-  return <Text style={[styles[variant], styles[color]]}>{children}</Text>;
+  return (
+    <Text style={[styles[variant], styles[color], style]}>{children}</Text>
+  );
 };
 
 export default Typography;
 
 interface ITypography {
   children: ReactNode;
-  color: Color;
-  variant: Variant;
+  color: 'black' | 'blue' | 'white';
+  style?: StyleProp<TextStyle>;
+  variant: 'hero' | 'h1' | 'h2' | 'button';
 }
-
-type Color = 'black' | 'white';
-type Variant = 'hero' | 'h1' | 'h2' | 'button';
