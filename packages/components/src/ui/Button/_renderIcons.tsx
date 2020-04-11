@@ -2,20 +2,35 @@ import React from 'react';
 import { Icon, Variant } from './Button';
 import { ChevronRight } from '../../assets/icons';
 
-const renderIcon = (icon: Icon, styles: any, theme: any, variant: Variant) => {
+const _renderIcon = ({
+  icon,
+  styles,
+  variant,
+  isDisabled,
+  colors: { BLUE_500, WHITE }
+}: IRenderIcon) => {
+  let fillColor;
+
+  if (isDisabled) {
+    fillColor = WHITE;
+  } else {
+    variant === 'primary' ? (fillColor = WHITE) : (fillColor = BLUE_500);
+  }
+
   switch (icon) {
     case 'chevronRight':
-      return (
-        <ChevronRight
-          fill={
-            variant === 'primary' ? theme.colors.white : theme.colors.blue[500]
-          }
-          style={styles.icon}
-        />
-      );
+      return <ChevronRight fill={fillColor} style={styles} />;
     default:
       return null;
   }
 };
 
-export { renderIcon };
+export { _renderIcon };
+
+interface IRenderIcon {
+  icon: Icon;
+  styles: any;
+  variant: Variant;
+  isDisabled: boolean;
+  colors: { [key: string]: any };
+}

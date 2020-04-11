@@ -6,7 +6,7 @@ const ChevronRight = ({
   fill = 'none',
   height = 24,
   style,
-  width = 24,
+  width = 24
 }: IIcon) => {
   return (
     <Svg fill={fill} height={height} style={style} width={width}>

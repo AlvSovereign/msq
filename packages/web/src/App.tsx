@@ -5,7 +5,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  View,
+  View
 } from 'react-native';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import { AppHeader } from 'components/src/AppHeader';
@@ -30,7 +30,15 @@ export function App() {
           </Typography>
           <Button
             icon='chevronRight'
-            // label='Click me'
+            label='Click me'
+            isDisabled={true}
+            onPress={() => {}}
+            variant='primary'
+          />
+          <Button
+            icon='chevronRight'
+            isDisabled={true}
+            label='Click me'
             onPress={() => {}}
             variant='secondary'
           />
@@ -76,32 +84,32 @@ export function App() {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   engine: {
     position: 'absolute',
-    right: 0,
+    right: 0
   },
   body: {
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   sectionContainer: {
     marginTop: 32,
-    paddingHorizontal: 24,
+    paddingHorizontal: 24
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: 'black',
+    color: 'black'
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
-    color: 'gray',
+    color: 'gray'
   },
   highlight: {
-    fontWeight: '700',
+    fontWeight: '700'
   },
   footer: {
     color: 'gray',
@@ -109,8 +117,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
     paddingRight: 12,
-    textAlign: 'right',
-  },
+    textAlign: 'right'
+  }
 });
 
 declare var global: any;

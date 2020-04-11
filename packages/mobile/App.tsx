@@ -30,7 +30,15 @@ export function App() {
           </Typography>
           <Button
             icon="chevronRight"
-            // label="Click me"
+            label="Click me"
+            isDisabled={true}
+            onPress={() => {}}
+            variant="primary"
+          />
+          <Button
+            icon="chevronRight"
+            isDisabled={true}
+            label="Click me"
             onPress={() => {}}
             variant="secondary"
           />
