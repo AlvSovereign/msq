@@ -7,20 +7,22 @@ const Typography = ({ children, color, style, variant }: ITypography) => {
   const windowSize = useResponsive();
   const styles = StyleSheet.create({
     hero: {
-      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].hero,
+      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].hero
     },
     h1: {
-      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].h1,
+      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].h1
     },
     h2: {
-      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].h2,
+      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].h2
     },
     button: {
-      ...theme.typography.text.button,
+      ...theme.typography.text.button
     },
+    label: { ...theme.typography.input.label },
     black: { color: theme.colors.black },
     blue: { color: theme.colors.blue[500] },
-    white: { color: theme.colors.white },
+    lightGrey: { color: theme.colors.lightGrey[500] },
+    white: { color: theme.colors.white }
   });
 
   return (
@@ -32,7 +34,7 @@ export default Typography;
 
 interface ITypography {
   children: ReactNode;
-  color: 'black' | 'blue' | 'white';
+  color: 'black' | 'blue' | 'lightGrey' | 'white';
   style?: StyleProp<TextStyle>;
-  variant: 'hero' | 'h1' | 'h2' | 'button';
+  variant: 'button' | 'hero' | 'h1' | 'h2' | 'label';
 }

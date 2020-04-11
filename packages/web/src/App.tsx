@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import { AppHeader } from 'components/src/AppHeader';
-import { Button, Typography } from 'components/src/ui';
+import { Input, Typography, Button } from 'components/src/ui';
 
 export function App() {
   return (
@@ -25,25 +25,15 @@ export function App() {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <Typography color='black' variant='h2'>
-            Be Honest feat. DJ Omni &amp; DJ Ruivo
-          </Typography>
-          <Button
-            icon='chevronRight'
-            label='Click me'
-            isDisabled={true}
-            onPress={() => {}}
-            variant='primary'
-          />
-          <Button
-            icon='chevronRight'
-            isDisabled={true}
-            label='Click me'
-            onPress={() => {}}
-            variant='secondary'
-          />
-
           <View style={styles.body}>
+            <Typography color='black' variant='h2'>
+              Be Honest feat. DJ Omni &amp; DJ Ruivo
+            </Typography>
+            <Input label='Song Name' placeholder='Be Honest' />
+            <Input label='Song Name' placeholder='Be Honest' />
+            <Input label='Song Name' placeholder='Be Honest' />
+            <Button label='Play' onPress={() => {}} variant='primary' />
+
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>
                 Code sharing using Monorepo
@@ -91,7 +81,8 @@ const styles = StyleSheet.create({
     right: 0
   },
   body: {
-    backgroundColor: 'white'
+    backgroundColor: '#F5F9FB',
+    marginHorizontal: 8
   },
   sectionContainer: {
     marginTop: 32,

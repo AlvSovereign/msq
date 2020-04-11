@@ -22,7 +22,6 @@ const Button = ({
   const isHovered = useHover(ref);
   const theme = useContext(MsqThemeContext);
 
-  const BLUE_300 = theme.colors.blue[300];
   const BLUE_500 = theme.colors.blue[500];
   const BLUE_700 = theme.colors.blue[700];
   const LIGHTGREY_100 = theme.colors.lightGrey[100];
@@ -88,7 +87,7 @@ const Button = ({
       height: 40,
       justifyContent: 'center',
       marginBottom: theme.spacings.linear.xxs,
-      minWidth: 40,
+      flex: 1,
       padding: theme.spacings.linear.xxs,
       paddingHorizontal: !icon
         ? theme.spacings.linear.sm
