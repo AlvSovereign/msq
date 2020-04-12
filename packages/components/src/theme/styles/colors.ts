@@ -1,10 +1,10 @@
 const colors = {
+  background: '#F5F9FB',
   red: {
     500: '#FF0039'
   },
   lightGrey: { 100: '#E5EBF0', 200: '#BCCAD0', 500: '#5D6E76' },
   blue: {
-    50: '#DCE5F9',
     300: '#4F81FC',
     500: '#0149FF',
     700: '#0041CF',

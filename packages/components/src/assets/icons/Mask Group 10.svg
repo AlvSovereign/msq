@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="182" height="40" viewBox="0 0 182 40">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="frame" width="182" height="40" rx="6" fill="#ff0039"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Shape" d="M1.189,0,5.061,3.863,8.932,0l1.189,1.189L5.061,6.25,0,1.189Z" transform="translate(0 10.121) rotate(-90)" fill="#5d6c76"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_10" data-name="Mask Group 10" clip-path="url(#clip-path)">
+    <g id="ico_playSmall" data-name="ico/playSmall" transform="translate(150 8)">
+      <rect id="ico_arrows_right_background" data-name="ico/arrows/right background" width="24" height="24" fill="none"/>
+      <g id="Group_38" data-name="Group 38" transform="translate(9 7)">
+        <g id="Shape-2" data-name="Shape" transform="translate(0 10.121) rotate(-90)" fill="none" stroke-miterlimit="10">
+          <path d="M1.189,0,5.061,3.863,8.932,0l1.189,1.189L5.061,6.25,0,1.189Z" stroke="none"/>
+          <path d="M 1.189268112182617 0 L 5.060728549957275 3.863019943237305 L 8.932188034057617 0 L 10.12145900726318 1.18927001953125 L 5.060728549957275 6.25 L -1.9073486328125e-06 1.18927001953125 L 1.189268112182617 0 Z" stroke="none" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+    <text id="btnText" transform="translate(19 14)" fill="#fff" font-size="10" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.125em"><tspan x="23.586" y="10">ICON</tspan></text>
+  </g>
+</svg>

@@ -6,9 +6,9 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 import { useFocus, useHover } from 'react-native-web-hooks';
-import { MsqThemeContext } from '../../theme/ThemeContext';
-import Typography from '../Typography';
-import { _renderIcon } from './_renderIcons';
+import { MsqThemeContext } from '../theme/ThemeContext';
+import Typography from './Typography';
+import { renderIcon, IconKey } from './renderIcon';
 
 const Button = ({
   icon,
@@ -45,7 +45,7 @@ const Button = ({
 
   const handlePressIn = () => {
     Animated.timing(scaleValue, {
-      toValue: 0.95,
+      toValue: 0.98,
       duration: 0
     }).start();
 
@@ -134,6 +134,13 @@ const Button = ({
     }
   });
 
+  let fillColor;
+  if (isDisabled) {
+    fillColor = WHITE;
+  } else {
+    variant === 'primary' ? (fillColor = WHITE) : (fillColor = BLUE_500);
+  }
+
   return (
     <TouchableWithoutFeedback
       ref={ref}
@@ -168,15 +175,10 @@ const Button = ({
           </Typography>
         )}
         {icon &&
-          _renderIcon({
+          renderIcon({
+            fill: fillColor,
             icon,
-            styles,
-            variant,
-            isDisabled,
-            colors: {
-              BLUE_500,
-              WHITE
-            }
+            styles
           })}
       </Animated.View>
     </TouchableWithoutFeedback>
@@ -186,12 +188,11 @@ const Button = ({
 export default Button;
 
 interface IButton {
-  icon?: Icon;
+  icon?: IconKey;
   isDisabled?: boolean;
   onPress: () => void;
   label?: string;
   variant: Variant;
 }
 
-export type Icon = 'chevronRight';
 export type Variant = 'primary' | 'secondary';

@@ -10,6 +10,7 @@ import {
 import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
 import {AppHeader} from 'components/src/AppHeader';
 import {Button, Input, Typography} from 'components/src/ui';
+import {Search} from 'components/src/assets/icons';
 
 export function App() {
   return (
@@ -30,7 +31,11 @@ export function App() {
             <Typography color="black" variant="h2">
               Be Honest feat. DJ Omni &amp; DJ Ruivo
             </Typography>
-            <Input label="Song Name" placeholder="Be Honest" />
+            <Input
+              leftIcon="search"
+              label="Song Name"
+              placeholder="Be Honest"
+            />
             <Input label="Song Name" placeholder="Be Honest" />
             <Input label="Song Name" placeholder="Be Honest" />
             <Button label="Play" onPress={() => {}} variant="primary" />
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: '#F5F9FB',
-    marginHorizontal: 8,
+    paddingHorizontal: 16,
   },
   sectionContainer: {
     marginTop: 32,
