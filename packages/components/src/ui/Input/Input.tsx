@@ -1,11 +1,27 @@
 import React, { useContext, useRef, useState, ReactNode } from 'react';
-import { StyleSheet, TextInput, View, KeyboardTypeOptions } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  KeyboardTypeOptions,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { useFocus, useHover } from 'react-native-web-hooks';
 import { MsqThemeContext } from '../../theme/ThemeContext';
 import Typography from '../Typography';
 import { renderIcon, IconKey } from '../renderIcon';
 
-const Input = ({ label, leftIcon, placeholder, type }: InputProps) => {
+const Input = ({
+  label,
+  leftIcon,
+  onChangeText,
+  onLeftIconPress,
+  onRightIconPress,
+  placeholder,
+  rightIcon,
+  type,
+  value
+}: InputProps) => {
   const ref = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   // const isFocused = useFocus(ref);
@@ -24,13 +40,17 @@ const Input = ({ label, leftIcon, placeholder, type }: InputProps) => {
     label: {
       marginBottom: theme.spacings.linear.xxs
     },
+    leftIcon: {
+      paddingRight: theme.spacings.linear.xs
+    },
+
     input: {
       ...theme.typography.input.text,
       ...theme.spacings.radius.md,
       flex: 1,
       flexWrap: 'nowrap',
       height: 50,
-      paddingLeft: leftIcon ? theme.spacings.linear.xs : 0
+      textAlignVertical: type === 'multiline' ? 'top' : 'auto'
     },
     inputContainer: {
       ...theme.spacings.radius.md,
@@ -41,6 +61,9 @@ const Input = ({ label, leftIcon, placeholder, type }: InputProps) => {
       flexDirection: 'row',
       paddingHorizontal: theme.spacings.linear.xs,
       overflow: 'hidden'
+    },
+    rightIcon: {
+      paddingLeft: theme.spacings.linear.xxs
     }
   });
 
@@ -73,20 +96,38 @@ const Input = ({ label, leftIcon, placeholder, type }: InputProps) => {
         </Typography>
       )}
       <View style={[styles.inputContainer, isFocused && styles.focused]}>
-        {leftIcon &&
-          renderIcon({
-            fill: isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
-            icon: leftIcon,
-            styles
-          })}
+        {leftIcon && (
+          <TouchableWithoutFeedback onPress={onLeftIconPress}>
+            <View style={styles.leftIcon}>
+              {renderIcon({
+                fill: isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
+                icon: leftIcon
+              })}
+            </View>
+          </TouchableWithoutFeedback>
+        )}
         <TextInput
           keyboardType={keyboardType}
+          multiline={type === 'multiline'}
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
+          onChangeText={onChangeText}
           placeholder={placeholder}
           placeholderTextColor={LIGHTGREY_200}
           style={[styles.input]}
+          value={value}
         />
+        {rightIcon && (
+          <TouchableWithoutFeedback onPress={onRightIconPress}>
+            <View style={styles.rightIcon}>
+              {renderIcon({
+                fill: isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
+                icon: rightIcon,
+                styles
+              })}
+            </View>
+          </TouchableWithoutFeedback>
+        )}
       </View>
     </View>
   );
@@ -97,6 +138,11 @@ export default Input;
 interface InputProps {
   label?: string;
   leftIcon?: IconKey;
+  onChangeText: (value: any) => any;
+  onLeftIconPress?: () => void;
+  onRightIconPress?: () => void;
   placeholder: string;
-  type: 'email' | 'money' | 'number' | 'phone' | 'text';
+  rightIcon?: IconKey;
+  type: 'email' | 'money' | 'multiline' | 'number' | 'phone' | 'text';
+  value: any;
 }

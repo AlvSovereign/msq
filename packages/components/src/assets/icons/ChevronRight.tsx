@@ -17,5 +17,4 @@ const ChevronRight = ({
 };
 
 const MemoChevronRight = React.memo(ChevronRight);
-
 export default MemoChevronRight;

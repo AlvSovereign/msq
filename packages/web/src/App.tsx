@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,9 +10,9 @@ import {
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import { AppHeader } from 'components/src/AppHeader';
 import { Input, Typography, Button } from 'components/src/ui';
-import { Search } from 'components/src/assets/icons';
 
 export function App() {
+  const [value, onChangeText] = useState('');
   return (
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle='dark-content' />
@@ -31,12 +31,29 @@ export function App() {
               Be Honest feat. DJ Omni &amp; DJ Ruivo
             </Typography>
             <Input
+              type='email'
               leftIcon='search'
               label='Song Name'
+              onChangeText={text => onChangeText(text)}
               placeholder='Be Honest'
+              value={value}
             />
-            <Input label='Song Name' placeholder='Be Honest' />
-            <Input label='Song Name' placeholder='Be Honest' />
+            <Input
+              type='text'
+              label='Song Artists'
+              onChangeText={text => onChangeText(text)}
+              placeholder='Be Honest'
+              rightIcon='cross'
+              value={value}
+            />
+            <Input
+              type='number'
+              label='Song Name'
+              onChangeText={text => onChangeText(text)}
+              placeholder='Be Honest'
+              rightIcon='cross'
+              value={value}
+            />
             <Button
               label='Play'
               onPress={() => {}}

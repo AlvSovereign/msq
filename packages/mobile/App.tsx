@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,16 +10,15 @@ import {
 import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
 import {AppHeader} from 'components/src/AppHeader';
 import {Button, Input, Typography} from 'components/src/ui';
-import {Search} from 'components/src/assets/icons';
 
 export function App() {
+  const [value, onChangeText] = useState('');
+
   return (
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
           <AppHeader />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
@@ -34,10 +33,26 @@ export function App() {
             <Input
               leftIcon="search"
               label="Song Name"
+              onChangeText={text => onChangeText(text)}
               placeholder="Be Honest"
+              type="text"
+              value={value}
             />
-            <Input label="Song Name" placeholder="Be Honest" />
-            <Input label="Song Name" placeholder="Be Honest" />
+            <Input
+              label="Song Name"
+              placeholder="Be Honest"
+              onChangeText={text => onChangeText(text)}
+              type="money"
+              rightIcon="cross"
+              value={value}
+            />
+            <Input
+              label="Song Name"
+              placeholder="Be Honest"
+              onChangeText={text => onChangeText(text)}
+              type="email"
+              value={value}
+            />
             <Button label="Play" onPress={() => {}} variant="primary" />
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>
