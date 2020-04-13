@@ -14,10 +14,9 @@
     "xcode": "open ios/myprojectname.xcworkspace"
   },
   "dependencies": {
-    "@react-native-community/checkbox": "^0.3.0",
     "components": "0.0.1",
-    "react": "16.12.0",
-    "react-native": "0.61.5",
+    "react": "16.11.0",
+    "react-native": "0.62.2",
     "react-native-svg": "^12.0.3"
   },
   "devDependencies": {

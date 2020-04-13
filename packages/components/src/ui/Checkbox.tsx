@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Platform, StyleSheet, Switch as RNSwitch, View } from 'react-native';
 import RNCCheck from '@react-native-community/checkbox';
-import { MsqThemeContext } from '../../theme/ThemeContext';
+import { MsqThemeContext } from '../theme/ThemeContext';
+import Typography from './Typography';
 
 const Checkbox = ({
   isDisabled,
