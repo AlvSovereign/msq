@@ -8,9 +8,9 @@ import {
   Platform
 } from 'react-native';
 import { useFocus, useHover } from 'react-native-web-hooks';
-import { MsqThemeContext } from '../../theme/ThemeContext';
-import Typography from '../Typography';
-import { renderIcon, IconKey } from '../renderIcon';
+import { MsqThemeContext } from '../theme/ThemeContext';
+import Typography from './Typography';
+import { renderIcon, IconKey } from './renderIcon';
 
 const Input = ({
   isError,
@@ -43,7 +43,6 @@ const Input = ({
       width: '100%'
     },
     errorText: {
-      color: ERROR,
       alignSelf: 'flex-end'
     },
     focused: { borderColor: LIGHTGREY_200 },
@@ -112,7 +111,7 @@ const Input = ({
           <TouchableWithoutFeedback onPress={onLeftIconPress}>
             <View style={styles.leftIcon}>
               {renderIcon({
-                fill: isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
+                fill: isError || isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
                 icon: leftIcon
               })}
             </View>
@@ -143,7 +142,7 @@ const Input = ({
         )}
       </View>
       {isError && isErrorText && (
-        <Typography color='lightGrey' style={styles.errorText} variant='body2'>
+        <Typography color='error' style={styles.errorText} variant='body2'>
           {isErrorText}
         </Typography>
       )}

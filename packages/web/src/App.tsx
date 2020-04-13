@@ -37,6 +37,8 @@ export function App() {
               onChangeText={text => onChangeText(text)}
               placeholder='Be Honest'
               value={value}
+              isError={!value}
+              isErrorText='Song Name is invalid'
             />
             <Input
               type='multiline'

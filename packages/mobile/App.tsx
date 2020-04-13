@@ -36,6 +36,8 @@ export function App() {
               onChangeText={text => onChangeText(text)}
               placeholder="Be Honest"
               type="text"
+              isError={!value}
+              isErrorText="Song Name is invalid"
               value={value}
             />
             <Input
@@ -52,7 +54,7 @@ export function App() {
               placeholder="Be Honest"
               onChangeText={text => onChangeText(text)}
               type="email"
-              isError={true}
+              isError={!value}
               isErrorText="Song Name is invalid"
               value={value}
             />

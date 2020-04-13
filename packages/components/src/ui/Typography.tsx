@@ -24,6 +24,7 @@ const Typography = ({ children, color, style, variant }: ITypography) => {
     label: { ...theme.typography.input.label },
     black: { color: theme.colors.black },
     blue: { color: theme.colors.blue[500] },
+    error: { color: theme.colors.error },
     lightGrey: { color: theme.colors.lightGrey[500] },
     white: { color: theme.colors.white }
   });
@@ -37,7 +38,7 @@ export default Typography;
 
 interface ITypography {
   children: ReactNode;
-  color: 'black' | 'blue' | 'lightGrey' | 'white';
+  color: 'black' | 'blue' | 'error' | 'lightGrey' | 'white';
   style?: StyleProp<TextStyle>;
   variant: 'body2' | 'button' | 'hero' | 'h1' | 'h2' | 'label';
 }
