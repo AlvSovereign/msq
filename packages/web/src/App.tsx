@@ -39,7 +39,8 @@ export function App() {
               value={value}
             />
             <Input
-              type='text'
+              type='multiline'
+              numberOfLines={5}
               label='Song Artists'
               onChangeText={text => onChangeText(text)}
               placeholder='Be Honest'
@@ -47,7 +48,9 @@ export function App() {
               value={value}
             />
             <Input
-              type='number'
+              type='text'
+              isError={!value}
+              isErrorText='Song Name is invalid'
               label='Song Name'
               onChangeText={text => onChangeText(text)}
               placeholder='Be Honest'

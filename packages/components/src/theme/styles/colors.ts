@@ -1,6 +1,7 @@
 const colors = {
   background: '#F5F9FB',
   red: {
+    50: '#F9DFE3',
     500: '#FF0039'
   },
   lightGrey: { 100: '#E5EBF0', 200: '#BCCAD0', 500: '#5D6E76' },

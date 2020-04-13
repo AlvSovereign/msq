@@ -42,7 +42,8 @@ export function App() {
               label="Song Name"
               placeholder="Be Honest"
               onChangeText={text => onChangeText(text)}
-              type="money"
+              type="multiline"
+              numberOfLines={5}
               rightIcon="cross"
               value={value}
             />
@@ -51,6 +52,8 @@ export function App() {
               placeholder="Be Honest"
               onChangeText={text => onChangeText(text)}
               type="email"
+              isError={true}
+              isErrorText="Song Name is invalid"
               value={value}
             />
             <Button label="Play" onPress={() => {}} variant="primary" />

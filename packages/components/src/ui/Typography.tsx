@@ -6,6 +6,9 @@ const Typography = ({ children, color, style, variant }: ITypography) => {
   const theme = useContext(MsqThemeContext);
   const windowSize = useResponsive();
   const styles = StyleSheet.create({
+    body2: {
+      ...theme.typography.text.body2
+    },
     hero: {
       ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].hero
     },
@@ -36,5 +39,5 @@ interface ITypography {
   children: ReactNode;
   color: 'black' | 'blue' | 'lightGrey' | 'white';
   style?: StyleProp<TextStyle>;
-  variant: 'button' | 'hero' | 'h1' | 'h2' | 'label';
+  variant: 'body2' | 'button' | 'hero' | 'h1' | 'h2' | 'label';
 }
