@@ -1,5 +1,11 @@
-import React, { useCallback, useContext, useRef } from 'react';
-import { Platform, StyleSheet, Switch as RNSwitch, View } from 'react-native';
+import React, { useContext } from 'react';
+import {
+  Platform,
+  StyleSheet,
+  Switch as RNSwitch,
+  View,
+  TouchableWithoutFeedback
+} from 'react-native';
 import RNCheckbox from '@react-native-community/checkbox';
 import { CheckBox as RNWCheckbox } from 'react-native-web';
 import { MsqThemeContext } from '../theme/ThemeContext';
@@ -40,45 +46,47 @@ const Checkbox = ({
   });
 
   return (
-    <View style={styles.container}>
-      <View style={styles.checkboxContainer}>
-        {Platform.OS === 'ios' ? (
-          <RNSwitch
-            disabled={isDisabled}
-            onValueChange={onValueChange}
-            style={styles.checkbox}
-            trackColor={{ false: '', true: BLUE_500 }}
-            value={value}
-          />
-        ) : Platform.OS === 'android' ? (
-          <RNCheckbox
-            disabled={isDisabled}
-            onValueChange={onValueChange}
-            style={styles.checkbox}
-            tintColors={{ false: '', true: BLUE_500 }}
-            value={value}
-          />
-        ) : (
-          <RNWCheckbox
-            color={BLUE_500}
-            disabled={isDisabled}
-            onValueChange={onValueChange}
-            style={styles.checkbox}
-            value={value}
-          />
-        )}
-        {label && (
-          <Typography color='black' style={styles.label} variant='label'>
-            {label}
+    <TouchableWithoutFeedback onPress={onValueChange}>
+      <View style={styles.container}>
+        <View style={styles.checkboxContainer}>
+          {Platform.OS === 'ios' ? (
+            <RNSwitch
+              disabled={isDisabled}
+              onValueChange={onValueChange}
+              style={styles.checkbox}
+              trackColor={{ false: '', true: BLUE_500 }}
+              value={value}
+            />
+          ) : Platform.OS === 'android' ? (
+            <RNCheckbox
+              disabled={isDisabled}
+              onValueChange={onValueChange}
+              style={styles.checkbox}
+              tintColors={{ false: '', true: BLUE_500 }}
+              value={value}
+            />
+          ) : (
+            <RNWCheckbox
+              color={BLUE_500}
+              disabled={isDisabled}
+              onValueChange={onValueChange}
+              style={styles.checkbox}
+              value={value}
+            />
+          )}
+          {label && (
+            <Typography color='black' style={styles.label} variant='label'>
+              {label}
+            </Typography>
+          )}
+        </View>
+        {subLabel && (
+          <Typography color='lightGrey' style={styles.subLabel} variant='body2'>
+            {subLabel}
           </Typography>
         )}
       </View>
-      {subLabel && (
-        <Typography color='lightGrey' style={styles.subLabel} variant='body2'>
-          {subLabel}
-        </Typography>
-      )}
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
