@@ -13,7 +13,7 @@
     "ios": "yarn workspace mobile  ios",
     "studio": "yarn workspace mobile studio",
     "xcode": "yarn workspace mobile xcode",
-    "webapp": "yarn workspace webapp start"
+    "web": "yarn workspace web start"
   },
   "dependencies": {
     "react-native": "*"

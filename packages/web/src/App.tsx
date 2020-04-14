@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import { AppHeader } from 'components/src/AppHeader';
-import { Input, Typography, Button } from 'components/src/ui';
+import { Typography, Button, Checkbox } from 'components/src/ui';
 
 export function App() {
-  const [value, onChangeText] = useState('');
+  const [value, setValue] = useState(false);
+
   return (
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle='dark-content' />
@@ -26,37 +27,18 @@ export function App() {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <View style={styles.body}>
+          <View
+            style={{
+              backgroundColor: '#F5F9FB',
+              paddingHorizontal: 16
+            }}>
             <Typography color='black' variant='h2'>
               Be Honest feat. DJ Omni &amp; DJ Ruivo
             </Typography>
-            <Input
-              type='email'
-              leftIcon='search'
-              label='Song Name'
-              onChangeText={text => onChangeText(text)}
-              placeholder='Be Honest'
-              value={value}
-              isError={!value}
-              isErrorText='Song Name is invalid'
-            />
-            <Input
-              type='multiline'
-              numberOfLines={5}
-              label='Song Artists'
-              onChangeText={text => onChangeText(text)}
-              placeholder='Be Honest'
-              rightIcon='cross'
-              value={value}
-            />
-            <Input
-              type='text'
-              isError={!value}
-              isErrorText='Song Name is invalid'
-              label='Song Name'
-              onChangeText={text => onChangeText(text)}
-              placeholder='Be Honest'
-              rightIcon='cross'
+            <Checkbox
+              label='Be Honest feat...'
+              onValueChange={() => setValue(!value)}
+              subLabel='This is a sub label, meant to give more context to the user selection'
               value={value}
             />
             <Button

@@ -10,13 +10,13 @@ const Typography = ({ children, color, style, variant }: ITypography) => {
       ...theme.typography.text.body2
     },
     hero: {
-      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].hero
+      ...theme.typography.headings[windowSize === 'sm' ? 1 : 0].hero
     },
     h1: {
-      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].h1
+      ...theme.typography.headings[windowSize === 'sm' ? 1 : 0].h1
     },
     h2: {
-      ...theme.typography.headings[windowSize === 'sm' ? 0 : 1].h2
+      ...theme.typography.headings[windowSize === 'sm' ? 1 : 0].h2
     },
     button: {
       ...theme.typography.text.button

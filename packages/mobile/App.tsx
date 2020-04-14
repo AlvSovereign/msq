@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
 import {AppHeader} from 'components/src/AppHeader';
-import {Button, Input, Typography} from 'components/src/ui';
+import {Button, Typography, Checkbox} from 'components/src/ui';
 
 export function App() {
-  const [value, onChangeText] = useState('');
+  const [value, setValue] = useState(false);
 
   return (
     <MsqThemeContext.Provider value={theme}>
@@ -30,32 +30,10 @@ export function App() {
             <Typography color="black" variant="h2">
               Be Honest feat. DJ Omni &amp; DJ Ruivo
             </Typography>
-            <Input
-              leftIcon="search"
-              label="Song Name"
-              onChangeText={text => onChangeText(text)}
-              placeholder="Be Honest"
-              type="text"
-              isError={!value}
-              isErrorText="Song Name is invalid"
-              value={value}
-            />
-            <Input
-              label="Song Name"
-              placeholder="Be Honest"
-              onChangeText={text => onChangeText(text)}
-              type="multiline"
-              numberOfLines={5}
-              rightIcon="cross"
-              value={value}
-            />
-            <Input
-              label="Song Name"
-              placeholder="Be Honest"
-              onChangeText={text => onChangeText(text)}
-              type="email"
-              isError={!value}
-              isErrorText="Song Name is invalid"
+            <Checkbox
+              label="Be Honest feat..."
+              onValueChange={() => setValue(!value)}
+              subLabel="This is a sub label, meant to give more context to the user selection"
               value={value}
             />
             <Button label="Play" onPress={() => {}} variant="primary" />
