@@ -9,11 +9,45 @@ import {
 } from 'react-native';
 import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
 import {AppHeader} from 'components/src/AppHeader';
-import {Button, Typography, Checkbox} from 'components/src/ui';
+import {Button, Typography, RadioGroup} from 'components/src/ui';
 
 export function App() {
-  const [value, setValue] = useState(false);
-
+  const options = [
+    {
+      id: 1,
+      label: 'Cloud Strife',
+      value: 'Cloud Strife',
+      isOptionDisabled: false,
+      subLabel: "MVP of Final Fantasy 7 Remake fo' sho",
+    },
+    {
+      id: 2,
+      label: 'Tifa Lockhart',
+      value: 'Tifa Lockhart',
+      isOptionDisabled: false,
+      subLabel: "The BAE of Final Fantasy 7 Remake fo' sho",
+    },
+    {
+      id: 3,
+      label: 'Barret Wallace',
+      value: 'Barret Wallace',
+      isOptionDisabled: false,
+      subLabel: "The bro of Final Fantasy 7 Remake fo' sho",
+    },
+    {
+      id: 4,
+      label: 'Aerith Gainsborough',
+      value: 'Aerith Gainsborough',
+      isOptionDisabled: true,
+    },
+  ];
+  const [optionSelected, setOptionSelected] = useState({
+    id: 3,
+    label: 'Barret Wallace',
+    value: 'Barret Wallace',
+    isOptionDisabled: false,
+    subLabel: "The bro of Final Fantasy 7 Remake fo' sho",
+  });
   return (
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle="dark-content" />
@@ -30,12 +64,11 @@ export function App() {
             <Typography color="black" variant="h2">
               Be Honest feat. DJ Omni &amp; DJ Ruivo
             </Typography>
-            <Checkbox
-              isDisabled={false}
-              label="Be Honest feat..."
-              onValueChange={() => setValue(!value)}
-              subLabel="This is a sub label, meant to give more context to the user selection"
-              value={value}
+            <RadioGroup
+              defaultSelectedId={2}
+              options={options}
+              optionSelected={optionSelected}
+              setOptionSelected={setOptionSelected}
             />
             <Button label="Play" onPress={() => {}} variant="primary" />
             <View style={styles.sectionContainer}>
