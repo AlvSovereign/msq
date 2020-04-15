@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import {
   Platform,
   StyleSheet,
-  Switch as RNSwitch,
   View,
   TouchableWithoutFeedback
 } from 'react-native';
 import RNCheckbox from '@react-native-community/checkbox';
 import { CheckBox as RNWCheckbox } from 'react-native-web';
+import { Check } from '../assets/icons';
 import { MsqThemeContext } from '../theme/ThemeContext';
 import Typography from './Typography';
 
@@ -20,11 +20,13 @@ const Checkbox = ({
 }: CheckboxProps) => {
   const theme = useContext(MsqThemeContext);
   const BLUE_500 = theme.colors.blue[500];
+  const LIGHTGREY_100 = theme.colors.lightGrey[100];
+  const LIGHTGREY_200 = theme.colors.lightGrey[200];
   const styles = StyleSheet.create({
     checkbox: {
       marginLeft: 0,
       marginRight: theme.spacings.linear.xs,
-      marginVertical: Platform.OS === 'web' ? 4 : 0
+      marginVertical: 0
     },
     checkboxContainer: {
       alignItems: 'center',
@@ -40,42 +42,51 @@ const Checkbox = ({
       flex: 1
     },
     subLabel: {
-      marginLeft:
-        Platform.OS === 'ios' ? 59 : Platform.OS === 'android' ? 40 : 24
+      marginLeft: Platform.OS === 'web' ? 24 : 32
     }
   });
 
+  const handlePress = () => {
+    !isDisabled && onValueChange();
+  };
+
   return (
-    <TouchableWithoutFeedback onPress={onValueChange}>
+    <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.container}>
         <View style={styles.checkboxContainer}>
           {Platform.OS === 'ios' ? (
-            <RNSwitch
-              disabled={isDisabled}
-              onValueChange={onValueChange}
-              style={styles.checkbox}
-              trackColor={{ false: '', true: BLUE_500 }}
-              value={value}
-            />
+            <View>
+              <Check
+                fill={
+                  isDisabled ? LIGHTGREY_100 : !value ? LIGHTGREY_200 : BLUE_500
+                }
+                style={styles.checkbox}
+              />
+            </View>
           ) : Platform.OS === 'android' ? (
             <RNCheckbox
               disabled={isDisabled}
               onValueChange={onValueChange}
               style={styles.checkbox}
-              tintColors={{ false: '', true: BLUE_500 }}
+              tintColors={{
+                false: isDisabled ? LIGHTGREY_100 : LIGHTGREY_200,
+                true: BLUE_500
+              }}
               value={value}
             />
           ) : (
             <RNWCheckbox
               color={BLUE_500}
               disabled={isDisabled}
-              onValueChange={onValueChange}
               style={styles.checkbox}
               value={value}
             />
           )}
           {label && (
-            <Typography color='black' style={styles.label} variant='label'>
+            <Typography
+              color={isDisabled ? 'lightGrey' : 'black'}
+              style={styles.label}
+              variant='label'>
               {label}
             </Typography>
           )}

@@ -36,6 +36,7 @@ export function App() {
               Be Honest feat. DJ Omni &amp; DJ Ruivo
             </Typography>
             <Checkbox
+              isDisabled={false}
               label='Be Honest feat...'
               onValueChange={() => setValue(!value)}
               subLabel='This is a sub label, meant to give more context to the user selection'
