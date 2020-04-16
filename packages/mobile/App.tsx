@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
 import {AppHeader} from 'components/src/AppHeader';
-import {Button, Typography, RadioGroup} from 'components/src/ui';
+import {Button, Select, Typography} from 'components/src/ui';
 
 export function App() {
   const options = [
@@ -18,21 +18,18 @@ export function App() {
       label: 'Cloud Strife',
       value: 'Cloud Strife',
       isOptionDisabled: false,
-      subLabel: "MVP of Final Fantasy 7 Remake fo' sho",
     },
     {
       id: 2,
       label: 'Tifa Lockhart',
       value: 'Tifa Lockhart',
       isOptionDisabled: false,
-      subLabel: "The BAE of Final Fantasy 7 Remake fo' sho",
     },
     {
       id: 3,
       label: 'Barret Wallace',
       value: 'Barret Wallace',
       isOptionDisabled: false,
-      subLabel: "The bro of Final Fantasy 7 Remake fo' sho",
     },
     {
       id: 4,
@@ -41,13 +38,7 @@ export function App() {
       isOptionDisabled: true,
     },
   ];
-  const [optionSelected, setOptionSelected] = useState({
-    id: 3,
-    label: 'Barret Wallace',
-    value: 'Barret Wallace',
-    isOptionDisabled: false,
-    subLabel: "The bro of Final Fantasy 7 Remake fo' sho",
-  });
+
   return (
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle="dark-content" />
@@ -64,12 +55,7 @@ export function App() {
             <Typography color="black" variant="h2">
               Be Honest feat. DJ Omni &amp; DJ Ruivo
             </Typography>
-            <RadioGroup
-              defaultSelectedId={2}
-              options={options}
-              optionSelected={optionSelected}
-              setOptionSelected={setOptionSelected}
-            />
+
             <Button label="Play" onPress={() => {}} variant="primary" />
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>

@@ -5,50 +5,13 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import { AppHeader } from 'components/src/AppHeader';
-import { Typography, RadioGroup } from 'components/src/ui';
+import { Typography } from 'components/src/ui';
 
 export function App() {
-  const options = [
-    {
-      id: 1,
-      label: 'Cloud Strife',
-      value: 'Cloud Strife',
-      isOptionDisabled: false,
-      subLabel: "MVP of Final Fantasy 7 Remake fo' sho"
-    },
-    {
-      id: 2,
-      label: 'Tifa Lockhart',
-      value: 'Tifa Lockhart',
-      isOptionDisabled: false,
-      subLabel: "The BAE of Final Fantasy 7 Remake fo' sho"
-    },
-    {
-      id: 3,
-      label: 'Barret Wallace',
-      value: 'Barret Wallace',
-      isOptionDisabled: false,
-      subLabel: "The bro of Final Fantasy 7 Remake fo' sho"
-    },
-    {
-      id: 4,
-      label: 'Aerith Gainsborough',
-      value: 'Aerith Gainsborough',
-      isOptionDisabled: true
-    }
-  ];
-  const [optionSelected, setOptionSelected] = useState({
-    id: 3,
-    label: 'Barret Wallace',
-    value: 'Barret Wallace',
-    isOptionDisabled: false,
-    subLabel: "The bro of Final Fantasy 7 Remake fo' sho"
-  });
-
   return (
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle='dark-content' />
@@ -65,17 +28,11 @@ export function App() {
           <View
             style={{
               backgroundColor: '#F5F9FB',
-              paddingHorizontal: 16
+              paddingHorizontal: 16,
             }}>
             <Typography color='black' variant='h2'>
               Be Honest feat. DJ Omni &amp; DJ Ruivo
             </Typography>
-            <RadioGroup
-              defaultSelectedId={2}
-              options={options}
-              optionSelected={optionSelected}
-              setOptionSelected={setOptionSelected}
-            />
 
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>
@@ -117,33 +74,33 @@ export function App() {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   engine: {
     position: 'absolute',
-    right: 0
+    right: 0,
   },
   body: {
     backgroundColor: '#F5F9FB',
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
   },
   sectionContainer: {
     marginTop: 32,
-    paddingHorizontal: 24
+    paddingHorizontal: 24,
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: 'black'
+    color: 'black',
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
-    color: 'gray'
+    color: 'gray',
   },
   highlight: {
-    fontWeight: '700'
+    fontWeight: '700',
   },
   footer: {
     color: 'gray',
@@ -151,8 +108,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
     paddingRight: 12,
-    textAlign: 'right'
-  }
+    textAlign: 'right',
+  },
 });
 
 declare var global: any;
