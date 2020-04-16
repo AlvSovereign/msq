@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Clear, Search } from '../assets/icons';
+import { ChevronRight, Clear, Search } from '.';
 
 const renderIcon = ({ fill, icon, styles }: IRenderIcon) => {
   switch (icon) {
@@ -7,7 +7,6 @@ const renderIcon = ({ fill, icon, styles }: IRenderIcon) => {
       return <ChevronRight fill={fill} style={styles} />;
     case 'cross':
       return <Clear fill={fill} style={styles} />;
-
     case 'search':
       return <Search fill={fill} style={styles} />;
     default:

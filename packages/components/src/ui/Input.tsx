@@ -5,12 +5,12 @@ import {
   View,
   KeyboardTypeOptions,
   TouchableWithoutFeedback,
-  Platform
+  Platform,
 } from 'react-native';
 import { useFocus, useHover } from 'react-native-web-hooks';
 import { MsqThemeContext } from '../theme/ThemeContext';
 import Typography from './Typography';
-import { renderIcon, IconKey } from './renderIcon';
+import { renderIcon, IconKey } from '../assets/icons/renderIcon';
 
 const Input = ({
   isError,
@@ -24,7 +24,7 @@ const Input = ({
   placeholder,
   rightIcon,
   type,
-  value
+  value,
 }: InputProps) => {
   const ref = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -40,17 +40,17 @@ const Input = ({
     container: {
       flexDirection: 'column',
       marginBottom: theme.spacings.linear.lg,
-      width: '100%'
+      width: '100%',
     },
     errorText: {
-      alignSelf: 'flex-end'
+      alignSelf: 'flex-end',
     },
     focused: { borderColor: LIGHTGREY_200 },
     label: {
-      marginBottom: theme.spacings.linear.xxs
+      marginBottom: theme.spacings.linear.xxs,
     },
     leftIcon: {
-      paddingRight: theme.spacings.linear.xs
+      paddingRight: theme.spacings.linear.xs,
     },
     input: {
       ...theme.typography.input.text,
@@ -61,7 +61,7 @@ const Input = ({
         type === 'multiline'
           ? numberOfLines! * theme.typography.input.text.lineHeight + 5
           : 50,
-      textAlignVertical: type === 'multiline' ? 'top' : 'auto'
+      textAlignVertical: type === 'multiline' ? 'top' : 'auto',
     },
     inputContainer: {
       ...theme.spacings.radius.md,
@@ -71,11 +71,11 @@ const Input = ({
       borderWidth: 1.5,
       flexDirection: 'row',
       paddingHorizontal: theme.spacings.linear.xs,
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
     rightIcon: {
-      paddingLeft: theme.spacings.linear.xxs
-    }
+      paddingLeft: theme.spacings.linear.xxs,
+    },
   });
 
   let keyboardType: KeyboardTypeOptions;
@@ -112,7 +112,7 @@ const Input = ({
             <View style={styles.leftIcon}>
               {renderIcon({
                 fill: isError || isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
-                icon: leftIcon
+                icon: leftIcon,
               })}
             </View>
           </TouchableWithoutFeedback>
@@ -135,7 +135,7 @@ const Input = ({
               {renderIcon({
                 fill: isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
                 icon: rightIcon,
-                styles
+                styles,
               })}
             </View>
           </TouchableWithoutFeedback>

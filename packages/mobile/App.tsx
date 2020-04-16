@@ -9,7 +9,9 @@ import {
 } from 'react-native';
 import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
 import {AppHeader} from 'components/src/AppHeader';
-import {Button, Select, Typography} from 'components/src/ui';
+import {Button, Typography, Page} from 'components/src/ui';
+
+const Image = require('../components/src/assets/images/bgImage.png');
 
 export function App() {
   const options = [
@@ -42,55 +44,43 @@ export function App() {
   return (
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <AppHeader />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
+      <Page backgroundImage={Image} blur={true}>
+        {/* <AppHeader /> */}
 
-          <View style={styles.body}>
-            <Typography color="black" variant="h2">
-              Be Honest feat. DJ Omni &amp; DJ Ruivo
-            </Typography>
+        <View style={styles.body}>
+          <Typography color="black" variant="h2">
+            Be Honest feat. DJ Omni &amp; DJ Ruivo
+          </Typography>
 
-            <Button label="Play" onPress={() => {}} variant="primary" />
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>
-                Code sharing using Monorepo
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Edit{' '}
-                <Text style={styles.highlight}>
-                  packages/components/App.tsx
-                </Text>{' '}
-                to change this screen and then come back to see your edits (in
-                the phone or the browser).
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>
-                Web support via react-native-web
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Run{' '}
-                <Text style={styles.highlight}>yarn workspace web start</Text>{' '}
-                to open this app in the browser.
-              </Text>
-              <Text style={styles.sectionDescription}>
-                It will share the same code from mobile, unless you create
-                platform-specific files using the{' '}
-                <Text style={styles.highlight}>.web.tsx</Text> extension (also
-                supports <Text style={styles.highlight}>.android</Text>,{' '}
-                <Text style={styles.highlight}>.ios</Text>,{' '}
-                <Text style={styles.highlight}>.native</Text>, etc).
-              </Text>
-            </View>
+          <Button label="Play" onPress={() => {}} variant="primary" />
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Code sharing using Monorepo</Text>
+            <Text style={styles.sectionDescription}>
+              Edit{' '}
+              <Text style={styles.highlight}>packages/components/App.tsx</Text>{' '}
+              to change this screen and then come back to see your edits (in the
+              phone or the browser).
+            </Text>
           </View>
-        </ScrollView>
-      </SafeAreaView>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>
+              Web support via react-native-web
+            </Text>
+            <Text style={styles.sectionDescription}>
+              Run <Text style={styles.highlight}>yarn workspace web start</Text>{' '}
+              to open this app in the browser.
+            </Text>
+            <Text style={styles.sectionDescription}>
+              It will share the same code from mobile, unless you create
+              platform-specific files using the{' '}
+              <Text style={styles.highlight}>.web.tsx</Text> extension (also
+              supports <Text style={styles.highlight}>.android</Text>,{' '}
+              <Text style={styles.highlight}>.ios</Text>,{' '}
+              <Text style={styles.highlight}>.native</Text>, etc).
+            </Text>
+          </View>
+        </View>
+      </Page>
     </MsqThemeContext.Provider>
   );
 }
@@ -101,8 +91,8 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: '#F5F9FB',
-    paddingHorizontal: 16,
+    // backgroundColor: '#F5F9FB',
+    // paddingHorizontal: 16,
   },
   sectionContainer: {
     marginTop: 32,

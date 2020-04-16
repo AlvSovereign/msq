@@ -126,6 +126,7 @@ const typography: ITypography = {
     button: {
       fontSize: 12,
       fontFamily: 'Geomanist-Bold',
+      letterSpacing: 2,
       lineHeight: 16,
       textTransform: 'uppercase',
     },
