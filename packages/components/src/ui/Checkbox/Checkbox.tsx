@@ -3,48 +3,25 @@ import {
   Platform,
   StyleSheet,
   View,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from 'react-native';
 import RNCheckbox from '@react-native-community/checkbox';
 import { CheckBox as RNWCheckbox } from 'react-native-web';
-import { Check } from '../assets/icons';
-import { MsqThemeContext } from '../theme/ThemeContext';
-import Typography from './Typography';
+import { Check } from '../../assets/icons';
+import { MsqThemeContext } from '../../theme/ThemeContext';
+import Typography from '../Typography/Typography';
+import { _generateStyles } from './_generateStyles';
 
 const Checkbox = ({
   isDisabled,
   label,
   onValueChange,
   subLabel,
-  value
+  value,
 }: CheckboxProps) => {
   const theme = useContext(MsqThemeContext);
-  const BLUE_500 = theme.colors.blue[500];
-  const LIGHTGREY_100 = theme.colors.lightGrey[100];
-  const LIGHTGREY_200 = theme.colors.lightGrey[200];
-  const styles = StyleSheet.create({
-    checkbox: {
-      marginLeft: 0,
-      marginRight: theme.spacings.linear.xs,
-      marginVertical: 0
-    },
-    checkboxContainer: {
-      alignItems: 'center',
-      flexDirection: 'row',
-      justifyContent: 'center'
-    },
-    container: {
-      flexDirection: 'column',
-      flex: 1,
-      marginVertical: theme.spacings.linear.xs
-    },
-    label: {
-      flex: 1
-    },
-    subLabel: {
-      marginLeft: Platform.OS === 'web' ? 24 : 32
-    }
-  });
+  const { BLUE_500, LIGHTGREY_100, LIGHTGREY_200 } = theme.color;
+  const styles = _generateStyles(theme);
 
   const handlePress = () => {
     !isDisabled && onValueChange();
@@ -70,7 +47,7 @@ const Checkbox = ({
               style={styles.checkbox}
               tintColors={{
                 false: isDisabled ? LIGHTGREY_100 : LIGHTGREY_200,
-                true: BLUE_500
+                true: BLUE_500,
               }}
               value={value}
             />

@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
 import { TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
-import { MsqThemeContext } from '../theme/ThemeContext';
-import { RadioChecked, RadioUnchecked } from '../assets/icons';
-import Typography from './Typography';
+import { MsqThemeContext } from '../../theme/ThemeContext';
+import { RadioChecked, RadioUnchecked } from '../../assets/icons';
+import Typography from '../Typography/Typography';
+import { _generateStyles } from './_generateStyles';
 
 const RadioGroup = ({
   defaultSelectedId,
   isDisabled,
   options,
   optionSelected = defaultSelectedId
-    ? options.find(o => o.id === defaultSelectedId)
+    ? options.find((o) => o.id === defaultSelectedId)
     : options[0],
   style,
-  setOptionSelected
+  setOptionSelected,
 }: RadioRadioGroupProps) => {
   const testDefaultSelectedId =
-    defaultSelectedId && options.find(o => o.id === defaultSelectedId);
+    defaultSelectedId && options.find((o) => o.id === defaultSelectedId);
   if (
     defaultSelectedId === 0 ||
     (defaultSelectedId && !testDefaultSelectedId)
@@ -25,43 +26,14 @@ const RadioGroup = ({
     );
   }
   const theme = useContext(MsqThemeContext);
-  const BLUE_500 = theme.colors.blue[500];
-  const LIGHTGREY_100 = theme.colors.lightGrey[100];
-  const LIGHTGREY_200 = theme.colors.lightGrey[200];
-
-  const styles = StyleSheet.create({
-    optionLabel: {},
-    optionSubLabel: {
-      marginLeft: 32
-    },
-    radioGroupContainer: {
-      flex: 1
-    },
-    radioContainer: {
-      alignItems: 'flex-start',
-      flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'center',
-      marginVertical: theme.spacings.linear.xxs
-    },
-    radio: {
-      alignItems: 'center',
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      width: '100%'
-    },
-    icon: {
-      marginRight: theme.spacings.linear.xs
-    }
-  });
+  const { BLUE_500, LIGHTGREY_100, LIGHTGREY_200 } = theme.color;
+  const styles = _generateStyles(theme);
 
   const handlePress = (isOptionDisabled: boolean, value: any) => {
     if (!(isDisabled || isOptionDisabled)) {
       setOptionSelected(value);
     }
   };
-
   const isMatch = (id: Id) => id === optionSelected.id;
 
   const Radio = ({ isOptionDisabled, id, label, subLabel, value }: Option) => (
@@ -72,7 +44,7 @@ const RadioGroup = ({
           id,
           label,
           subLabel,
-          value
+          value,
         })
       }>
       <View style={styles.radioContainer}>

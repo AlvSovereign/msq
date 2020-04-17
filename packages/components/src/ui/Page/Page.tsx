@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { MsqThemeContext, useResponsive } from '../../theme/ThemeContext';
-import { generateStyles } from './Page.styles';
+import { generateStyles } from './_generateStyles';
 
 const Page = ({ backgroundImage, blur, children }: GridProps) => {
   const theme = useContext(MsqThemeContext);

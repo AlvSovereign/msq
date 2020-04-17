@@ -1,11 +1,17 @@
-import { colors } from './styles/colors';
-import { typography } from './styles/typography';
-import { spacings } from './styles/spacings';
+import { color, TColor } from './styles/color';
+import { typography, TTypography } from './styles/typography';
+import { spacing, TSpacing } from './styles/spacing';
 
-const theme: any = {
+const theme: ITheme = {
   typography,
-  colors,
-  spacings,
+  color,
+  spacing,
 };
 
 export default theme;
+
+export interface ITheme {
+  typography: TTypography;
+  color: TColor;
+  spacing: TSpacing;
+}

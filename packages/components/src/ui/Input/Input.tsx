@@ -5,12 +5,12 @@ import {
   View,
   KeyboardTypeOptions,
   TouchableWithoutFeedback,
-  Platform,
 } from 'react-native';
 import { useFocus, useHover } from 'react-native-web-hooks';
-import { MsqThemeContext } from '../theme/ThemeContext';
-import Typography from './Typography';
-import { renderIcon, IconKey } from '../assets/icons/renderIcon';
+import { MsqThemeContext } from '../../theme/ThemeContext';
+import Typography from '../Typography/Typography';
+import { renderIcon, IconKey } from '../../assets/icons/renderIcon';
+import { _generateStyles } from './_generateStyles';
 
 const Input = ({
   isError,
@@ -30,53 +30,8 @@ const Input = ({
   const [isFocused, setIsFocused] = useState(false);
   // const isFocused = useFocus(ref);
   const theme = useContext(MsqThemeContext);
-  const ERROR = theme.colors.error;
-  const LIGHTGREY_100 = theme.colors.lightGrey[100];
-  const LIGHTGREY_200 = theme.colors.lightGrey[200];
-  const RED_50 = theme.colors.red[50];
-  const WHITE = theme.colors.white;
-
-  const styles = StyleSheet.create({
-    container: {
-      flexDirection: 'column',
-      marginBottom: theme.spacings.linear.lg,
-      width: '100%',
-    },
-    errorText: {
-      alignSelf: 'flex-end',
-    },
-    focused: { borderColor: LIGHTGREY_200 },
-    label: {
-      marginBottom: theme.spacings.linear.xxs,
-    },
-    leftIcon: {
-      paddingRight: theme.spacings.linear.xs,
-    },
-    input: {
-      ...theme.typography.input.text,
-      ...theme.spacings.radius.md,
-      flex: 1,
-      flexWrap: 'nowrap',
-      height:
-        type === 'multiline'
-          ? numberOfLines! * theme.typography.input.text.lineHeight + 5
-          : 50,
-      textAlignVertical: type === 'multiline' ? 'top' : 'auto',
-    },
-    inputContainer: {
-      ...theme.spacings.radius.md,
-      alignItems: 'center',
-      backgroundColor: isError ? RED_50 : WHITE,
-      borderColor: isError ? ERROR : WHITE,
-      borderWidth: 1.5,
-      flexDirection: 'row',
-      paddingHorizontal: theme.spacings.linear.xs,
-      overflow: 'hidden',
-    },
-    rightIcon: {
-      paddingLeft: theme.spacings.linear.xxs,
-    },
-  });
+  const { ERROR, LIGHTGREY_100, LIGHTGREY_200, RED_50, WHITE } = theme.color;
+  const styles = _generateStyles(theme, isError, numberOfLines, type);
 
   let keyboardType: KeyboardTypeOptions;
 
@@ -163,6 +118,14 @@ interface InputProps {
   onRightIconPress?: () => void;
   placeholder: string;
   rightIcon?: IconKey;
-  type: 'email' | 'money' | 'multiline' | 'number' | 'phone' | 'text';
+  type: TInputTypes;
   value: any;
 }
+
+export type TInputTypes =
+  | 'email'
+  | 'money'
+  | 'multiline'
+  | 'number'
+  | 'phone'
+  | 'text';

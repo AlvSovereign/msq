@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext } from 'react';
 import { View } from 'react-native';
 import { MsqThemeContext, useResponsive } from '../../theme/ThemeContext';
-import { generateStyles } from './Grid.styles';
+import { generateStyles } from './_generateStyles';
 
 const Grid = ({ children, orientation }: GridProps) => {
   const theme = useContext(MsqThemeContext);
