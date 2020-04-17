@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 import { TBreakpoint } from '../../theme/hooks/useResponsive';
 
 const generateStyles = (breakpoints: TBreakpoint, theme: any) => {
-  console.log('theme: ', theme.colors.white);
   return StyleSheet.create({
     backgroundImage: {},
     blur: {
