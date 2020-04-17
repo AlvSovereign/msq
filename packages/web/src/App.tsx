@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
-import { AppHeader } from 'components/src/AppHeader';
 import { Typography, Page } from 'components/src/ui';
 const Image = require('components/src/assets/images/bgImage.png');
 
@@ -10,7 +9,6 @@ export function App() {
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle='dark-content' />
       <Page backgroundImage={Image} blur={true}>
-        {/* <AppHeader /> */}
         {global.HermesInternal == null ? null : (
           <View style={styles.engine}>
             <Text style={styles.footer}>Engine: Hermes</Text>

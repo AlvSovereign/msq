@@ -1,52 +1,15 @@
-import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React from 'react';
+import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
-import {AppHeader} from 'components/src/AppHeader';
 import {Button, Typography, Page} from 'components/src/ui';
 
 const Image = require('components/src/assets/images/bgImage.png');
 
 export function App() {
-  const options = [
-    {
-      id: 1,
-      label: 'Cloud Strife',
-      value: 'Cloud Strife',
-      isOptionDisabled: false,
-    },
-    {
-      id: 2,
-      label: 'Tifa Lockhart',
-      value: 'Tifa Lockhart',
-      isOptionDisabled: false,
-    },
-    {
-      id: 3,
-      label: 'Barret Wallace',
-      value: 'Barret Wallace',
-      isOptionDisabled: false,
-    },
-    {
-      id: 4,
-      label: 'Aerith Gainsborough',
-      value: 'Aerith Gainsborough',
-      isOptionDisabled: true,
-    },
-  ];
-
   return (
     <MsqThemeContext.Provider value={theme}>
       <StatusBar barStyle="dark-content" />
       <Page backgroundImage={Image} blur={true}>
-        {/* <AppHeader /> */}
-
         <View style={styles.body}>
           <Typography color="black" variant="h2">
             Be Honest feat. DJ Omni &amp; DJ Ruivo
