@@ -50,7 +50,9 @@ const Button = ({
               ? animation.primaryButtonAnimBorderColor
               : BLUE_500,
           },
-          !isDisabled && isHovered && styles[`${variant}Hover`],
+          !isDisabled && isHovered && variant === 'primary'
+            ? styles.primaryHover
+            : styles.secondaryHover,
           !isDisabled && isFocused && styles.focused,
           isDisabled && styles.isDisabled,
         ]}>
