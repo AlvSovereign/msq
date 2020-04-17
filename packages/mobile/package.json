@@ -14,7 +14,6 @@
     "xcode": "open ios/myprojectname.xcworkspace"
   },
   "dependencies": {
-    "@react-native-community/blur": "^3.6.0",
     "components": "0.0.1",
     "react": "16.12.0",
     "react-native": "0.62.2",

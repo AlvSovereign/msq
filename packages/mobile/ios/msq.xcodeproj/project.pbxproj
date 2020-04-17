@@ -25,6 +25,7 @@
 		8F7267FFAC884276ACDDD4B0 /* Geomanist-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CF402B36BA141CF8D5CD2F9 /* Geomanist-Medium.otf */; };
 		EA96C3ADB0062FBBC713B357 /* libPods-msq.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2A7911673BECF243AD0AFA /* libPods-msq.a */; };
 		FFC6356B33C2913A7A459200 /* libPods-msq-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 456429721C6B23242C16220D /* libPods-msq-tvOS.a */; };
+		D8C3F22F2899403EA52EA303 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		EB2A7911673BECF243AD0AFA /* libPods-msq.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-msq.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraBold.ttf"; path = "../../components/src/assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 				712B83161A2346AD9C7B8C6A /* Geomanist-Light.otf */,
 				5CF402B36BA141CF8D5CD2F9 /* Geomanist-Medium.otf */,
 				897A3B51A4534387A5EBA295 /* Geomanist-Regular.otf */,
+				CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				1035D1A2D49745AA8E892E17 /* Geomanist-Light.otf in Resources */,
 				8F7267FFAC884276ACDDD4B0 /* Geomanist-Medium.otf in Resources */,
 				7BB9FBF022D74E53BAD457C4 /* Geomanist-Regular.otf in Resources */,
+				D8C3F22F2899403EA52EA303 /* Montserrat-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,8 +2,13 @@ import { StyleSheet } from 'react-native';
 import { TBreakpoint } from '../../theme/hooks/useResponsive';
 
 const generateStyles = (breakpoints: TBreakpoint, theme: any) => {
+  console.log('theme: ', theme.colors.white);
   return StyleSheet.create({
     backgroundImage: {},
+    blur: {
+      backgroundColor: theme.colors.white,
+      opacity: 0.7,
+    },
     safeAreaView: { flex: 1 },
     view: {
       flex: 1,

@@ -11,7 +11,7 @@ import {theme, MsqThemeContext} from 'components/src/theme/ThemeContext';
 import {AppHeader} from 'components/src/AppHeader';
 import {Button, Typography, Page} from 'components/src/ui';
 
-const Image = require('../components/src/assets/images/bgImage.png');
+const Image = require('components/src/assets/images/bgImage.png');
 
 export function App() {
   const options = [

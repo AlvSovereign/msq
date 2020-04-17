@@ -40,6 +40,11 @@ html {
   font-weight: 400;
   src: url('assets/fonts/Geomanist-Bold.otf') format('opentype');
 }
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  font-weight: 400;
+  src: url('assets/fonts/Montserrat-ExtraBold.otf') format('opentype');
+}
 
 body {
   -webkit-font-smoothing: antialiased;

@@ -2,12 +2,11 @@ import React, { ReactNode, useContext } from 'react';
 import {
   KeyboardAvoidingView,
   Image,
-  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  View,
 } from 'react-native';
-import { BlurView, VibrancyView } from '@react-native-community/blur';
 import { MsqThemeContext, useResponsive } from '../../theme/ThemeContext';
 import { generateStyles } from './Page.styles';
 
@@ -20,29 +19,13 @@ const Page = ({ backgroundImage, blur, children }: GridProps) => {
     <SafeAreaView style={styles.safeAreaView}>
       {backgroundImage && (
         <Image
+          blurRadius={3}
           source={backgroundImage}
           style={[StyleSheet.absoluteFill, styles.backgroundImage]}
         />
       )}
       <KeyboardAvoidingView style={styles.view}>
-        {blur ? (
-          Platform.OS === 'ios' ? (
-            <VibrancyView
-              style={[StyleSheet.absoluteFill]}
-              blurType='light'
-              blurAmount={1}
-              reducedTransparencyFallbackColor='white'
-            />
-          ) : (
-            <BlurView
-              style={[StyleSheet.absoluteFill]}
-              // viewRef={this.state.viewRef}
-              blurType='light'
-              blurAmount={32}
-              reducedTransparencyFallbackColor='white'
-            />
-          )
-        ) : null}
+        {blur && <View style={[StyleSheet.absoluteFill, styles.blur]} />}
         <ScrollView contentInsetAdjustmentBehavior='automatic'>
           {children}
         </ScrollView>
