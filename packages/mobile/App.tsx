@@ -14,13 +14,38 @@ export function App() {
           <Typography color="black" variant="h2">
             Be Honest feat. DJ Omni &amp; DJ Ruivo
           </Typography>
-
-          <Button label="Play" onPress={() => {}} variant="primary" />
+          <Button
+            label="Play"
+            icon="chevronRight"
+            onPress={() => {}}
+            variant="primary"
+          />
+          <Button
+            label="Play"
+            icon="chevronRight"
+            onPress={() => {}}
+            variant="secondary"
+          />
+          <Button
+            label="Play"
+            isDisabled={true}
+            onPress={() => {}}
+            variant="primary"
+          />
+          <Button
+            label="Play"
+            icon="chevronRight"
+            isDisabled={true}
+            onPress={() => {}}
+            variant="secondary"
+          />
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Code sharing using Monorepo</Text>
             <Text style={styles.sectionDescription}>
-              Edit{' '}
-              <Text style={styles.highlight}>packages/components/App.tsx</Text>{' '}
+              Edit
+              <Text style={styles.highlight}>
+                packages/components/App.tsx
+              </Text>{' '}
               to change this screen and then come back to see your edits (in the
               phone or the browser).
             </Text>

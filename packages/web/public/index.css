@@ -43,7 +43,7 @@ html {
 @font-face {
   font-family: 'Montserrat-ExtraBold';
   font-weight: 400;
-  src: url('assets/fonts/Montserrat-ExtraBold.otf') format('opentype');
+  src: url('assets/fonts/Montserrat-ExtraBold.ttf') format('opentype');
 }
 
 body {

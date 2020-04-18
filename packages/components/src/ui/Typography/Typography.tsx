@@ -9,7 +9,9 @@ const Typography = ({ children, color, style, variant }: ITypography) => {
   const styles = _generateStyles(theme, windowSize);
 
   return (
-    <Text style={[styles[variant], styles[color], style]}>{children}</Text>
+    <Text style={[styles[variant], color && styles[color], style]}>
+      {children}
+    </Text>
   );
 };
 
@@ -17,7 +19,7 @@ export default Typography;
 
 interface ITypography {
   children: ReactNode;
-  color: 'black' | 'blue' | 'error' | 'lightGrey' | 'white';
+  color?: 'black' | 'blue' | 'error' | 'lightGrey' | 'white';
   style?: StyleProp<TextStyle>;
   variant: 'body2' | 'button' | 'hero' | 'h1' | 'h2' | 'label';
 }

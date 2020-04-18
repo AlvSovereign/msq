@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
-import { Typography, Page } from 'components/src/ui';
+import { Typography, Page, Button } from 'components/src/ui';
 const Image = require('components/src/assets/images/bgImage.png');
 
 export function App() {
@@ -14,6 +14,7 @@ export function App() {
             <Text style={styles.footer}>Engine: Hermes</Text>
           </View>
         )}
+
         <View
           style={{
             // backgroundColor: '#F5F9FB',
@@ -22,6 +23,31 @@ export function App() {
           <Typography color='black' variant='h2'>
             Be Honest feat. DJ Omni &amp; DJ Ruivo
           </Typography>
+          <Button
+            label='Play'
+            icon='chevronRight'
+            onPress={() => {}}
+            variant='primary'
+          />
+          <Button
+            label='Play'
+            icon='chevronRight'
+            onPress={() => {}}
+            variant='secondary'
+          />
+          <Button
+            label='Play'
+            isDisabled={true}
+            onPress={() => {}}
+            variant='primary'
+          />
+          <Button
+            label='Play'
+            icon='chevronRight'
+            isDisabled={true}
+            onPress={() => {}}
+            variant='secondary'
+          />
 
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Code sharing using Monorepo</Text>

@@ -1,5 +1,5 @@
-import React, { useContext, useRef } from 'react';
-import { Animated, TouchableWithoutFeedback } from 'react-native';
+import React, { useContext, useRef, useEffect } from 'react';
+import { Animated, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { useFocus, useHover } from 'react-native-web-hooks';
 import { MsqThemeContext } from '../../theme/ThemeContext';
 import Typography from '../Typography/Typography';
@@ -18,9 +18,9 @@ const Button = ({
   const isFocused = useFocus(ref);
   const isHovered = useHover(ref);
   const theme = useContext(MsqThemeContext);
-  const animation = _generateAnimations(theme);
-  const styles = _generateStyles(theme, icon, variant, animation.scaleValue);
-  const { BLUE_500, LIGHTGREY_100, WHITE } = theme.color;
+  const animation = _generateAnimations(variant);
+  const styles = _generateStyles(theme, icon, variant);
+  const { BLUE_500, WHITE } = theme.color;
 
   let fillColor;
   if (isDisabled) {
@@ -39,27 +39,28 @@ const Button = ({
       <Animated.View
         style={[
           styles.button,
-          {
-            backgroundColor:
-              variant === 'primary'
-                ? animation.primaryButtonAnimBGColor
-                : animation.secondaryButtonAnimBGColor,
-            borderColor: isDisabled
-              ? LIGHTGREY_100
-              : variant === 'primary'
-              ? animation.primaryButtonAnimBorderColor
-              : BLUE_500,
-          },
-          !isDisabled && isHovered && variant === 'primary'
-            ? styles.primaryHover
-            : styles.secondaryHover,
-          !isDisabled && isFocused && styles.focused,
-          isDisabled && styles.isDisabled,
+          { transform: [{ scale: animation.scaleValue }] },
+          variant === 'primary' ? styles.primaryButton : styles.secondaryButton,
+          !isDisabled && isHovered && styles.buttonHovered,
+          isDisabled && styles.buttonDisabled,
         ]}>
+        <Animated.View
+          style={[
+            StyleSheet.absoluteFill,
+            styles.buttonForeground,
+            {
+              opacity: animation.opacityValue || 0,
+            },
+          ]}
+        />
         {label && (
           <Typography
-            color={isDisabled || variant === 'primary' ? 'white' : 'blue'}
-            style={styles.typography}
+            style={[
+              styles.typography,
+              // !isDisabled && isHovered && styles.typographyHovered,
+              !isDisabled && isFocused && styles.typographyFocused,
+              isDisabled && styles.typographyDisabed,
+            ]}
             variant='button'>
             {label}
           </Typography>
