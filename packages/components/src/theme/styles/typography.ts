@@ -92,9 +92,9 @@ const input = {
     lineHeight: 18,
   },
   TEXT: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'Geomanist-Medium',
-    lineHeight: 24,
+    lineHeight: 20,
   },
 };
 
@@ -116,12 +116,12 @@ const text = {
   },
   BODY1: {
     fontSize: 14,
-    fontFamily: 'Geomanist-Light',
+    fontFamily: 'Geomanist-Book',
     lineHeight: 20,
   },
   BODY2: {
     fontSize: 12,
-    fontFamily: 'Geomanist-Regular',
+    fontFamily: 'Geomanist-Book',
     lineHeight: 18,
   },
   SMALL: {

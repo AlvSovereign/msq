@@ -1,5 +1,4 @@
 import { Animated } from 'react-native';
-import { ITheme } from '../../theme/theme';
 import { Variant } from './Button';
 
 const _generateAnimations = (variant: Variant) => {

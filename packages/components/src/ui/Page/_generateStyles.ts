@@ -11,6 +11,7 @@ const generateStyles = (breakpoints: TBreakpoint, theme: any) => {
       opacity: 0.7,
     },
     safeAreaView: { flex: 1 },
+    scrollView: { flex: 1 },
     view: {
       flex: 1,
       paddingHorizontal: 16,

@@ -6,15 +6,6 @@ body,
   height: 100%;
 }
 
-html {
-  font-family: 'Inter', sans-serif;
-}
-@supports (font-variation-settings: normal) {
-  html {
-    font-family: 'Inter var', sans-serif;
-  }
-}
-
 @font-face {
   font-family: 'Geomanist-Light';
   font-weight: 400;

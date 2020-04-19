@@ -24,9 +24,11 @@ const Page = ({ backgroundImage, blur, children }: GridProps) => {
           style={[StyleSheet.absoluteFill, styles.backgroundImage]}
         />
       )}
+      {blur && <View style={[StyleSheet.absoluteFill, styles.blur]} />}
       <KeyboardAvoidingView style={styles.view}>
-        {blur && <View style={[StyleSheet.absoluteFill, styles.blur]} />}
-        <ScrollView contentInsetAdjustmentBehavior='automatic'>
+        <ScrollView
+          contentInsetAdjustmentBehavior='automatic'
+          contentContainerStyle={styles.scrollView}>
           {children}
         </ScrollView>
       </KeyboardAvoidingView>

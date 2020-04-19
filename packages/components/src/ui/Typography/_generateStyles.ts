@@ -4,11 +4,67 @@ import { TBreakpoint } from '../../theme/hooks/useResponsive';
 
 const _generateStyles = (theme: ITheme, windowSize: TBreakpoint) => {
   const { BLACK, BLUE_500, ERROR, LIGHTGREY_500, WHITE } = theme.color;
-  const { BODY2, BUTTON, LABEL, HERO, H1, H2 } = theme.typography;
+  const {
+    LINEAR_XXS,
+    LINEAR_XS,
+    LINEAR_SM,
+    LINEAR_MD,
+    LINEAR_LG,
+    LINEAR_XL,
+    LINEAR_XXL,
+  } = theme.spacing;
+  const {
+    BODY1,
+    BODY2,
+    BUTTON,
+    LABEL,
+    HERO,
+    H1,
+    H2,
+    H3,
+    SMALL,
+  } = theme.typography;
 
-  return StyleSheet.create({
+  const displayStyles = {
+    block: {
+      width: '100%',
+    },
+    inline: {
+      width: 'auto',
+    },
+  };
+
+  const gutterBottomStyles = {
+    xxs: { marginBottom: LINEAR_XXS },
+    xs: { marginBottom: LINEAR_XS },
+    sm: { marginBottom: LINEAR_SM },
+    md: { marginBottom: LINEAR_MD },
+    lg: { marginBottom: LINEAR_LG },
+    xl: { marginBottom: LINEAR_XL },
+    xxl: { marginBottom: LINEAR_XXL },
+  };
+
+  const textAlignStyles = {
+    left: {
+      textAlign: 'left' as 'left',
+    },
+    center: {
+      textAlign: 'center' as 'center',
+    },
+    right: {
+      textAlign: 'right' as 'right',
+    },
+  };
+
+  const variantStyles = {
+    body1: {
+      ...BODY1,
+    },
     body2: {
       ...BODY2,
+    },
+    button: {
+      ...BUTTON,
     },
     hero: {
       ...HERO[windowSize === 'sm' ? 1 : 0],
@@ -19,10 +75,20 @@ const _generateStyles = (theme: ITheme, windowSize: TBreakpoint) => {
     h2: {
       ...H2[windowSize === 'sm' ? 1 : 0],
     },
-    button: {
-      ...BUTTON,
+    h3: {
+      ...H3[windowSize === 'sm' ? 1 : 0],
     },
     label: { ...LABEL },
+    small: {
+      ...SMALL,
+    },
+  };
+
+  return StyleSheet.create({
+    ...displayStyles,
+    ...gutterBottomStyles,
+    ...textAlignStyles,
+    ...variantStyles,
     black: { color: BLACK },
     blue: { color: BLUE_500 },
     error: { color: ERROR },

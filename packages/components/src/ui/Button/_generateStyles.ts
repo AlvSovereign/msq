@@ -1,9 +1,11 @@
 import { Platform, StyleSheet } from 'react-native';
 import { ITheme } from '../../theme/theme';
+import { getGutterBottomWidth, TGutterBottom } from '../utils/commonStyles';
 import { IconKey } from '../../assets/icons/renderIcon';
 import { Variant } from './Button';
 
 const _generateStyles = (
+  gutterBottom: TGutterBottom | undefined,
   theme: ITheme,
   icon: IconKey | undefined,
   variant: Variant
@@ -25,11 +27,10 @@ const _generateStyles = (
       borderColor: BLUE_500,
       borderRadius: RADIUS_SM,
       borderWidth: 2,
-      flex: 1,
+      // flex: 1,
       flexDirection: 'row',
       height: 40,
       justifyContent: 'center',
-      marginBottom: LINEAR_XXS,
       padding: LINEAR_XXS,
       paddingHorizontal: !icon ? LINEAR_SM : LINEAR_XXS,
       width: '100%',
@@ -71,6 +72,9 @@ const _generateStyles = (
     buttonDisabled: {
       backgroundColor: LIGHTGREY_100,
       borderColor: LIGHTGREY_100,
+    },
+    gutterBottom: {
+      marginBottom: gutterBottom ? getGutterBottomWidth(gutterBottom) : 0,
     },
     typography: {
       color: variant === 'primary' ? WHITE : BLUE_500,

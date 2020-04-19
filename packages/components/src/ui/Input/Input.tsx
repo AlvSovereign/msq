@@ -128,4 +128,5 @@ export type TInputTypes =
   | 'multiline'
   | 'number'
   | 'phone'
+  | 'password'
   | 'text';

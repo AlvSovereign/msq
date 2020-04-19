@@ -1,13 +1,15 @@
 import React, { useContext, useRef, useEffect } from 'react';
-import { Animated, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Animated, TouchableHighlight } from 'react-native';
 import { useFocus, useHover } from 'react-native-web-hooks';
 import { MsqThemeContext } from '../../theme/ThemeContext';
 import Typography from '../Typography/Typography';
 import { renderIcon, IconKey } from '../../assets/icons/renderIcon';
 import { _generateStyles } from './_generateStyles';
 import { _generateAnimations } from './_generateAnimations';
+import { TGutterBottom } from '../utils/commonStyles';
 
 const Button = ({
+  gutterBottom,
   icon,
   isDisabled = false,
   onPress,
@@ -19,7 +21,7 @@ const Button = ({
   const isHovered = useHover(ref);
   const theme = useContext(MsqThemeContext);
   const animation = _generateAnimations(variant);
-  const styles = _generateStyles(theme, icon, variant);
+  const styles = _generateStyles(gutterBottom, theme, icon, variant);
   const { BLUE_500, WHITE } = theme.color;
 
   let fillColor;
@@ -30,29 +32,29 @@ const Button = ({
   }
 
   return (
-    <TouchableWithoutFeedback
+    <TouchableHighlight
       ref={ref}
+      activeOpacity={0.7}
       disabled={isDisabled}
       onPress={onPress}
-      onPressIn={animation.handlePressIn}
-      onPressOut={animation.handlePressOut}>
+      // onPressIn={animation.handlePressIn}
+      // onPressOut={animation.handlePressOut} // will add when I figure how to add scle and bg color change with native animations
+      style={[
+        {
+          borderRadius: 4,
+          height: 40,
+        },
+        gutterBottom && styles.gutterBottom,
+      ]}>
       <Animated.View
         style={[
           styles.button,
           { transform: [{ scale: animation.scaleValue }] },
           variant === 'primary' ? styles.primaryButton : styles.secondaryButton,
+          gutterBottom && styles.gutterBottom,
           !isDisabled && isHovered && styles.buttonHovered,
           isDisabled && styles.buttonDisabled,
         ]}>
-        <Animated.View
-          style={[
-            StyleSheet.absoluteFill,
-            styles.buttonForeground,
-            {
-              opacity: animation.opacityValue || 0,
-            },
-          ]}
-        />
         {label && (
           <Typography
             style={[
@@ -71,17 +73,18 @@ const Button = ({
             styles,
           })}
       </Animated.View>
-    </TouchableWithoutFeedback>
+    </TouchableHighlight>
   );
 };
 
 export default Button;
 
 interface IButton {
+  gutterBottom?: TGutterBottom;
   icon?: IconKey;
   isDisabled?: boolean;
-  onPress: () => void;
   label?: string;
+  onPress: () => void;
   variant: Variant;
 }
 
