@@ -57,7 +57,6 @@ const Button = ({
           <Typography
             style={[
               styles.typography,
-              // !isDisabled && isHovered && styles.typographyHovered,
               !isDisabled && isFocused && styles.typographyFocused,
               isDisabled && styles.typographyDisabed,
             ]}

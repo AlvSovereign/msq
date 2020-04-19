@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import { Typography, Page, Button } from 'components/src/ui';
-const Image = require('components/src/assets/images/bgImage.png');
+const Image = require('components/src/assets/images/authBgImage.jpg');
 
 export function App() {
   return (

@@ -85,13 +85,6 @@ const _generateStyles = (
     typographyFocused: {
       color: variant === 'primary' ? WHITE : BLUE_900,
     },
-    typographyHovered: {
-      ...Platform.select({
-        web: {
-          color: variant === 'primary' ? WHITE : BLUE_700,
-        },
-      }),
-    },
   });
 };
 
