@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import { Page, Typography, Input, Button } from 'components/src/ui';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-community/google-signin';
 import { _handleGoogleAuth } from './_handleGoogleAuth';
 
 const Image = require('components/src/assets/images/authBgImage.jpg');
@@ -19,7 +14,7 @@ const Signin = ({  }: SigninProps) => {
   };
 
   const handleGoogleLoginPress = () => {
-    _handleGoogleAuth();
+    Platform.OS !== 'web' && _handleGoogleAuth();
   };
 
   return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import { User } from '@react-native-community/google-signin';
 import {
   GoogleSignin,

@@ -18,6 +18,7 @@ const appIncludes = [
   resolveApp('../../node_modules/react-native-screens'),
   // resolveApp('../../node_modules/react-native-tab-view'),
   // resolveApp('../../node_modules/react-native-vector-icons'),
+  resolveApp('../../node_modules/@react-native-community/google-signin'),
 ];
 
 module.exports = function override(config, env) {
