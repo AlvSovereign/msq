@@ -8,10 +8,9 @@
     ]
   },
   "scripts": {
-    "env:dev": "node packages/shared/scripts/setEnvironment.js development",
-    "android": "yarn run env:dev && yarn workspace mobile android",
+    "android": "yarn workspace mobile android",
     "compile": "tsc -b --incremental",
-    "ios": "yarn run env:dev && yarn workspace mobile  ios",
+    "ios": "yarn workspace mobile  ios",
     "studio": "yarn workspace mobile studio",
     "web": "yarn workspace web start",
     "xcode": "yarn workspace mobile xcode"

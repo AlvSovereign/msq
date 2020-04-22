@@ -4,14 +4,14 @@ import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-community/google-signin';
-import { OAUTH_GOOGLE_WEBCLIENTID } from 'shared';
-console.log('OAUTH_GOOGLE_WEBCLIENTID: ', OAUTH_GOOGLE_WEBCLIENTID);
+import Config from 'react-native-config';
 
 const _handleGoogleAuth = async () => {
+  console.log('Config: ', Config.OAUTH_GOOGLE_WEBCLIENTID);
   await GoogleSignin.configure({
-    iosClientId: OAUTH_GOOGLE_WEBCLIENTID,
+    iosClientId: Config.OAUTH_GOOGLE_WEBCLIENTID,
     offlineAccess: true,
-    webClientId: OAUTH_GOOGLE_WEBCLIENTID,
+    webClientId: Config.OAUTH_GOOGLE_WEBCLIENTID,
   });
 
   try {

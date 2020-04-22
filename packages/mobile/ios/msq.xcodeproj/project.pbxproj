@@ -23,9 +23,9 @@
 		79F22FDD448D66AAEA5EAC65 /* libPods-msq-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C411AD4D876FF09C4145C7C1 /* libPods-msq-tvOSTests.a */; };
 		7BB9FBF022D74E53BAD457C4 /* Geomanist-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 897A3B51A4534387A5EBA295 /* Geomanist-Regular.otf */; };
 		8F7267FFAC884276ACDDD4B0 /* Geomanist-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CF402B36BA141CF8D5CD2F9 /* Geomanist-Medium.otf */; };
+		D8C3F22F2899403EA52EA303 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */; };
 		EA96C3ADB0062FBBC713B357 /* libPods-msq.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2A7911673BECF243AD0AFA /* libPods-msq.a */; };
 		FFC6356B33C2913A7A459200 /* libPods-msq-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 456429721C6B23242C16220D /* libPods-msq-tvOS.a */; };
-		D8C3F22F2899403EA52EA303 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,12 +73,12 @@
 		9F8E52713E4C46979569C8EC /* Geomanist-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Geomanist-Bold.otf"; path = "../../components/src/assets/fonts/Geomanist-Bold.otf"; sourceTree = "<group>"; };
 		BA0CB7250979924594CEDD19 /* Pods-msq.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msq.release.xcconfig"; path = "Target Support Files/Pods-msq/Pods-msq.release.xcconfig"; sourceTree = "<group>"; };
 		C411AD4D876FF09C4145C7C1 /* libPods-msq-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-msq-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../../components/src/assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		D73BE9E1F71587306E251315 /* Pods-msqTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msqTests.debug.xcconfig"; path = "Target Support Files/Pods-msqTests/Pods-msqTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB096A5BAF95E3F2E15D3B48 /* libPods-msqTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-msqTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2A7911673BECF243AD0AFA /* libPods-msq.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-msq.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraBold.ttf"; path = "../../components/src/assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +255,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				7F64C1F761029C4A217C82B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -439,6 +440,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F64C1F761029C4A217C82B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-msq/Pods-msq-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-msq/Pods-msq-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8DF6D60DF62198B9913A43BD /* [CP] Check Pods Manifest.lock */ = {
