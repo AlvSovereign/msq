@@ -8,12 +8,13 @@
     ]
   },
   "scripts": {
-    "android": "yarn workspace mobile android",
+    "env:dev": "node packages/shared/scripts/setEnvironment.js development",
+    "android": "yarn run env:dev && yarn workspace mobile android",
     "compile": "tsc -b --incremental",
-    "ios": "yarn workspace mobile  ios",
+    "ios": "yarn run env:dev && yarn workspace mobile  ios",
     "studio": "yarn workspace mobile studio",
-    "xcode": "yarn workspace mobile xcode",
-    "web": "yarn workspace web start"
+    "web": "yarn workspace web start",
+    "xcode": "yarn workspace mobile xcode"
   },
   "dependencies": {
     "react-native": "*"

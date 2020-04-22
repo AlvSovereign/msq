@@ -1,15 +1,13 @@
 import React, { useContext, useRef, useState, ReactNode } from 'react';
 import {
-  StyleSheet,
   TextInput,
   View,
   KeyboardTypeOptions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { useFocus, useHover } from 'react-native-web-hooks';
 import { MsqThemeContext } from '../../theme/ThemeContext';
 import Typography from '../Typography/Typography';
-import { renderIcon, IconKey } from '../../assets/icons/renderIcon';
+import { _renderIcon, IconKey } from '../../assets/icons/_renderIcon';
 import { _generateStyles } from './_generateStyles';
 
 const Input = ({
@@ -65,10 +63,10 @@ const Input = ({
         {leftIcon && (
           <TouchableWithoutFeedback onPress={onLeftIconPress}>
             <View style={styles.leftIcon}>
-              {renderIcon({
-                fill: isError || isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
-                icon: leftIcon,
-              })}
+              {_renderIcon(
+                isError || isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
+                leftIcon
+              )}
             </View>
           </TouchableWithoutFeedback>
         )}
@@ -87,11 +85,11 @@ const Input = ({
         {rightIcon && (
           <TouchableWithoutFeedback onPress={onRightIconPress}>
             <View style={styles.rightIcon}>
-              {renderIcon({
-                fill: isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
-                icon: rightIcon,
-                styles,
-              })}
+              {_renderIcon(
+                isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
+                rightIcon,
+                styles
+              )}
             </View>
           </TouchableWithoutFeedback>
         )}

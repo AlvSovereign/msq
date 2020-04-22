@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "552680331202",
+    "firebase_url": "https://msq-the-music-app-c2a52.firebaseio.com",
+    "project_id": "msq-the-music-app-c2a52",
+    "storage_bucket": "msq-the-music-app-c2a52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552680331202:android:5466b9639d03e6c3dae85b",
+        "android_client_info": {
+          "package_name": "com.msq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552680331202-in34t98s4hmr7hoo7meu2qvfvuhplqir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.msq",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "552680331202-vgjfc1h1dug92tn6ltcna7hrti6k40tu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcZlbZIQcTr4T9lAtf4gvkEvzkkDInPLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552680331202-vgjfc1h1dug92tn6ltcna7hrti6k40tu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

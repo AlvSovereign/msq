@@ -1,70 +1,105 @@
 import { Platform, StyleSheet } from 'react-native';
 import { ITheme } from '../../theme/theme';
 import { getGutterBottomWidth, TGutterBottom } from '../utils/commonStyles';
-import { IconKey } from '../../assets/icons/renderIcon';
+import { IconKey } from '../../assets/icons/_renderIcon';
 import { Variant } from './Button';
 
 const _generateStyles = (
   gutterBottom: TGutterBottom | undefined,
   theme: ITheme,
-  icon: IconKey | undefined,
-  variant: Variant
+  variant: Variant,
+  leftIcon?: IconKey | undefined,
+  rightIcon?: IconKey | undefined
 ) => {
   const {
     BLACK,
     BLUE_500,
     BLUE_700,
     BLUE_900,
+    BLUE_FB,
     LIGHTGREY_100,
     WHITE,
   } = theme.color;
   const { LINEAR_SM, LINEAR_XXS, RADIUS_SM } = theme.spacing;
 
   return StyleSheet.create({
+    buttonBase: {
+      borderRadius: 4,
+      height: 40,
+      width: '100%',
+    },
     button: {
       alignItems: 'center',
       alignSelf: 'center',
-      borderColor: BLUE_500,
-      borderRadius: RADIUS_SM,
       borderWidth: 2,
-      // flex: 1,
       flexDirection: 'row',
-      height: 40,
       justifyContent: 'center',
       padding: LINEAR_XXS,
-      paddingHorizontal: !icon ? LINEAR_SM : LINEAR_XXS,
-      width: '100%',
-    },
-    buttonForeground: {
-      backgroundColor: BLACK,
-      borderWidth: 2,
-      borderColor: BLACK,
-      borderRadius: 4,
-      margin: -2,
-      opacity: 0,
-      zIndex: -1,
-    },
-    primaryButton: {
-      backgroundColor: BLUE_500,
-    },
-    secondaryButton: {
-      backgroundColor: WHITE,
+      paddingHorizontal: !leftIcon ? LINEAR_SM : LINEAR_XXS,
     },
     buttonHovered: {
       ...Platform.select({
         web: {
-          backgroundColor: variant === 'primary' ? BLUE_700 : LIGHTGREY_100,
-          borderColor: variant === 'primary' ? BLUE_700 : BLUE_500,
+          opacity: 1,
+
           boxShadow:
-            '0 3px 1px -2px rgba(80, 80, 80,.2),0 2px 2px 0 rgba(80, 80, 80,.14),0 1px 5px 0 rgba(80, 80, 80,.12)',
+            '0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)',
+        },
+      }),
+    },
+    primaryButton: {
+      backgroundColor: BLUE_500,
+      borderColor: BLUE_500,
+    },
+    secondaryButton: {
+      backgroundColor: WHITE,
+      borderColor: BLUE_500,
+    },
+    facebookButton: {
+      backgroundColor: BLUE_FB,
+      borderColor: BLUE_FB,
+    },
+    googleButton: {
+      backgroundColor: WHITE,
+      borderColor: WHITE,
+    },
+    primaryHovered: {
+      borderColor: BLUE_500,
+      ...Platform.select({
+        web: {
+          backgroundColor: BLUE_700,
+          borderColor: BLUE_700,
+        },
+      }),
+    },
+    secondaryHovered: {
+      ...Platform.select({
+        web: {
+          backgroundColor: LIGHTGREY_100,
+          borderColor: BLUE_500,
+        },
+      }),
+    },
+    facebookHovered: {
+      ...Platform.select({
+        web: {
+          backgroundColor: BLUE_FB,
+          borderColor: BLUE_FB,
+        },
+      }),
+    },
+    googleHovered: {
+      ...Platform.select({
+        web: {
+          backgroundColor: WHITE,
+          borderColor: WHITE,
         },
       }),
     },
     buttonFocused: {
-      backgroundColor: variant === 'primary' ? BLUE_900 : LIGHTGREY_100,
-      borderColor: BLUE_900,
       ...Platform.select({
         web: {
+          opacity: 1,
           boxShadow: 'none',
         },
       }),
@@ -76,18 +111,23 @@ const _generateStyles = (
     gutterBottom: {
       marginBottom: gutterBottom ? getGutterBottomWidth(gutterBottom) : 0,
     },
-    typography: {
-      color: variant === 'primary' ? WHITE : BLUE_500,
+    typographyBase: {
       flex: 1,
-      marginRight: icon && LINEAR_XXS,
-      marginLeft: icon && 12,
+      marginRight: leftIcon && LINEAR_XXS,
+      marginLeft: leftIcon && 12,
       textAlign: 'center',
+    },
+    primaryTypography: {
+      color: WHITE,
+    },
+    secondaryTypography: {
+      color: BLUE_500,
+    },
+    facebookTypography: {
+      color: WHITE,
     },
     typographyDisabed: {
       color: WHITE,
-    },
-    typographyFocused: {
-      color: variant === 'primary' ? WHITE : BLUE_900,
     },
   });
 };

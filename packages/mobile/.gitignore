@@ -24,6 +24,7 @@ DerivedData
 # Android/IntelliJ
 #
 android/app/release
+android/app/google-services.json
 build/
 .idea
 .gradle
@@ -58,3 +59,8 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# misc
+.env
+.env.staging
+.env.production

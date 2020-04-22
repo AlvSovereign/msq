@@ -1,18 +1,22 @@
 import Check from './Check';
 import ChevronRight from './ChevronRight';
 import Clear from './Clear';
+import FBLogo from './FBLogo';
+import GLogo from './GLogo';
 import RadioChecked from './RadioChecked';
 import RadioUnchecked from './RadioUnchecked';
 import Search from './Search';
-import { renderIcon } from './renderIcon';
+import { _renderIcon } from './_renderIcon';
 
 export {
   Check,
   ChevronRight,
   Clear,
+  FBLogo,
+  GLogo,
   RadioChecked,
   RadioUnchecked,
-  renderIcon,
+  _renderIcon,
   Search,
 };
 

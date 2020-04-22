@@ -12,4 +12,5 @@ const Clear = ({ fill = 'none', height = 24, style, width = 24 }: IIcon) => {
 };
 
 const MemoClear = React.memo(Clear);
+
 export default MemoClear;

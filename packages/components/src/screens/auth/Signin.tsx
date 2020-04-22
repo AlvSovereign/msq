@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Page, Typography, Input, Button } from 'components/src/ui';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-community/google-signin';
+import { _handleGoogleAuth } from './_handleGoogleAuth';
+
 const Image = require('components/src/assets/images/authBgImage.jpg');
 
 const Signin = ({  }: SigninProps) => {
@@ -9,6 +16,10 @@ const Signin = ({  }: SigninProps) => {
 
   const handlePress = () => {
     console.log('details: ', { email, password });
+  };
+
+  const handleGoogleLoginPress = () => {
+    _handleGoogleAuth();
   };
 
   return (
@@ -21,6 +32,27 @@ const Signin = ({  }: SigninProps) => {
           variant='h3'>
           {'Sign In'}
         </Typography>
+        <Button
+          leftIcon='facebook'
+          label='Continue with Facebook'
+          gutterBottom='sm'
+          onPress={handlePress}
+          variant='facebook'
+        />
+        <Button
+          leftIcon='google'
+          label='Continue with Google'
+          gutterBottom='sm'
+          onPress={handleGoogleLoginPress}
+          variant='google'
+        />
+        <Typography
+          display='block'
+          gutterBottom='lg'
+          textAlign='center'
+          variant='body1'>
+          {'- OR -'}
+        </Typography>
         <Typography
           display='block'
           gutterBottom='xxs'
@@ -32,7 +64,7 @@ const Signin = ({  }: SigninProps) => {
         </Typography>
         <Typography
           display='block'
-          gutterBottom='xxl'
+          gutterBottom='lg'
           textAlign='left'
           variant='body1'>
           {'Clicking Here'}
@@ -51,17 +83,10 @@ const Signin = ({  }: SigninProps) => {
         />
         <Button
           label='Login'
-          gutterBottom='sm'
-          onPress={handlePress}
-          variant='primary'
-        />
-        <Button
-          label='Login with Facebook'
           gutterBottom='xxl'
           onPress={handlePress}
           variant='primary'
         />
-
         <Typography
           color='lightGrey'
           display='block'
