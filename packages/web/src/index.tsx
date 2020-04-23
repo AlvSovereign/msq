@@ -3,7 +3,7 @@ import { AppRegistry } from 'react-native';
 
 import App from './App';
 
-AppRegistry.registerComponent('myprojectname', () => App);
-AppRegistry.runApplication('myprojectname', {
+AppRegistry.registerComponent('msq', () => App);
+AppRegistry.runApplication('msq', {
   rootTag: document.getElementById('root'),
 });

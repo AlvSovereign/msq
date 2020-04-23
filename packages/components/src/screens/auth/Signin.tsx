@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Platform } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Page, Typography, Input, Button } from 'components/src/ui';
 import { _handleGoogleAuth } from './_handleGoogleAuth';
 
@@ -14,7 +14,7 @@ const Signin = ({  }: SigninProps) => {
   };
 
   const handleGoogleLoginPress = () => {
-    Platform.OS !== 'web' && _handleGoogleAuth();
+    _handleGoogleAuth();
   };
 
   return (
