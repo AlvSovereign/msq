@@ -3,16 +3,28 @@ import 'firebase/auth';
 
 const _handleGoogleAuth = async () => {
   try {
-  } catch {}
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const {
-    additionalUserInfo,
-    credential,
-  } = await firebase.auth().signInWithPopup(provider);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const {
+      additionalUserInfo,
+      credential,
+    } = await firebase.auth().signInWithPopup(provider);
 
-  if (additionalUserInfo && credential) {
-    const { email, name }: any = additionalUserInfo.profile;
-    const { accessToken, idToken }: firebase.auth.OAuthCredential = credential;
+    if (additionalUserInfo && credential) {
+      const { email, name }: any = additionalUserInfo.profile;
+      const {
+        accessToken,
+        idToken,
+      }: firebase.auth.OAuthCredential = credential;
+    }
+  } catch (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    console.error(errorMessage);
   }
 };
 

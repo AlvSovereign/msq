@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Page, Typography, Input, Button } from 'components/src/ui';
+import { _handleFacebookAuth } from './_handleFacebookAuth';
 import { _handleGoogleAuth } from './_handleGoogleAuth';
 
 const Image = require('components/src/assets/images/authBgImage.jpg');
@@ -11,6 +12,10 @@ const Signin = ({  }: SigninProps) => {
 
   const handlePress = () => {
     console.log('details: ', { email, password });
+  };
+
+  const handleFacebookLoginPress = () => {
+    _handleFacebookAuth();
   };
 
   const handleGoogleLoginPress = () => {
@@ -31,7 +36,7 @@ const Signin = ({  }: SigninProps) => {
           leftIcon='facebook'
           label='Continue with Facebook'
           gutterBottom='sm'
-          onPress={handlePress}
+          onPress={handleFacebookLoginPress}
           variant='facebook'
         />
         <Button
