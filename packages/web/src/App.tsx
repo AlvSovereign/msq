@@ -6,22 +6,15 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import { Signin } from 'components/src/screens/auth/Signin';
+import firebaseConfig from './utils/firebaseConfig';
+import { initFB, loadFBSDK } from './utils/loadFBSDK';
 
 const Stack = createStackNavigator();
 
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-
-  // OPTIONAL
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-};
-
 const App = () => {
   React.useEffect(() => {
+    initFB();
+    loadFBSDK();
     firebase.initializeApp(firebaseConfig);
   }, []);
   return (
