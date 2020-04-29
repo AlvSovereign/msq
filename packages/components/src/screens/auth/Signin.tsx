@@ -42,7 +42,7 @@ const Signin = ({  }: SigninProps) => {
         <Button
           leftIcon='google'
           label='Continue with Google'
-          gutterBottom='sm'
+          gutterBottom='lg'
           onPress={handleGoogleLoginPress}
           variant='google'
         />
