@@ -4,6 +4,7 @@ const typeDefs = gql`
   enum AccountType {
     BASIC
     PREMIUM
+    SUPER
   }
 
   enum Role {
@@ -144,13 +145,34 @@ const typeDefs = gql`
     collectionsSaved: [Collection!]
     following: [Artist!]
     friends: [User!]
-    likedSongs: [Track!]
-    country: String!
-    settings: Settings!
+    likedSongs: [CollectionEntry!]
+    country: [String!]
+    settings: Settings
+  }
+
+  input UserInput {
+    email: String!
+    name: String!
+    verified: Boolean!
+    accountType: AccountType!
+    role: Role!
+    avatar: String
+    alias: String
+    # playlists: [Playlist!]
+    # collectionsSaved: [Collection!]
+    # following: [Artist!]
+    # friends: [User!]
+    # likedSongs: [CollectionEntry!]
+    # country: [String!]
+    # settings: Settings
   }
 
   type Query {
     me: User!
+  }
+
+  type Mutation {
+    me(input: UserInput!): User!
   }
 `;
 

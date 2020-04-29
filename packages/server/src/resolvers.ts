@@ -1,6 +1,9 @@
-const resolvers = {
+import { IResolvers } from 'apollo-server';
+import models from './models';
+
+const resolvers: IResolvers = {
   Query: {
-    me: () => {
+    me: (parent, args, ctx, info) => {
       return {
         id: 1,
         email: 'test@test.com',
@@ -18,6 +21,14 @@ const resolvers = {
           pushNotifications: false,
         },
       };
+    },
+  },
+  Mutation: {
+    me: async (parent, args, ctx, info) => {
+      const input = args.input;
+      const user = await models.User.createOne(input);
+
+      return user;
     },
   },
 };

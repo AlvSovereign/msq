@@ -6,15 +6,24 @@
   "author": "Alvin Sovereign",
   "license": "MIT",
   "scripts": {
+    "start:cache": "redis-server",
     "start:dev": "nodemon -e js,ts,json build/index.js",
     "tsc": "tsc -p tsconfig.json --watch"
   },
   "dependencies": {
     "apollo-server": "^2.12.0",
+    "apollo-server-cache-redis": "^1.1.6",
+    "bcrypt": "^4.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "graphql": "^15.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.10",
+    "nanoid": "^3.1.3",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.7.14",
     "nodemon": "^2.0.3"
   }
 }
