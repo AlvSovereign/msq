@@ -1,0 +1,157 @@
+import { gql } from 'apollo-server';
+
+const typeDefs = gql`
+  enum AccountType {
+    BASIC
+    PREMIUM
+  }
+
+  enum Role {
+    ARTIST
+    FAN
+  }
+
+  enum CollectionType {
+    SINGLE
+    EP
+    ALBUM
+    MIX
+  }
+
+  enum SocialType {
+    FACEBOOK
+    TWITTER
+    INSTAGRAM
+    TIKTOK
+    SOUNDCLOUD
+    SPOTIFY
+  }
+
+  enum DanceGenre {
+    KIZOMBA
+    URBAN_KIZ
+    GHETTO_ZOUK
+    AFROBEATS
+    SALSA
+    BACHATA
+    SWING
+    NEW_STYLE_HUSTLE
+    BRAZILIAN_ZOUK
+  }
+
+  union CollectionEntry = Track | Mix
+
+  type Settings {
+    id: ID!
+    userId: ID!
+    emailNotifications: Boolean!
+    pushNotifications: Boolean!
+  }
+
+  type SocialLinks {
+    type: SocialType!
+    url: String!
+  }
+
+  type Collection {
+    id: ID!
+    createdAt: String!
+    title: String!
+    artists: [Artist!]!
+    collectionType: CollectionType!
+    tracks: [CollectionEntry!]!
+    label: [String!]!
+    collectionImage: String
+    createdBy: Artist
+    yearPublished: String!
+    credits: String
+  }
+
+  type Artist {
+    id: ID!
+    createdAt: String!
+    name: String!
+    avatar: String
+    releases: [Collection]
+    owner: User!
+    fans: [User!]
+    country: String!
+    biography: String
+    tag: String
+    socialLinks: [SocialLinks!]
+    website: String
+    galleryImages: [String!]
+  }
+
+  type Mix {
+    id: ID!
+    createdAt: String!
+    createdBy: [Artist!]
+    producedBy: [Artist!]
+    trackImage: String
+    filename: String!
+    title: String!
+    likes: Int
+    length: String!
+    label: String
+    plays: Int
+    tracks: [Track]
+    trackGenre: [DanceGenre]
+  }
+
+  type Track {
+    id: ID!
+    createdAt: String!
+    createdBy: [Artist!]
+    performedBy: [Artist!]
+    producedBy: [Artist!]
+    artists: [Artist!]
+    trackImage: String
+    filename: String!
+    title: String!
+    likes: Int
+    length: String!
+    label: String
+    plays: Int
+    trackGenre: [DanceGenre]
+    credits: String
+  }
+
+  type Playlist {
+    id: ID!
+    createdAt: String!
+    isPrivate: Boolean!
+    tracks: [Track!]!
+    playlistImage: String
+    createdBy: User!
+    followers: [User!]
+    trackGenre: DanceGenre
+    title: String!
+    description: String
+  }
+
+  type User {
+    id: ID!
+    email: String!
+    name: String!
+    createdAt: String!
+    verified: Boolean!
+    accountType: AccountType!
+    role: Role!
+    avatar: String
+    alias: String
+    playlists: [Playlist!]
+    collectionsSaved: [Collection!]
+    following: [Artist!]
+    friends: [User!]
+    likedSongs: [Track!]
+    country: String!
+    settings: Settings!
+  }
+
+  type Query {
+    me: User!
+  }
+`;
+
+export default typeDefs;
