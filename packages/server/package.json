@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "The server for msq",
+  "main": "build/index.js",
+  "author": "Alvin Sovereign",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "nodemon -e js,ts,json build/index.js",
+    "tsc": "tsc -p tsconfig.json --watch"
+  },
+  "dependencies": {
+    "apollo-server": "^2.12.0",
+    "graphql": "^15.0.0",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
