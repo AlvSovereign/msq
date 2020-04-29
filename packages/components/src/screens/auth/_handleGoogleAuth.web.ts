@@ -10,11 +10,9 @@ const _handleGoogleAuth = async () => {
     } = await firebase.auth().signInWithPopup(provider);
 
     if (additionalUserInfo && credential) {
-      const { email, name }: any = additionalUserInfo.profile;
-      const {
-        accessToken,
-        idToken,
-      }: firebase.auth.OAuthCredential = credential;
+      const { email, name, picture }: any = additionalUserInfo.profile;
+
+      return { email, name, picture };
     }
   } catch (error) {
     // Handle Errors here.

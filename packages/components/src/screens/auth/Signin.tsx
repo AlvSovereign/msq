@@ -1,25 +1,48 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import gql from 'graphql-tag';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Page, Typography, Input, Button } from 'components/src/ui';
 import { _handleFacebookAuth } from './_handleFacebookAuth';
 import { _handleGoogleAuth } from './_handleGoogleAuth';
+// import { IUser } from 'components/src/types';
 
 const Image = require('components/src/assets/images/authBgImage.jpg');
+
+const CREATE_ME = gql`
+  mutation CreateMe($input: NewUserInput!) {
+    me(input: $input) {
+      id
+      email
+      name
+      token
+      verified
+      accountType
+      avatar
+      role
+    }
+  }
+`;
 
 const Signin = ({  }: SigninProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [createUser] = useMutation(CREATE_ME);
 
   const handlePress = () => {
-    console.log('details: ', { email, password });
+    createUser({ variables: { input: { email, password } } });
   };
 
   const handleFacebookLoginPress = () => {
     _handleFacebookAuth();
   };
 
-  const handleGoogleLoginPress = () => {
-    _handleGoogleAuth();
+  const handleGoogleLoginPress = async () => {
+    const result:
+      | INewUserFromSocialInput
+      | undefined = await _handleGoogleAuth();
+
+    await createUser({ variables: { input: result } });
   };
 
   return (
@@ -114,3 +137,14 @@ const styles = StyleSheet.create({
 export { Signin };
 
 interface SigninProps {}
+
+interface INewUserInput {
+  email: String;
+  password: String;
+}
+
+interface INewUserFromSocialInput {
+  email: String;
+  name: String | null;
+  picture?: String | null;
+}

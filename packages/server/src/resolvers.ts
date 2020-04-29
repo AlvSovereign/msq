@@ -1,5 +1,6 @@
-import { IResolvers } from 'apollo-server';
+import { AuthenticationError, IResolvers } from 'apollo-server';
 import models from './models';
+import { createToken } from './utils/auth';
 
 const resolvers: IResolvers = {
   Query: {
@@ -25,10 +26,21 @@ const resolvers: IResolvers = {
   },
   Mutation: {
     me: async (parent, args, ctx, info) => {
-      const input = args.input;
-      const user = await models.User.createOne(input);
+      const { input } = args;
+      const { picture, ...rest } = input;
+      const existing = await models.User.findOne({
+        email: input.email,
+      });
 
-      return user;
+      if (existing) {
+        throw new AuthenticationError('Invalid credentials, please try again');
+      }
+
+      const user = await models.User.createOne({ avatar: picture, ...rest });
+
+      const token = createToken(user);
+
+      return { token, ...user };
     },
   },
 };

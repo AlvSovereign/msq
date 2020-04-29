@@ -141,6 +141,7 @@ const typeDefs = gql`
     role: Role!
     avatar: String
     alias: String
+    token: String
     playlists: [Playlist!]
     collectionsSaved: [Collection!]
     following: [Artist!]
@@ -150,30 +151,51 @@ const typeDefs = gql`
     settings: Settings
   }
 
-  input UserInput {
+  input NewUserInput {
     email: String!
-    name: String!
-    verified: Boolean!
-    accountType: AccountType!
-    role: Role!
-    avatar: String
-    alias: String
-    # playlists: [Playlist!]
-    # collectionsSaved: [Collection!]
-    # following: [Artist!]
-    # friends: [User!]
-    # likedSongs: [CollectionEntry!]
-    # country: [String!]
-    # settings: Settings
+    name: String
+    password: String
+    picture: String
   }
 
   type Query {
-    me: User!
+    me(input: ID!): User!
   }
 
   type Mutation {
-    me(input: UserInput!): User!
+    me(input: NewUserInput!): User!
   }
 `;
 
 export default typeDefs;
+
+export interface IUser {
+  id: String;
+  email: String;
+  name: String;
+  createdAt: String;
+  verified: Boolean;
+  accountType: EAccountType;
+  role: ERole;
+  avatar: String;
+  alias: String;
+  token: String;
+  // playlists: [Playlist!]
+  // collectionsSaved: [Collection!]
+  // following: [Artist!]
+  // friends: [User!]
+  // likedSongs: [CollectionEntry!]
+  // country: [String!]
+  // settings: Settings
+}
+
+export enum EAccountType {
+  BASIC,
+  PREMIUM,
+  SUPER,
+}
+
+export enum ERole {
+  ARTIST,
+  FAN,
+}

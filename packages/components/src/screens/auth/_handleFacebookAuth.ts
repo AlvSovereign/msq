@@ -31,11 +31,6 @@ const _handleFacebookAuth = async () => {
       throw new Error('Something went wrong obtaining access token');
     }
 
-    // const credential = firebase.auth.FacebookAuthProvider.credential(
-    //   data.accessToken
-    // );
-    // await firebase.auth().signInWithCredential(credential);
-
     const responseInfoCallback: GraphRequestCallback = (
       error: any | undefined,
       result: any | undefined
