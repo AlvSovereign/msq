@@ -1,6 +1,8 @@
 import { gql } from 'apollo-server';
 
 const typeDefs = gql`
+  directive @isAuthenticated on FIELD_DEFINITION
+
   enum AccountType {
     BASIC
     PREMIUM
@@ -136,7 +138,8 @@ const typeDefs = gql`
     email: String!
     name: String!
     createdAt: String!
-    verified: Boolean!
+    isVerified: Boolean!
+    isRegistered: Boolean!
     accountType: AccountType!
     role: Role!
     avatar: String
@@ -158,8 +161,21 @@ const typeDefs = gql`
     picture: String
   }
 
+  input SigninUserInput {
+    email: String!
+    password: String!
+  }
+
+  input SocialSigninUserInput {
+    email: String!
+    name: String!
+    avatar: String!
+  }
+
   type Query {
-    me(input: ID!): User!
+    me: User! @isAuthenticated
+    signin(input: SigninUserInput!): User!
+    socialSignin(input: SocialSigninUserInput!): User!
   }
 
   type Mutation {
@@ -174,7 +190,8 @@ export interface IUser {
   email: String;
   name: String;
   createdAt: String;
-  verified: Boolean;
+  isVerified: Boolean;
+  isRegistered: Boolean;
   accountType: EAccountType;
   role: ERole;
   avatar: String;

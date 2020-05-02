@@ -1,36 +1,44 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import gql from 'graphql-tag';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useApolloClient, useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { Page, Typography, Input, Button } from 'components/src/ui';
 import { _handleFacebookAuth } from './_handleFacebookAuth';
 import { _handleGoogleAuth } from './_handleGoogleAuth';
-// import { IUser } from 'components/src/types';
+import { GET_ME, SIGNIN, ADD_TOKEN_TO_CACHE } from '../../graphql/queries';
+import { setToStorage } from '../../utils/_storageHelper';
 
 const Image = require('components/src/assets/images/authBgImage.jpg');
 
-const CREATE_ME = gql`
-  mutation CreateMe($input: NewUserInput!) {
-    me(input: $input) {
-      id
-      email
-      name
-      token
-      verified
-      accountType
-      avatar
-      role
-    }
-  }
-`;
+const Auth = ({ setIsSignedIn }: SigninProps) => {
+  const client = useApolloClient();
+  const {
+    data: getMeData,
+    loading: getMeLoading,
+    error: getMeError,
+  } = useQuery(GET_ME);
 
-const Signin = ({  }: SigninProps) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [createUser] = useMutation(CREATE_ME);
+  React.useEffect(() => {
+    if (getMeData) {
+      setIsSignedIn(true);
+    }
+  }, [getMeData]);
+
+  const [email, setEmail] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
+  const [signin, { data, loading, error }] = useLazyQuery(SIGNIN);
+
+  React.useEffect(() => {
+    if (data) {
+      client.writeData({
+        data: { token: data.socialSignin.token },
+      });
+      setToStorage('token', data.socialSignin.token);
+      setIsSignedIn(true);
+    }
+  }, [data]);
 
   const handlePress = () => {
-    createUser({ variables: { input: { email, password } } });
+    // createUser({ variables: { input: { email, password } } });
   };
 
   const handleFacebookLoginPress = () => {
@@ -42,7 +50,13 @@ const Signin = ({  }: SigninProps) => {
       | INewUserFromSocialInput
       | undefined = await _handleGoogleAuth();
 
-    await createUser({ variables: { input: result } });
+    if (result) {
+      const { photo, ...rest } = result;
+
+      await signin({
+        variables: { input: { avatar: photo, ...rest } },
+      });
+    }
   };
 
   return (
@@ -134,9 +148,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Signin };
+export default Auth;
 
-interface SigninProps {}
+interface SigninProps {
+  navigation: any;
+  setIsSignedIn: (arg: boolean) => void;
+}
 
 interface INewUserInput {
   email: String;
@@ -145,6 +162,6 @@ interface INewUserInput {
 
 interface INewUserFromSocialInput {
   email: String;
-  name: String | null;
-  picture?: String | null;
+  name: string | null;
+  photo: string | null;
 }

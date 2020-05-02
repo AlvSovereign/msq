@@ -12,7 +12,7 @@ const _handleGoogleAuth = async () => {
     if (additionalUserInfo && credential) {
       const { email, name, picture }: any = additionalUserInfo.profile;
 
-      return { email, name, picture };
+      return { email, name, photo: picture };
     }
   } catch (error) {
     // Handle Errors here.

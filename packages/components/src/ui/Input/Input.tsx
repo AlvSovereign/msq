@@ -80,6 +80,7 @@ const Input = ({
           placeholder={placeholder}
           placeholderTextColor={LIGHTGREY_200}
           style={[styles.input]}
+          secureTextEntry={type === 'password'}
           value={value}
         />
         {rightIcon && (

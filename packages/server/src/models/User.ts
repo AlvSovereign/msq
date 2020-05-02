@@ -26,7 +26,12 @@ const UserSchema: Schema = new Schema(
         return `User-${randomString}`;
       },
     },
-    verified: {
+    isVerified: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isRegistered: {
       type: Boolean,
       required: true,
       default: false,

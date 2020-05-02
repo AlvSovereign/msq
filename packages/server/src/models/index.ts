@@ -5,4 +5,6 @@ const models = {
   User: createModel(User),
 };
 
+export const schemas = { User };
+
 export default models;

@@ -1,23 +1,58 @@
 import * as React from 'react';
 import { StatusBar } from 'react-native';
-import ApolloClient from 'apollo-boost';
+import ApolloClient from 'apollo-client';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import { persistCache } from 'apollo-cache-persist';
+import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
-import { Signin } from 'components/src/screens/auth/Signin';
+import Auth from 'components/src/screens/Auth/Auth';
+import Welcome from 'components/src/screens/Welcome/Welcome';
 import firebaseConfig from './utils/firebaseConfig';
 import { initFB, loadFBSDK } from './utils/loadFBSDK';
+import { getFromStorage } from 'components/src/utils/_storageHelper';
+import resolvers from 'components/src/graphql/resolvers';
+
+const cache = new InMemoryCache();
+const link = createHttpLink({ uri: process.env.REACT_APP_GRAPHQL_URL });
+let token: string | null;
+(async () => {
+  token = await getFromStorage('token');
+})();
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : null,
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_URL,
+  link: authLink.concat(link),
+  cache,
+  resolvers,
+});
+
+persistCache({
+  cache: client.cache,
+  maxSize: false,
+  storage: window.localStorage as PersistentStorage<PersistedData<any>>,
 });
 
 const Stack = createStackNavigator();
 
 const App = () => {
+  const [isSignedIn, setIsSignedIn] = React.useState<boolean>(false);
+
   React.useEffect(() => {
     initFB();
     loadFBSDK();
@@ -30,11 +65,17 @@ const App = () => {
         <StatusBar barStyle='dark-content' />
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName={'SignIn'}
+            initialRouteName={'Auth'}
             screenOptions={{
               headerShown: false,
             }}>
-            <Stack.Screen name='SignIn' component={Signin} />
+            {isSignedIn ? (
+              <Stack.Screen name='Welcome' component={Welcome} />
+            ) : (
+              <Stack.Screen name='Auth'>
+                {(props) => <Auth {...props} setIsSignedIn={setIsSignedIn} />}
+              </Stack.Screen>
+            )}
           </Stack.Navigator>
         </NavigationContainer>
       </MsqThemeContext.Provider>

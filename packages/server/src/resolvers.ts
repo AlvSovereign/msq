@@ -4,24 +4,41 @@ import { createToken } from './utils/auth';
 
 const resolvers: IResolvers = {
   Query: {
-    me: (parent, args, ctx, info) => {
-      return {
-        id: 1,
-        email: 'test@test.com',
-        name: 'Test Testerton',
-        createdAt: '12345',
-        verified: false,
-        accountType: 'BASIC',
-        role: 'FAN',
-        alias: 'Testic',
-        country: 'GBP',
-        settings: {
-          id: 'SettingID',
-          userId: '1',
-          emailNotifications: false,
-          pushNotifications: false,
-        },
-      };
+    me: async (parent, args, ctx, info) => {
+      const user: any = await models.User.findOne({ id: ctx.user.id });
+
+      if (user.id !== ctx.user.id) {
+        throw new AuthenticationError('Invalid credentials, please try again');
+      }
+
+      return user;
+    },
+    signin: async (parent, args, ctx, info) => {
+      const { email, password } = args.input;
+      const { User } = ctx;
+      const user: any = await models.User.findOne({ email });
+
+      const token = createToken(user);
+      if (password) {
+        const match = await User.checkPassword(password);
+        console.log('match: ', match);
+      }
+
+      return { token, ...user };
+    },
+    socialSignin: async (parent, args, ctx, info) => {
+      let createdUser;
+      const { email } = args.input;
+      const user: any = await models.User.findOne({ email });
+
+      if (!user) {
+        createdUser = await models.User.createOne(args.input);
+        console.log('createdUser: ', createdUser);
+      }
+
+      const token = await createToken(user || createdUser);
+
+      return { token, ...{ ...user, ...createdUser } };
     },
   },
   Mutation: {
@@ -42,6 +59,19 @@ const resolvers: IResolvers = {
 
       return { token, ...user };
     },
+    // socialSignin: async (parent, args, ctx, info) => {
+    //   let createdUser;
+    //   const { email } = args.input;
+    //   const user: any = await models.User.findOne({ email });
+
+    //   if (!user) {
+    //     createdUser = await models.User.createOne(args.input);
+    //   }
+
+    //   const token = await createToken(user || createdUser);
+
+    //   return { token, ...user };
+    // },
   },
 };
 

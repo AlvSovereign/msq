@@ -1,6 +1,7 @@
 import { AuthenticationError } from 'apollo-server';
 import jwt from 'jsonwebtoken';
 import { IUser } from '../typeDefs';
+import models from '../models';
 
 const secret = process.env.JWT_SECRET;
 
@@ -18,10 +19,13 @@ const createToken = ({ id, accountType, role }: IUser) =>
  * a null user
  * @param {String} token jwt from client
  */
-const getUserFromToken = (token: string) => {
+const getUserFromToken = async (tokenString: string) => {
+  const token = tokenString && tokenString.split('Bearer ')[1];
   try {
-    const user = jwt.verify(token, secret!);
-    return models.User.findOne({ id: user.id });
+    const userToken: any = jwt.verify(token, secret!);
+    const user = await models.User.findOne({ id: userToken.id });
+
+    return user;
   } catch (e) {
     return null;
   }

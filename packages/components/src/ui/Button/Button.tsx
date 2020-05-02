@@ -72,7 +72,7 @@ const Button = ({
             styles.facebookHovered,
           !isDisabled &&
             isHovered &&
-            variant === 'facebook' &&
+            variant === 'google' &&
             styles.googleHovered,
           !isDisabled && isFocused && styles.buttonFocused,
           isDisabled && styles.buttonDisabled,
