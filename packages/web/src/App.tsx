@@ -21,11 +21,9 @@ import resolvers from 'components/src/graphql/resolvers';
 
 const cache = new InMemoryCache();
 const link = createHttpLink({ uri: process.env.REACT_APP_GRAPHQL_URL });
-let token: string | null;
-(async () => {
-  token = await getFromStorage('token');
-})();
-const authLink = setContext((_, { headers }) => {
+const authLink = setContext(async (_, operation) => {
+  const { headers } = operation;
+  let token: string | null = await getFromStorage('token');
   // get the authentication token from local storage if it exists
   // return the headers to the context so httpLink can read them
   return {

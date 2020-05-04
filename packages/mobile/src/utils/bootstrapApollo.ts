@@ -8,10 +8,11 @@ import Config from 'react-native-config';
 import { getFromStorage } from 'components/src/utils/_storageHelper';
 
 const bootstrapApollo = async (setClient: any) => {
-  const token = await getFromStorage('token');
   const cache = await new InMemoryCache();
   const link = await createHttpLink({ uri: Config.GRAPHQL_URL });
-  const authLink = await setContext((_, { headers }) => {
+  const authLink = await setContext(async (_, { headers }) => {
+    const token: string | null = await getFromStorage('token');
+
     return {
       headers: {
         ...headers,

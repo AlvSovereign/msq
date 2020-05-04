@@ -12,9 +12,9 @@ body,
   src: url('assets/fonts/Geomanist-Light.otf') format('opentype');
 }
 @font-face {
-  font-family: 'Geomanist-Regular';
+  font-family: 'Geomanist';
   font-weight: 400;
-  src: url('assets/fonts/Geomanist-Regular.otf') format('opentype');
+  src: url('assets/fonts/Geomanist.otf') format('opentype');
 }
 @font-face {
   font-family: 'Geomanist-Book';

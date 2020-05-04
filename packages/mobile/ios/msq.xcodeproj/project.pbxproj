@@ -21,8 +21,8 @@
 		68AE7B7C327945E485BDE0F6 /* Geomanist-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F8E52713E4C46979569C8EC /* Geomanist-Bold.otf */; };
 		78B1AAF2C2404BB78503B2A7 /* Geomanist-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F04E220344141C4BAF5F24B /* Geomanist-Book.otf */; };
 		79F22FDD448D66AAEA5EAC65 /* libPods-msq-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C411AD4D876FF09C4145C7C1 /* libPods-msq-tvOSTests.a */; };
-		7BB9FBF022D74E53BAD457C4 /* Geomanist-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 897A3B51A4534387A5EBA295 /* Geomanist-Regular.otf */; };
 		8F7267FFAC884276ACDDD4B0 /* Geomanist-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CF402B36BA141CF8D5CD2F9 /* Geomanist-Medium.otf */; };
+		AEA7E5C7588C4551B95C5253 /* Geomanist.otf in Resources */ = {isa = PBXBuildFile; fileRef = 12280D3AF71C49A7821F8BF2 /* Geomanist.otf */; };
 		D8C3F22F2899403EA52EA303 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */; };
 		E10E6178245081F800A0BCFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E10E6177245081F800A0BCFF /* GoogleService-Info.plist */; };
 		EA96C3ADB0062FBBC713B357 /* libPods-msq.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2A7911673BECF243AD0AFA /* libPods-msq.a */; };
@@ -52,6 +52,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* msqTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = msqTests.m; sourceTree = "<group>"; };
 		0E31FC3EA7C7A08BAF37F522 /* Pods-msq-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msq-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-msq-tvOS/Pods-msq-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		12280D3AF71C49A7821F8BF2 /* Geomanist.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Geomanist.otf; path = ../../components/src/assets/fonts/Geomanist.otf; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* msq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = msq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = msq/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = msq/AppDelegate.m; sourceTree = "<group>"; };
@@ -69,7 +70,6 @@
 		5CF402B36BA141CF8D5CD2F9 /* Geomanist-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Geomanist-Medium.otf"; path = "../../components/src/assets/fonts/Geomanist-Medium.otf"; sourceTree = "<group>"; };
 		712B83161A2346AD9C7B8C6A /* Geomanist-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Geomanist-Light.otf"; path = "../../components/src/assets/fonts/Geomanist-Light.otf"; sourceTree = "<group>"; };
 		80A71BEBA18653AAC5A0EAE5 /* Pods-msq-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msq-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-msq-tvOSTests/Pods-msq-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		897A3B51A4534387A5EBA295 /* Geomanist-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Geomanist-Regular.otf"; path = "../../components/src/assets/fonts/Geomanist-Regular.otf"; sourceTree = "<group>"; };
 		9F04E220344141C4BAF5F24B /* Geomanist-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Geomanist-Book.otf"; path = "../../components/src/assets/fonts/Geomanist-Book.otf"; sourceTree = "<group>"; };
 		9F8E52713E4C46979569C8EC /* Geomanist-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Geomanist-Bold.otf"; path = "../../components/src/assets/fonts/Geomanist-Bold.otf"; sourceTree = "<group>"; };
 		BA0CB7250979924594CEDD19 /* Pods-msq.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msq.release.xcconfig"; path = "Target Support Files/Pods-msq/Pods-msq.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 				9F04E220344141C4BAF5F24B /* Geomanist-Book.otf */,
 				712B83161A2346AD9C7B8C6A /* Geomanist-Light.otf */,
 				5CF402B36BA141CF8D5CD2F9 /* Geomanist-Medium.otf */,
-				897A3B51A4534387A5EBA295 /* Geomanist-Regular.otf */,
+				12280D3AF71C49A7821F8BF2 /* Geomanist.otf */,
 				CAB7F984CB4B46759C373AAA /* Montserrat-ExtraBold.ttf */,
 			);
 			name = Resources;
@@ -373,8 +373,8 @@
 				78B1AAF2C2404BB78503B2A7 /* Geomanist-Book.otf in Resources */,
 				1035D1A2D49745AA8E892E17 /* Geomanist-Light.otf in Resources */,
 				8F7267FFAC884276ACDDD4B0 /* Geomanist-Medium.otf in Resources */,
-				7BB9FBF022D74E53BAD457C4 /* Geomanist-Regular.otf in Resources */,
 				D8C3F22F2899403EA52EA303 /* Montserrat-ExtraBold.ttf in Resources */,
+				AEA7E5C7588C4551B95C5253 /* Geomanist.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,23 +9,20 @@ const Welcome = ({  }: WelcomeProps) => {
   const navigation = useNavigation();
 
   const { data, loading, error } = useQuery(GET_ME);
-  if (!data || loading) {
-    return (
-      <>
-        <Text>{'Loading'}</Text>
-        <Button title='Back' onPress={() => navigation.navigate('Auth')} />
-      </>
-    );
+  if (loading) {
+    return <Text>{'Loading'}</Text>;
   }
-  const { name } = data.me;
+
+  // const { name } = data.me;
 
   return (
     <Page>
       <View style={{ flex: 1 }}>
         {data && (
-          <Typography variant='h1'>{`Welcome to msq: ${name}`}</Typography>
+          <Typography variant='h1'>{`Welcome to msq: ${
+            data.me.name
+          }`}</Typography>
         )}
-        <Button title='Back' onPress={() => navigation.navigate('Auth')} />
       </View>
     </Page>
   );

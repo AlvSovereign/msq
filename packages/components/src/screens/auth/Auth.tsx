@@ -32,7 +32,9 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
       client.writeData({
         data: { token: data.socialSignin.token },
       });
-      setToStorage('token', data.socialSignin.token);
+      if (data.socialSignin.token) {
+        setToStorage('token', data.socialSignin.token);
+      }
       setIsSignedIn(true);
     }
   }, [data]);

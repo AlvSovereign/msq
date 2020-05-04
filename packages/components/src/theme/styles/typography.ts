@@ -126,12 +126,12 @@ const text = {
   },
   SMALL: {
     fontSize: 12,
-    fontFamily: 'Geomanist-Regular',
+    fontFamily: 'Geomanist',
     lineHeight: 18,
   },
   TINY: {
     fontSize: 10,
-    fontFamily: 'Geomanist-Regular',
+    fontFamily: 'Geomanist',
     lineHeight: 16,
   },
   BUTTON: {
