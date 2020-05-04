@@ -1,10 +1,16 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useApolloClient, useQuery, useLazyQuery } from '@apollo/react-hooks';
+import {
+  useApolloClient,
+  useQuery,
+  useLazyQuery,
+  useMutation,
+} from '@apollo/react-hooks';
 import { Page, Typography, Input, Button } from 'components/src/ui';
 import { _handleFacebookAuth } from './_handleFacebookAuth';
 import { _handleGoogleAuth } from './_handleGoogleAuth';
-import { GET_ME, SIGNIN, ADD_TOKEN_TO_CACHE } from '../../graphql/queries';
+import { GET_ME } from '../../graphql/queries';
+import { SIGNIN } from '../../graphql/mutations';
 import { setToStorage } from '../../utils/_storageHelper';
 
 const Image = require('components/src/assets/images/authBgImage.jpg');
@@ -25,10 +31,11 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
 
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
-  const [signin, { data, loading, error }] = useLazyQuery(SIGNIN);
+  const [signin, { data, loading, error }] = useMutation(SIGNIN);
 
   React.useEffect(() => {
     if (data) {
+      console.log('data: ', data);
       client.writeData({
         data: { token: data.socialSignin.token },
       });

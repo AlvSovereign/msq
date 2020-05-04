@@ -174,12 +174,12 @@ const typeDefs = gql`
 
   type Query {
     me: User! @isAuthenticated
-    signin(input: SigninUserInput!): User!
-    socialSignin(input: SocialSigninUserInput!): User!
   }
 
   type Mutation {
     me(input: NewUserInput!): User!
+    signin(input: SigninUserInput!): User!
+    socialSignin(input: SocialSigninUserInput!): User!
   }
 `;
 

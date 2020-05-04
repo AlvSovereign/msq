@@ -13,6 +13,25 @@ const resolvers: IResolvers = {
 
       return user;
     },
+  },
+  Mutation: {
+    me: async (parent, args, ctx, info) => {
+      const { input } = args;
+      const { picture, ...rest } = input;
+      const existing = await models.User.findOne({
+        email: input.email,
+      });
+
+      if (existing) {
+        throw new AuthenticationError('Invalid credentials, please try again');
+      }
+
+      const user = await models.User.createOne({ avatar: picture, ...rest });
+
+      const token = createToken(user);
+
+      return { token, ...user };
+    },
     signin: async (parent, args, ctx, info) => {
       const { email, password } = args.input;
       const { User } = ctx;
@@ -33,45 +52,12 @@ const resolvers: IResolvers = {
 
       if (!user) {
         createdUser = await models.User.createOne(args.input);
-        console.log('createdUser: ', createdUser);
       }
 
       const token = await createToken(user || createdUser);
 
       return { token, ...{ ...user, ...createdUser } };
     },
-  },
-  Mutation: {
-    me: async (parent, args, ctx, info) => {
-      const { input } = args;
-      const { picture, ...rest } = input;
-      const existing = await models.User.findOne({
-        email: input.email,
-      });
-
-      if (existing) {
-        throw new AuthenticationError('Invalid credentials, please try again');
-      }
-
-      const user = await models.User.createOne({ avatar: picture, ...rest });
-
-      const token = createToken(user);
-
-      return { token, ...user };
-    },
-    // socialSignin: async (parent, args, ctx, info) => {
-    //   let createdUser;
-    //   const { email } = args.input;
-    //   const user: any = await models.User.findOne({ email });
-
-    //   if (!user) {
-    //     createdUser = await models.User.createOne(args.input);
-    //   }
-
-    //   const token = await createToken(user || createdUser);
-
-    //   return { token, ...user };
-    // },
   },
 };
 
