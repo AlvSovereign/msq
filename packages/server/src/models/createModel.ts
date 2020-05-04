@@ -4,6 +4,7 @@ import { IUser } from '../typeDefs';
 
 const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
   createOne: async (fields: any) => {
+    console.log('fields: ', fields);
     try {
       const userDoc = await model.create({ isRegistereed: true, ...fields });
       const { _id, password, __v, ...rest } = userDoc.toObject();
@@ -13,9 +14,9 @@ const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
       console.error('error: ', error);
     }
   },
-  findOne: async (field: any) => {
+  findOne: async (field: any, password?: string) => {
     try {
-      const { _id, password, __v, ...rest }: any = await model
+      const { _id, password: _, __v, ...rest }: any = await model
         .findOne(field)
         .lean()
         .exec();

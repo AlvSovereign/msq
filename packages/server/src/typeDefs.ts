@@ -169,7 +169,7 @@ const typeDefs = gql`
   input SocialSigninUserInput {
     email: String!
     name: String!
-    avatar: String!
+    avatar: String
   }
 
   type Query {

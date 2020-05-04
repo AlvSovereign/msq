@@ -95,6 +95,20 @@ UserSchema.pre('save', function(next) {
   });
 });
 
+UserSchema.methods.checkPassword = function(password: string) {
+  const passwordHash = this.password;
+
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, passwordHash, (err, same) => {
+      if (err) {
+        return reject(err);
+      }
+
+      resolve(same);
+    });
+  });
+};
+
 const User: mongoose.Model<mongoose.Document, {}> = mongoose.model(
   'User',
   UserSchema

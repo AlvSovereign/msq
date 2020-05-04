@@ -22,7 +22,7 @@ const createToken = ({ id, accountType, role }: IUser) =>
 const getUserFromToken = async (tokenString: string) => {
   const token = tokenString && tokenString.split('Bearer ')[1];
   try {
-    const userToken: any = jwt.verify(token, secret!);
+    const userToken: any = await jwt.verify(token, secret!);
     const user = await models.User.findOne({ id: userToken.id });
 
     return user;

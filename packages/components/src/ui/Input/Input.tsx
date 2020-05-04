@@ -118,7 +118,7 @@ interface InputProps {
   placeholder: string;
   rightIcon?: IconKey;
   type: TInputTypes;
-  value: any;
+  value?: any;
 }
 
 export type TInputTypes =

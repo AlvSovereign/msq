@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import {
-  useApolloClient,
-  useQuery,
-  useLazyQuery,
-  useMutation,
-} from '@apollo/react-hooks';
+import { useApolloClient, useQuery, useMutation } from '@apollo/react-hooks';
 import { Page, Typography, Input, Button } from 'components/src/ui';
+import { useForm } from 'react-hook-form';
 import { _handleFacebookAuth } from './_handleFacebookAuth';
 import { _handleGoogleAuth } from './_handleGoogleAuth';
 import { GET_ME } from '../../graphql/queries';
-import { SIGNIN } from '../../graphql/mutations';
+import { SIGNIN, SOCIAL_SIGNIN } from '../../graphql/mutations';
 import { setToStorage } from '../../utils/_storageHelper';
 
 const Image = require('components/src/assets/images/authBgImage.jpg');
@@ -29,13 +25,21 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
     }
   }, [getMeData]);
 
-  const [email, setEmail] = React.useState<string>('');
-  const [password, setPassword] = React.useState<string>('');
-  const [signin, { data, loading, error }] = useMutation(SIGNIN);
+  if (getMeData) return null;
+
+  const { getValues, register, setValue, handleSubmit, errors } = useForm();
+  React.useEffect(() => {
+    register({ name: 'email' }, { required: true });
+    register({ name: 'password' }, { required: true });
+  }, [register]);
+
+  const [
+    socialSignin,
+    { data: socialData, loading: socialLoading, error: socialError },
+  ] = useMutation(SOCIAL_SIGNIN);
 
   React.useEffect(() => {
-    if (data) {
-      console.log('data: ', data);
+    if (socialData) {
       client.writeData({
         data: { token: data.socialSignin.token },
       });
@@ -44,14 +48,10 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
       }
       setIsSignedIn(true);
     }
-  }, [data]);
-
-  const handlePress = () => {
-    // createUser({ variables: { input: { email, password } } });
-  };
+  }, [socialData]);
 
   const socialAuthCallback = async (result: any) => {
-    await signin({
+    await socialSignin({
       variables: { input: result },
     });
   };
@@ -62,6 +62,12 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
 
   const handleGoogleLoginPress = () => {
     _handleGoogleAuth(socialAuthCallback);
+  };
+
+  const [signin, { data, loading, error }] = useMutation(SIGNIN);
+
+  const handlePress = (data) => {
+    signin({ variables: { input: data } });
   };
 
   return (
@@ -112,21 +118,19 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
           {'Clicking Here'}
         </Typography>
         <Input
-          onChangeText={(value: string) => setEmail(value)}
+          onChangeText={(value: string) => setValue('email', value, true)}
           placeholder='Email'
           type='email'
-          value={email}
         />
         <Input
-          onChangeText={(value: string) => setPassword(value)}
+          onChangeText={(value: string) => setValue('password', value, true)}
           placeholder='Password'
           type='password'
-          value={password}
         />
         <Button
           label='Login'
           gutterBottom='xxl'
-          onPress={handlePress}
+          onPress={handleSubmit(handlePress)}
           variant='primary'
         />
         <Typography
