@@ -10,6 +10,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <React/RCTLinkingManager.h>
 #import <RNGoogleSignin/RNGoogleSignin.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -31,10 +32,30 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  [[FBSDKApplicationDelegate sharedInstance] application:application
-    didFinishLaunchingWithOptions:launchOptions];
+  
   [FIRApp configure];
+
   return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  
+    if ([[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options]) {
+      return YES;
+    }
+    
+    if ([RNGoogleSignin application:application openURL:url options:options]) {
+      return YES;
+    }
+  
+    if ([RCTLinkingManager application:application openURL:url options:options]) {
+      return YES;
+    }
+
+  // Add any custom logic here.
+  return NO;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

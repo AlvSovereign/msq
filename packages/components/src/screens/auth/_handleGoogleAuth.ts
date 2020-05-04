@@ -5,7 +5,7 @@ import {
 } from '@react-native-community/google-signin';
 import Config from 'react-native-config';
 
-const _handleGoogleAuth = async () => {
+const _handleGoogleAuth = async (callback: any) => {
   await GoogleSignin.configure({
     offlineAccess: true,
     webClientId: `${Config.OAUTH_GOOGLE_WEBCLIENTID}`,
@@ -19,7 +19,7 @@ const _handleGoogleAuth = async () => {
     const { user }: User = await GoogleSignin.signIn();
     const { email, name, photo } = user;
 
-    return { email, name, photo };
+    callback({ email, name, avatar: photo });
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       // user cancelled the login flow

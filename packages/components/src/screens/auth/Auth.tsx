@@ -43,22 +43,18 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
     // createUser({ variables: { input: { email, password } } });
   };
 
-  const handleFacebookLoginPress = () => {
-    _handleFacebookAuth();
+  const socialAuthCallback = async (result: any) => {
+    await signin({
+      variables: { input: result },
+    });
   };
 
-  const handleGoogleLoginPress = async () => {
-    const result:
-      | INewUserFromSocialInput
-      | undefined = await _handleGoogleAuth();
+  const handleFacebookLoginPress = () => {
+    _handleFacebookAuth(socialAuthCallback);
+  };
 
-    if (result) {
-      const { photo, ...rest } = result;
-
-      await signin({
-        variables: { input: { avatar: photo, ...rest } },
-      });
-    }
+  const handleGoogleLoginPress = () => {
+    _handleGoogleAuth(socialAuthCallback);
   };
 
   return (
