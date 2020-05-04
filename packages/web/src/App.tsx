@@ -15,7 +15,7 @@ import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import Auth from 'components/src/screens/Auth/Auth';
 import Welcome from 'components/src/screens/Welcome/Welcome';
 import firebaseConfig from './utils/firebaseConfig';
-import { initFB, loadFBSDK } from './utils/loadFBSDK';
+import { bootstrapFB } from './utils/loadFBSDK';
 import { getFromStorage } from 'components/src/utils/_storageHelper';
 import resolvers from 'components/src/graphql/resolvers';
 
@@ -52,8 +52,7 @@ const App = () => {
   const [isSignedIn, setIsSignedIn] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    initFB();
-    loadFBSDK();
+    bootstrapFB();
     firebase.initializeApp(firebaseConfig);
   }, []);
 

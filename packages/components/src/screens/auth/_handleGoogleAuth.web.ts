@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-const _handleGoogleAuth = async () => {
+const _handleGoogleAuth = async (callback: any) => {
   try {
     const provider = new firebase.auth.GoogleAuthProvider();
     const {
@@ -12,7 +12,7 @@ const _handleGoogleAuth = async () => {
     if (additionalUserInfo && credential) {
       const { email, name, picture }: any = additionalUserInfo.profile;
 
-      return { email, name, photo: picture };
+      return callback({ email, name, avatar: picture });
     }
   } catch (error) {
     // Handle Errors here.
