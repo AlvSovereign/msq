@@ -85,10 +85,6 @@ const resolvers: IResolvers = {
         ...createdUser,
       };
 
-      // console.log('userFromContext: ', userFromContext);
-      // console.log('foundUser: ', foundUser);
-      // console.log('createdUser: ', createdUser);
-      console.log('result: ', result);
       return result;
     },
     socialSignin: async (parent, args, ctx, info) => {

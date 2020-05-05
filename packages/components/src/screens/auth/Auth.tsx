@@ -25,9 +25,7 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
     }
   }, [getMeData]);
 
-  if (getMeData) return null;
-
-  const { getValues, register, setValue, handleSubmit, errors } = useForm();
+  const { register, setValue, handleSubmit } = useForm();
   React.useEffect(() => {
     register({ name: 'email' }, { required: true });
     register({ name: 'password' }, { required: true });
@@ -41,10 +39,10 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
   React.useEffect(() => {
     if (socialData) {
       client.writeData({
-        data: { token: data.socialSignin.token },
+        data: { token: socialData.socialSignin.token },
       });
-      if (data.socialSignin.token) {
-        setToStorage('token', data.socialSignin.token);
+      if (socialData.socialSignin.token) {
+        setToStorage('token', socialData.socialSignin.token);
       }
       setIsSignedIn(true);
     }
@@ -64,9 +62,17 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
     _handleGoogleAuth(socialAuthCallback);
   };
 
-  const [signin, { data, loading, error }] = useMutation(SIGNIN);
+  const [signin, { data, loading, error }] = useMutation(SIGNIN, {
+    async onCompleted({ signin }) {
+      await setToStorage('token', signin.token);
+      await client.writeData({
+        data: { token: signin.token },
+      });
+      await setIsSignedIn(true);
+    },
+  });
 
-  const handlePress = (data) => {
+  const handlePress = (data: any) => {
     signin({ variables: { input: data } });
   };
 

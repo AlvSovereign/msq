@@ -4,7 +4,6 @@ import { IUser } from '../typeDefs';
 
 const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
   createOne: async (fields: any) => {
-    console.log('fields: ', fields);
     try {
       const userDoc = await model.create({ isRegistereed: true, ...fields });
       const { _id, password, __v, ...rest } = userDoc.toObject();
