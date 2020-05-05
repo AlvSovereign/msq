@@ -1,14 +1,15 @@
 import mongoose from 'mongoose';
-import { AuthenticationError } from 'apollo-server';
-import { IUser } from '../typeDefs';
 
 const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
   createOne: async (fields: any) => {
     try {
-      const userDoc = await model.create({ isRegistereed: true, ...fields });
-      const { _id, password, __v, ...rest } = userDoc.toObject();
+      let doc: any = await model.create({ isRegistereed: true, ...fields });
+      if (doc.owner) {
+        doc = await doc.populate('owner').execPopulate();
+      }
+      const { _id, password, __v, ...rest } = doc.toObject();
 
-      return rest;
+      return { _id, ...rest };
     } catch (error) {
       console.error('error: ', error);
     }
@@ -17,10 +18,11 @@ const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
     try {
       const { _id, password: _, __v, ...rest }: any = await model
         .findOne(field)
+        .populate('owner')
         .lean()
         .exec();
 
-      return rest;
+      return { _id, ...rest };
     } catch (error) {
       console.error('error: ', error);
     }

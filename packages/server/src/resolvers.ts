@@ -1,9 +1,11 @@
 import { AuthenticationError, IResolvers } from 'apollo-server';
+import mongoose from 'mongoose';
 import models, { schemas } from './models';
 import { createToken } from './utils/auth';
 
 const resolvers: IResolvers = {
   Query: {
+    artist: async (parent, args, ctx, info) => {},
     me: async (parent, args, ctx, info) => {
       const user: any = await models.User.findOne({ id: ctx.user.id });
 
@@ -15,6 +17,16 @@ const resolvers: IResolvers = {
     },
   },
   Mutation: {
+    artist: async (parent, args, ctx, info) => {
+      const { input } = args;
+      const { user } = ctx;
+      const artist = await models.Artist.createOne({
+        ...input,
+        owner: user._id,
+      });
+
+      return artist;
+    },
     me: async (parent, args, ctx, info) => {
       const { input } = args;
       const { picture, ...rest } = input;
@@ -101,6 +113,12 @@ const resolvers: IResolvers = {
       return { token, ...{ ...user, ...createdUser } };
     },
   },
+  // Artist: {
+  //   _id: ({ _id }) => {
+  //     console.log('_id: ', _id);
+  //     return _id.toString();
+  //   },
+  // },
 };
 
 export default resolvers;

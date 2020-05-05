@@ -71,6 +71,7 @@ const typeDefs = gql`
   }
 
   type Artist {
+    _id: String
     id: ID!
     createdAt: String!
     name: String!
@@ -78,7 +79,7 @@ const typeDefs = gql`
     releases: [Collection]
     owner: User!
     fans: [User!]
-    country: String!
+    country: [String!]
     biography: String
     tag: String
     socialLinks: [SocialLinks!]
@@ -144,6 +145,7 @@ const typeDefs = gql`
     role: Role!
     avatar: String
     alias: String
+    artist: Artist
     token: String
     playlists: [Playlist!]
     collectionsSaved: [Collection!]
@@ -172,11 +174,33 @@ const typeDefs = gql`
     avatar: String
   }
 
+  input SocialLinksInput {
+    type: SocialType!
+    url: String!
+  }
+
+  input NewArtistInput {
+    name: String!
+    avatar: String
+    country: String!
+    biography: String
+    tag: String
+    socialLinks: [SocialLinksInput!]
+    website: String
+    galleryImages: [String!]
+  }
+
+  input ArtistInput {
+    id: ID!
+  }
+
   type Query {
     me: User! @isAuthenticated
+    artist(input: ArtistInput!): Artist!
   }
 
   type Mutation {
+    artist(input: NewArtistInput!): Artist! @isAuthenticated
     me(input: NewUserInput!): User!
     signin(input: SigninUserInput!): User!
     socialSignin(input: SocialSigninUserInput!): User!
@@ -197,6 +221,7 @@ export interface IUser {
   avatar: String;
   alias: String;
   token: String;
+  artist: Artist;
   // playlists: [Playlist!]
   // collectionsSaved: [Collection!]
   // following: [Artist!]
@@ -204,6 +229,10 @@ export interface IUser {
   // likedSongs: [CollectionEntry!]
   // country: [String!]
   // settings: Settings
+}
+
+export interface Artist {
+  [key: string]: any;
 }
 
 export enum EAccountType {

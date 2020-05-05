@@ -55,6 +55,10 @@ const UserSchema: Schema = new Schema(
       type: String,
       maxlength: 50,
     },
+    artist: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Artist',
+    },
     // country: {
     //   type: [Country],
     // },
