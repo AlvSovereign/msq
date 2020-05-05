@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Clear, FBLogo, GLogo, Search } from '.';
+import { ChevronRight, Clear, Discovery, FBLogo, GLogo, Search } from '.';
 
 const _renderIcon = (fill: string, icon: IconKey, styles?: any) => {
   switch (icon) {
@@ -11,6 +11,8 @@ const _renderIcon = (fill: string, icon: IconKey, styles?: any) => {
       return <FBLogo fill={fill} style={styles} />;
     case 'google':
       return <GLogo fill={fill} style={styles} />;
+    case 'news':
+      return <Discovery fill={fill} style={styles} />;
     case 'search':
       return <Search fill={fill} style={styles} />;
     default:
@@ -25,4 +27,5 @@ export type IconKey =
   | 'cross'
   | 'facebook'
   | 'google'
+  | 'news'
   | 'search';
