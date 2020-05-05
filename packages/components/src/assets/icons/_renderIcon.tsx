@@ -1,5 +1,14 @@
 import React from 'react';
-import { ChevronRight, Clear, Discovery, FBLogo, GLogo, Search } from '.';
+import {
+  ChevronRight,
+  Clear,
+  Discovery,
+  FBLogo,
+  GLogo,
+  Library,
+  Search,
+  Settings,
+} from '.';
 
 const _renderIcon = (fill: string, icon: IconKey, styles?: any) => {
   switch (icon) {
@@ -11,10 +20,14 @@ const _renderIcon = (fill: string, icon: IconKey, styles?: any) => {
       return <FBLogo fill={fill} style={styles} />;
     case 'google':
       return <GLogo fill={fill} style={styles} />;
+    case 'library':
+      return <Library fill={fill} style={styles} />;
     case 'news':
       return <Discovery fill={fill} style={styles} />;
     case 'search':
       return <Search fill={fill} style={styles} />;
+    case 'settings':
+      return <Settings fill={fill} style={styles} />;
     default:
       return null;
   }
@@ -27,5 +40,7 @@ export type IconKey =
   | 'cross'
   | 'facebook'
   | 'google'
+  | 'library'
   | 'news'
-  | 'search';
+  | 'search'
+  | 'settings';

@@ -21,7 +21,7 @@ const Page = ({ backgroundImage, blur, children }: GridProps) => {
         <Image
           blurRadius={3}
           source={backgroundImage}
-          style={[StyleSheet.absoluteFill, styles.backgroundImage]}
+          style={StyleSheet.absoluteFill}
         />
       )}
       {blur && <View style={[StyleSheet.absoluteFill, styles.blur]} />}

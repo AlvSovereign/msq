@@ -13,26 +13,39 @@ import { _renderIcon } from 'components/src/assets/icons';
 const RootStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const AppTabs = () => (
-  <Tab.Navigator
-    initialRouteName="Discovery"
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) => {
-        switch (route.name) {
-          case 'Discovery':
-            return _renderIcon(theme.color.WHITE, 'news');
-          default:
-            return null;
-        }
-      },
-    })}
-    tabBarOptions={{
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-    }}>
-    <Tab.Screen name="Discovery" component={Welcome} />
-  </Tab.Navigator>
-);
+const AppTabs = () => {
+  const { BLUE_100, BLUE_300, BLUE_500, WHITE } = theme.color;
+  return (
+    <Tab.Navigator
+      initialRouteName="Discovery"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          switch (route.name) {
+            case 'Discovery':
+              return _renderIcon(focused ? WHITE : BLUE_300, 'news');
+            case 'Feed':
+              return _renderIcon(focused ? WHITE : BLUE_300, 'library');
+            case 'Search':
+              return _renderIcon(focused ? WHITE : BLUE_300, 'search');
+            default:
+              return null;
+          }
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: WHITE,
+        inactiveTintColor: BLUE_100,
+        activeBackgroundColor: BLUE_500,
+        inactiveBackgroundColor: BLUE_500,
+        allowFontScaling: true,
+        tabStyle: {},
+      }}>
+      <Tab.Screen name="Discovery" component={Welcome} />
+      <Tab.Screen name="Search" component={Welcome} />
+      <Tab.Screen name="Feed" component={Welcome} />
+    </Tab.Navigator>
+  );
+};
 
 const App = () => {
   const [client, setClient] = React.useState<any>(null);

@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import { TBreakpoint } from '../../theme/hooks/useResponsive';
+import { ITheme } from '../../theme/theme';
 
-const generateStyles = (breakpoints: TBreakpoint, theme: any) => {
-  const { WHITE } = theme.color;
+const generateStyles = (breakpoints: TBreakpoint, theme: ITheme) => {
+  const { LIGHT_BLUE, WHITE } = theme.color;
 
   return StyleSheet.create({
-    backgroundImage: {},
     blur: {
       backgroundColor: WHITE,
       opacity: 0.7,
@@ -13,6 +13,7 @@ const generateStyles = (breakpoints: TBreakpoint, theme: any) => {
     safeAreaView: { flex: 1 },
     scrollView: { flex: 1 },
     view: {
+      backgroundColor: LIGHT_BLUE,
       flex: 1,
       paddingHorizontal: 16,
     },

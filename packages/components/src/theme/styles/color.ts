@@ -10,9 +10,11 @@ const interaction = {
 const palette = {
   RED_50: '#F9DFE3',
   RED_500: '#FF0039',
+  LIGHT_BLUE: '#F5F9FB',
   LIGHTGREY_100: '#E5EBF0',
   LIGHTGREY_200: '#BCCAD0',
   LIGHTGREY_500: '#5D6E76',
+  BLUE_100: '#B0C6FA',
   BLUE_300: '#4F81FC',
   BLUE_500: '#0149FF',
   BLUE_700: '#0041CF',
@@ -34,9 +36,11 @@ export type TColor = { [key in TPalette]: string };
 type TPalette =
   | 'RED_50'
   | 'RED_500'
+  | 'LIGHT_BLUE'
   | 'LIGHTGREY_100'
   | 'LIGHTGREY_200'
   | 'LIGHTGREY_500'
+  | 'BLUE_100'
   | 'BLUE_300'
   | 'BLUE_500'
   | 'BLUE_700'
