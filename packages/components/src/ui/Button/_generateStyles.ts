@@ -26,7 +26,7 @@ const _generateStyles = (
     buttonBase: {
       borderRadius: 4,
       height: 40,
-      width: '100%',
+      // width: '100%',
     },
     button: {
       alignItems: 'center',

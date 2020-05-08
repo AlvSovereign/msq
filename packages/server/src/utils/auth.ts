@@ -10,8 +10,8 @@ const secret = process.env.JWT_SECRET;
  * using user.id and user.role
  * @param {Object} user the user to create a jwt for
  */
-const createToken = ({ id, accountType, role }: IUser) =>
-  jwt.sign({ id, role }, secret!);
+const createToken = ({ _id, accountType, role }: IUser) =>
+  jwt.sign({ _id: _id.toString(), role }, secret!);
 
 /**
  * will attemp to verify a jwt and find a user in the
@@ -23,9 +23,9 @@ const getUserFromToken = async (tokenString: string) => {
   const token = tokenString && tokenString.split('Bearer ')[1];
   try {
     const userToken: any = await jwt.verify(token, secret!);
-    const user = await models.User.findOne({ id: userToken.id });
+    const { _id, ...rest } = await models.User.findById(userToken._id);
 
-    return user;
+    return { _id: _id.toString(), token: userToken, ...rest };
   } catch (e) {
     return null;
   }

@@ -79,7 +79,7 @@ const typeDefs = gql`
     releases: [Collection]
     owner: User!
     fans: [User!]
-    country: [String!]
+    countries: [String!]
     biography: String
     tag: String
     socialLinks: [SocialLinks!]
@@ -135,6 +135,7 @@ const typeDefs = gql`
   }
 
   type User {
+    _id: ID
     id: ID!
     email: String!
     name: String!
@@ -152,7 +153,7 @@ const typeDefs = gql`
     following: [Artist!]
     friends: [User!]
     likedSongs: [CollectionEntry!]
-    country: [String!]
+    countries: [String!]
     settings: Settings
   }
 
@@ -161,6 +162,7 @@ const typeDefs = gql`
     name: String
     password: String
     picture: String
+    artist: String
   }
 
   input SigninUserInput {
@@ -191,7 +193,32 @@ const typeDefs = gql`
   }
 
   input ArtistInput {
-    id: ID!
+    _id: ID!
+    name: String
+    avatar: String
+    # releases: [Collection]
+    countries: [String]
+    biography: String
+    tag: String
+    # socialLinks: [SocialLinks]
+    website: String
+    galleryImages: [String]
+  }
+
+  input UpdatedUserInput {
+    _id: ID!
+    email: String
+    name: String
+    artist: ArtistInput
+    avatar: String
+    alias: String
+    # playlists: [Playlist!]
+    # collectionsSaved: [Collection!]
+    # following: [Artist!]
+    # friends: [User!]
+    # likedSongs: [CollectionEntry!]
+    # country: [String!]
+    # settings: Settings
   }
 
   type Query {
@@ -204,12 +231,14 @@ const typeDefs = gql`
     me(input: NewUserInput!): User!
     signin(input: SigninUserInput!): User!
     socialSignin(input: SocialSigninUserInput!): User!
+    updateMe(input: UpdatedUserInput!): User
   }
 `;
 
 export default typeDefs;
 
 export interface IUser {
+  _id: String;
   id: String;
   email: String;
   name: String;

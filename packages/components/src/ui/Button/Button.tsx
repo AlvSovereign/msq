@@ -15,6 +15,7 @@ const Button = ({
   leftIcon,
   onPress,
   rightIcon,
+  style,
   variant,
 }: IButton) => {
   const ref = useRef(null);
@@ -46,7 +47,7 @@ const Button = ({
       onPress={onPress}
       onPressIn={animation.handlePressIn}
       onPressOut={animation.handlePressOut}
-      style={[styles.buttonBase, gutterBottom && styles.gutterBottom]}>
+      style={[styles.buttonBase, gutterBottom && styles.gutterBottom, style]}>
       <Animated.View
         style={[
           styles.buttonBase,
@@ -106,6 +107,7 @@ interface IButton {
   leftIcon?: IconKey;
   onPress: () => void;
   rightIcon?: IconKey;
+  style?: any;
   variant: Variant;
 }
 

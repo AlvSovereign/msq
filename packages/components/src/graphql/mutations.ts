@@ -14,6 +14,7 @@ const SIGNIN = gql`
 const SOCIAL_SIGNIN = gql`
   mutation SocialSignin($input: SocialSigninUserInput!) {
     socialSignin(input: $input) {
+      _id
       id
       email
       name

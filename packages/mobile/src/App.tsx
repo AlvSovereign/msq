@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import Auth from 'components/src/screens/Auth/Auth';
+import Artist from 'components/src/screens/Artist/Artist';
 import Welcome from 'components/src/screens/Welcome/Welcome';
 import bootstrapApollo from './utils/bootstrapApollo';
 import { _renderIcon } from 'components/src/assets/icons';
@@ -40,7 +41,7 @@ const AppTabs = () => {
         allowFontScaling: true,
         tabStyle: {},
       }}>
-      <Tab.Screen name="Discovery" component={Welcome} />
+      <Tab.Screen name="Discovery" component={Artist} />
       <Tab.Screen name="Search" component={Welcome} />
       <Tab.Screen name="Feed" component={Welcome} />
     </Tab.Navigator>

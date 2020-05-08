@@ -7,13 +7,7 @@ const resolvers: IResolvers = {
   Query: {
     artist: async (parent, args, ctx, info) => {},
     me: async (parent, args, ctx, info) => {
-      const user: any = await models.User.findOne({ id: ctx.user.id });
-
-      if (user.id !== ctx.user.id) {
-        throw new AuthenticationError('Invalid credentials, please try again');
-      }
-
-      return user;
+      return ctx.user;
     },
   },
   Mutation: {
@@ -111,6 +105,19 @@ const resolvers: IResolvers = {
       const token = await createToken(user || createdUser);
 
       return { token, ...{ ...user, ...createdUser } };
+    },
+    updateMe: async (parent, args, ctx, info) => {
+      const { user } = ctx;
+      const { input } = args;
+
+      if (input._id !== user._id) {
+        throw new AuthenticationError('Invalid credentials, please try again');
+      }
+
+      const { _id, ...rest } = input;
+      const me: any = await models.User.findByIdAndUpdate(user._id, rest);
+      console.log('me: ', me);
+      return me;
     },
   },
   // Artist: {

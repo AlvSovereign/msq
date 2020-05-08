@@ -15,12 +15,12 @@ const heading = {
     {
       fontSize: 36,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 40,
+      lineHeight: 36,
     },
     {
       fontSize: 48,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 56,
+      lineHeight: 48,
     },
   ],
   H2: [

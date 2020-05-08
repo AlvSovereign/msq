@@ -20,6 +20,7 @@ const Auth = ({ setIsSignedIn }: SigninProps) => {
   } = useQuery(GET_ME);
 
   React.useEffect(() => {
+    console.log('getMeData: ', getMeData);
     if (getMeData) {
       setIsSignedIn(true);
     }

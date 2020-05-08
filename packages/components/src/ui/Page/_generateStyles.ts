@@ -11,7 +11,7 @@ const generateStyles = (breakpoints: TBreakpoint, theme: ITheme) => {
       opacity: 0.7,
     },
     safeAreaView: { flex: 1 },
-    scrollView: { flex: 1 },
+    scrollView: { flex: 1, flexDirection: 'column' },
     view: {
       backgroundColor: LIGHT_BLUE,
       flex: 1,

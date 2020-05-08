@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 const GET_ME = gql`
   query GetMe {
     me {
+      _id
       id
       name
       email
@@ -13,7 +14,24 @@ const GET_ME = gql`
       role
       avatar
       alias
-      token
+      artist {
+        _id
+        id
+        name
+        createdAt
+        releases {
+          id
+        }
+        countries
+        biography
+        tag
+        socialLinks {
+          type
+          url
+        }
+        website
+        galleryImages
+      }
     }
   }
 `;
