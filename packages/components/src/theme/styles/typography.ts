@@ -27,34 +27,34 @@ const heading = {
     {
       fontSize: 32,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 36,
+      lineHeight: 32,
     },
     {
       fontSize: 36,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 40,
+      lineHeight: 36,
     },
   ],
   H3: [
     {
       fontSize: 24,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 32,
+      lineHeight: 24,
     },
     {
       fontSize: 28,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 36,
+      lineHeight: 28,
     },
   ],
   H4: [
     {
       fontSize: 20,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 24,
+      lineHeight: 20,
     },
     {
-      fontSize: 12,
+      fontSize: 24,
       fontFamily: 'Geomanist-Medium',
       lineHeight: 24,
     },
@@ -63,10 +63,10 @@ const heading = {
     {
       fontSize: 16,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 20,
+      lineHeight: 16,
     },
     {
-      fontSize: 12,
+      fontSize: 20,
       fontFamily: 'Geomanist-Medium',
       lineHeight: 20,
     },
@@ -75,10 +75,10 @@ const heading = {
     {
       fontSize: 12,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 16,
+      lineHeight: 12,
     },
     {
-      fontSize: 12,
+      fontSize: 16,
       fontFamily: 'Geomanist-Medium',
       lineHeight: 16,
     },
@@ -89,7 +89,7 @@ const input = {
   LABEL: {
     fontSize: 14,
     fontFamily: 'Geomanist-Medium',
-    lineHeight: 18,
+    lineHeight: 14,
   },
   TEXT: {
     fontSize: 16,
