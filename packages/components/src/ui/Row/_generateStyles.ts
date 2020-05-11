@@ -8,6 +8,7 @@ const generateStyles = (
 ) =>
   StyleSheet.create({
     gridContainer: {
+      alignItems: 'center',
       flexDirection: orientation,
       marginBottom: gutterBottom ? getGutterBottomWidth(gutterBottom) : 0,
     },

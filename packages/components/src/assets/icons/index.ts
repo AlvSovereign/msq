@@ -6,6 +6,7 @@ import Discovery from './Discovery';
 import FBLogo from './FBLogo';
 import GLogo from './GLogo';
 import Library from './Library';
+import MoreHorizontal from './MoreHorizontal';
 import PlayOutline from './PlayOutline';
 import RadioChecked from './RadioChecked';
 import RadioUnchecked from './RadioUnchecked';
@@ -23,6 +24,7 @@ export {
   FBLogo,
   GLogo,
   Library,
+  MoreHorizontal,
   PlayOutline,
   RadioChecked,
   RadioUnchecked,

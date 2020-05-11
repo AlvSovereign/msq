@@ -7,6 +7,7 @@ import {
   FBLogo,
   GLogo,
   Library,
+  MoreHorizontal,
   PlayOutline,
   Search,
   Settings,
@@ -27,6 +28,8 @@ const _renderIcon = (fill: string, icon: IconKey, styles?: any) => {
       return <GLogo fill={fill} style={styles} />;
     case 'library':
       return <Library fill={fill} style={styles} />;
+    case 'more':
+      return <MoreHorizontal fill={fill} style={styles} />;
     case 'news':
       return <Discovery fill={fill} style={styles} />;
     case 'play':
@@ -51,6 +54,7 @@ export type IconKey =
   | 'facebook'
   | 'google'
   | 'library'
+  | 'more'
   | 'news'
   | 'play'
   | 'search'

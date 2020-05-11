@@ -20,6 +20,7 @@ const palette = {
   BLUE_700: '#0041CF',
   BLUE_900: '#00328C',
   BLUE_FB: '#3B5998',
+  DARKGREY_400: '#1D1E23',
   DARKGREY_500: '#1F2025',
   DARKGREY_700: '#121317',
 };
@@ -46,6 +47,7 @@ type TPalette =
   | 'BLUE_700'
   | 'BLUE_900'
   | 'BLUE_FB'
+  | 'DARKGREY_400'
   | 'DARKGREY_500'
   | 'DARKGREY_700'
   | 'SUCCESS'

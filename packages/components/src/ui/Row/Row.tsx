@@ -1,10 +1,11 @@
 import React, { ReactNode, useContext } from 'react';
-import { View } from 'react-native';
+import { View, Animated } from 'react-native';
 import { MsqThemeContext } from '../../theme/ThemeContext';
 import { generateStyles } from './_generateStyles';
 import { TGutterBottom } from '../utils/commonStyles';
 
 const Row = ({
+  animated = false,
   children,
   gutterBottom,
   orientation = 'column',
@@ -13,12 +14,23 @@ const Row = ({
   // const theme = useContext(MsqThemeContext);
   const styles = generateStyles(gutterBottom, orientation);
 
-  return <View style={[styles.gridContainer, style]}>{children}</View>;
+  return (
+    <>
+      {animated ? (
+        <Animated.View style={[styles.gridContainer, style]}>
+          {children}
+        </Animated.View>
+      ) : (
+        <View style={[styles.gridContainer, style]}>{children}</View>
+      )}
+    </>
+  );
 };
 
 export default Row;
 
 interface GridProps {
+  animated?: boolean;
   children: ReactNode;
   gutterBottom?: TGutterBottom | undefined;
   orientation?: Orientation;

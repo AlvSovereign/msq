@@ -22,7 +22,7 @@ const Button = ({
   const isFocused = useFocus(ref);
   const isHovered = useHover(ref);
   const theme = useContext(MsqThemeContext);
-  const animation = _generateAnimations(variant);
+  const animation = _generateAnimations();
   const styles = _generateStyles(
     gutterBottom,
     theme,
@@ -55,6 +55,7 @@ const Button = ({
           { transform: [{ scale: animation.scaleValue }] },
           variant === 'primary' && styles.primaryButton,
           variant === 'secondary' && styles.secondaryButton,
+          variant === 'transparent' && styles.transparentButton,
           variant === 'facebook' && styles.facebookButton,
           variant === 'google' && styles.googleButton,
           gutterBottom && styles.gutterBottom,
@@ -111,4 +112,9 @@ interface IButton {
   variant: Variant;
 }
 
-export type Variant = 'facebook' | 'google' | 'primary' | 'secondary';
+export type Variant =
+  | 'facebook'
+  | 'google'
+  | 'primary'
+  | 'secondary'
+  | 'transparent';

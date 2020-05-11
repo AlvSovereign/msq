@@ -1,7 +1,6 @@
 import { Animated } from 'react-native';
-import { Variant } from './Button';
 
-const _generateAnimations = (variant: Variant) => {
+const _generateAnimations = () => {
   const scaleValue = new Animated.Value(1);
 
   const handlePressIn = () => {

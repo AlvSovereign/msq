@@ -2,18 +2,28 @@ import { StyleSheet, Platform } from 'react-native';
 import { ITheme } from '../../theme/theme';
 
 const _generateStyles = (theme: ITheme, gradientStart: number) => {
-  const { BACKGROUND, BLACK, BLUE_500, WHITE } = theme.color;
-  const { LINEAR_XXS, LINEAR_SM, LINEAR_MD, LINEAR_LG } = theme.spacing;
+  const {
+    BACKGROUND,
+    BLACK,
+    BLUE_500,
+    DARKGREY_400,
+    DARKGREY_700,
+    WHITE,
+  } = theme.color;
+  const {
+    LINEAR_XXS,
+    LINEAR_XS,
+    LINEAR_SM,
+    LINEAR_MD,
+    LINEAR_LG,
+    RADIUS_SM,
+  } = theme.spacing;
 
   return StyleSheet.create({
     contentContainer: {
-      // flex: 1,
-      // marginHorizontal: theme.spacing.LINEAR_MD,
-      paddingTop:
-        gradientStart && gradientStart - (Platform.OS === 'ios' ? 70 : 28),
+      paddingTop: gradientStart && gradientStart - 28,
       paddingHorizontal: theme.spacing.LINEAR_MD,
       paddingBottom: 8,
-      // height: '100%',
     },
     inactiveTabFont: {
       color: `${WHITE}99`,
@@ -43,12 +53,14 @@ const _generateStyles = (theme: ITheme, gradientStart: number) => {
     },
     tabBar: {
       alignItems: 'center',
-      backgroundColor: `${BLACK}55`,
+      // backgroundColor: `${BLACK}99`,
       justifyContent: 'center',
       flexDirection: 'row',
       height: 50,
     },
     tabBarItem: {
+      borderBottomColor: 'transparent',
+      // borderBottomWidth: LINEAR_XXS,
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
@@ -59,12 +71,15 @@ const _generateStyles = (theme: ITheme, gradientStart: number) => {
       borderBottomWidth: LINEAR_XXS,
     },
     tabView: {
-      backgroundColor: BACKGROUND,
+      backgroundColor: DARKGREY_700,
       paddingTop: LINEAR_LG,
       paddingHorizontal: LINEAR_MD,
     },
     tag: {
       color: theme.color.LIGHTGREY_200,
+    },
+    trackCard: {
+      backgroundColor: DARKGREY_400,
     },
   });
 };

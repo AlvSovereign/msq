@@ -54,6 +54,10 @@ const _generateStyles = (
       backgroundColor: WHITE,
       borderColor: BLUE_500,
     },
+    transparentButton: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+    },
     facebookButton: {
       backgroundColor: BLUE_FB,
       borderColor: BLUE_FB,

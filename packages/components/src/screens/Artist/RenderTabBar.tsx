@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { Row, Typography } from '../../ui';
 
@@ -9,11 +9,11 @@ const RenderTabBar = ({
   styles,
   navigationState,
 }: RenderTabBarProps) => {
-  const inputRange = navigationState.routes.map((x, i) => i);
+  const inputRange = navigationState.routes.map((x: any, i: any) => i);
 
   return (
     <Row orientation='row' style={styles.tabBar}>
-      {navigationState.routes.map((route, i) => {
+      {navigationState.routes.map((route: any, i: any) => {
         return (
           <TouchableOpacity
             key={i}
