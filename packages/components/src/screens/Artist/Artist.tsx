@@ -59,71 +59,76 @@ const Artist = ({ id }: ArtistProps) => {
         <LinearGradient
           colors={['transparent', `${DARKGREY_700}99`]}
           locations={[0, 0.5]}>
-          <View style={styles.contentContainer}>
-            <Row orientation='row' gutterBottom='xxs'>
+          <Row style={styles.contentContainer}>
+            <Column sm={4} md={8} lg={12} horizontalPadding='md'>
               <Typography variant='h1' color='white'>
                 {name}
               </Typography>
-            </Row>
-            <Row orientation='row' gutterBottom='sm'>
-              {countries && <CountryFlags countries={countries} />}
-            </Row>
-            <Typography variant='body1' style={styles.tag} gutterBottom='lg'>
-              {tag}
-            </Typography>
-            <Row orientation='row' gutterBottom='lg'>
-              <Column sm={2} md={4} lg={6}>
-                <Button
-                  label='Play'
-                  onPress={() => {}}
-                  rightIcon='play'
-                  style={styles.playButton}
-                  variant='primary'
-                />
-              </Column>
-              <Column sm={1} md={2} lg={3} style={{ flexDirection: 'row' }}>
-                <Button
-                  onPress={() => {}}
-                  rightIcon='bookmark'
-                  variant='secondary'
-                  style={styles.shareButton}
-                />
-                <Button
-                  onPress={() => {}}
-                  rightIcon='share'
-                  variant='secondary'
-                />
-              </Column>
-            </Row>
-            <Row orientation='row'>
-              <Column sm={1} md={2} lg={3}>
-                <Typography variant='small' color='white'>
-                  {'Followers'}
-                </Typography>
-                <Typography variant='h3' color='white'>
-                  {'345k'}
-                </Typography>
-              </Column>
-              <Column sm={1} md={2} lg={3}>
-                <Typography variant='small' color='white'>
-                  {'Listens'}
-                </Typography>
-                <Typography variant='h3' color='white'>
-                  {'1.3m'}
-                </Typography>
-              </Column>
-              <Column sm={1} md={2} lg={3}>
-                <Typography variant='small' color='white'>
-                  {'Tracks'}
-                </Typography>
-                <Typography variant='h3' color='white'>
-                  {'98'}
-                </Typography>
-              </Column>
-            </Row>
-          </View>
+              {countries && (
+                <CountryFlags countries={countries} gutterBottom='xs' />
+              )}
+              <Typography variant='body1' style={styles.tag} gutterBottom='md'>
+                {tag}
+              </Typography>
+              <Row orientation='row' gutterBottom='lg'>
+                <Column sm={2} md={4} lg={6}>
+                  <Button
+                    label='Play'
+                    onPress={() => {}}
+                    rightIcon='play'
+                    style={styles.playButton}
+                    variant='primary'
+                  />
+                </Column>
+                <Column sm={1} md={2} lg={3} style={{ flexDirection: 'row' }}>
+                  <Button
+                    onPress={() => {}}
+                    rightIcon='bookmark'
+                    variant='secondary'
+                    style={styles.shareButton}
+                  />
+                  <Button
+                    onPress={() => {}}
+                    rightIcon='share'
+                    variant='secondary'
+                  />
+                </Column>
+              </Row>
+              <Row orientation='row'>
+                <Column sm={1} md={2} lg={3}>
+                  <Typography variant='small' color='white' gutterBottom='xxs'>
+                    {'Followers'}
+                  </Typography>
+                  <Typography variant='h3' color='white'>
+                    {'345k'}
+                  </Typography>
+                </Column>
+                <Column sm={1} md={2} lg={3}>
+                  <Typography variant='small' color='white' gutterBottom='xxs'>
+                    {'Listens'}
+                  </Typography>
+                  <Typography variant='h3' color='white'>
+                    {'1.3m'}
+                  </Typography>
+                </Column>
+                <Column sm={1} md={2} lg={3}>
+                  <Typography variant='small' color='white' gutterBottom='xxs'>
+                    {'Tracks'}
+                  </Typography>
+                  <Typography variant='h3' color='white'>
+                    {'98'}
+                  </Typography>
+                </Column>
+              </Row>
+            </Column>
+          </Row>
           <Row orientation='row'>
-            <Column sm={4} md={8} lg={12} style={[styles.tab, styles.tabView]}>
+            <Column
+              sm={4}
+              md={8}
+              lg={12}
+              horizontalPadding='md'
+              style={styles.popularTracksSection}>
               <Typography color='white' variant='h5' gutterBottom='sm'>
                 {'Most Popular Tracks'}
               </Typography>
@@ -131,6 +136,13 @@ const Artist = ({ id }: ArtistProps) => {
             </Column>
           </Row>
         </LinearGradient>
+        <Row orientation='row'>
+          <Column sm={4} md={8} lg={12} horizontalPadding='md'>
+            <Typography variant='h5' gutterBottom='sm'>
+              {'Releases'}
+            </Typography>
+          </Column>
+        </Row>
         {/* </SafeAreaView> */}
       </ScrollView>
     </>

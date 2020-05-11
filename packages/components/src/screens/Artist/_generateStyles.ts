@@ -23,13 +23,12 @@ const _generateStyles = (theme: ITheme, gradientStart: number) => {
     contentContainer: {
       paddingTop: gradientStart && gradientStart - 28,
       paddingHorizontal: theme.spacing.LINEAR_MD,
-      paddingBottom: 8,
+      paddingBottom: LINEAR_SM,
     },
     inactiveTabFont: {
       color: `${WHITE}99`,
     },
     page: {
-      // flex: 1,
       height: '100%',
       width: '100%',
       flexDirection: 'column',
@@ -48,32 +47,9 @@ const _generateStyles = (theme: ITheme, gradientStart: number) => {
     },
     safeAreaView: { flex: 1, height: '100%' },
     shareButton: { marginRight: theme.spacing.LINEAR_XXS },
-    tab: {
-      flex: 1,
-    },
-    tabBar: {
-      alignItems: 'center',
-      // backgroundColor: `${BLACK}99`,
-      justifyContent: 'center',
-      flexDirection: 'row',
-      height: 50,
-    },
-    tabBarItem: {
-      borderBottomColor: 'transparent',
-      // borderBottomWidth: LINEAR_XXS,
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: 50,
-    },
-    tabIndicator: {
-      borderBottomColor: BLUE_500,
-      borderBottomWidth: LINEAR_XXS,
-    },
-    tabView: {
+    popularTracksSection: {
       backgroundColor: DARKGREY_700,
       paddingTop: LINEAR_LG,
-      paddingHorizontal: LINEAR_MD,
     },
     tag: {
       color: theme.color.LIGHTGREY_200,

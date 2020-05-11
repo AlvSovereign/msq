@@ -12,16 +12,28 @@ const Row = ({
   style,
 }: GridProps) => {
   // const theme = useContext(MsqThemeContext);
-  const styles = generateStyles(gutterBottom, orientation);
+  const styles = generateStyles(orientation);
 
   return (
     <>
       {animated ? (
-        <Animated.View style={[styles.gridContainer, style]}>
+        <Animated.View
+          style={[
+            styles.gridContainer,
+            gutterBottom && gutterBottom && styles[gutterBottom],
+            style,
+          ]}>
           {children}
         </Animated.View>
       ) : (
-        <View style={[styles.gridContainer, style]}>{children}</View>
+        <View
+          style={[
+            styles.gridContainer,
+            gutterBottom && gutterBottom && styles[gutterBottom],
+            style,
+          ]}>
+          {children}
+        </View>
       )}
     </>
   );

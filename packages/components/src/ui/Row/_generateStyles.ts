@@ -1,16 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { Orientation } from './Row';
-import { getGutterBottomWidth, TGutterBottom } from '../utils/commonStyles';
+import { gutterBottomStyles, TGutterBottom } from '../utils/commonStyles';
 
-const generateStyles = (
-  gutterBottom: TGutterBottom | undefined,
-  orientation: Orientation
-) =>
+const generateStyles = (orientation: Orientation) =>
   StyleSheet.create({
+    ...gutterBottomStyles,
     gridContainer: {
       alignItems: 'center',
       flexDirection: orientation,
-      marginBottom: gutterBottom ? getGutterBottomWidth(gutterBottom) : 0,
     },
     view: {
       flex: 1,

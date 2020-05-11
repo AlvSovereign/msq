@@ -23,13 +23,7 @@ const Button = ({
   const isHovered = useHover(ref);
   const theme = useContext(MsqThemeContext);
   const animation = _generateAnimations();
-  const styles = _generateStyles(
-    gutterBottom,
-    theme,
-    variant,
-    leftIcon,
-    rightIcon
-  );
+  const styles = _generateStyles(theme, variant, leftIcon, rightIcon);
   const { BLUE_500, WHITE } = theme.color;
 
   let fillColor;
@@ -47,7 +41,7 @@ const Button = ({
       onPress={onPress}
       onPressIn={animation.handlePressIn}
       onPressOut={animation.handlePressOut}
-      style={[styles.buttonBase, gutterBottom && styles.gutterBottom, style]}>
+      style={[styles.buttonBase, gutterBottom && styles[gutterBottom], style]}>
       <Animated.View
         style={[
           styles.buttonBase,
