@@ -10,7 +10,6 @@ const Column = ({
   lg,
   md,
   sm,
-  horizontalPadding,
   gutterBottom,
   spacing, // From parent Row component
   style,
@@ -21,14 +20,7 @@ const Column = ({
     (breakpoint === 'md' && md) ||
     (breakpoint === 'lg' && lg) ||
     12;
-  const styles = generateStyles(
-    breakpoint,
-    horizontalPadding,
-    gutterBottom,
-    columns,
-    spacing,
-    theme
-  );
+  const styles = generateStyles(breakpoint, columns, spacing, theme);
 
   return (
     <View style={[styles.view, gutterBottom && styles[gutterBottom], style]}>
@@ -47,7 +39,6 @@ interface ColumnProps {
   sm: SmColumns;
   md: MdColumns;
   lg: LgColumns;
-  horizontalPadding?: THorizontalPadding;
   gutterBottom?: TGutterBottom;
   spacing?: THorizontalPadding;
   style?: any;

@@ -1,4 +1,4 @@
-import ArtistReleases from './molecules/ArtistReleases/ArtistReleases';
+import ArtistReleases from '../screens/Artist/ArtistReleases/ArtistReleases';
 import Button from './Button/Button';
 import Checkbox from './Checkbox/Checkbox';
 import Column from './Column/Column';

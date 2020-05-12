@@ -14,46 +14,44 @@ const TrackCard = ({ style }: TrackCardProps) => {
   const animation = _generateAnimations();
 
   return (
-    <>
-      <TouchableOpacity
-        activeOpacity={0.6}
-        onPressIn={animation.handlePressIn}
-        onPressOut={animation.handlePressOut}
-        onPress={() => {}}>
-        <Row
-          animated={true}
-          orientation='row'
-          style={[
-            styles.trackCard,
-            { transform: [{ scale: animation.scaleValue }] },
-            style,
-          ]}
-          gutterBottom='sm'>
-          <View style={styles.trackContent}>
-            <Typography
-              variant='body1'
-              color='lightGrey'
-              style={styles.trackNumber}>
-              {'01'}
+    <TouchableOpacity
+      activeOpacity={0.6}
+      onPressIn={animation.handlePressIn}
+      onPressOut={animation.handlePressOut}
+      onPress={() => {}}>
+      <Row
+        animated={true}
+        orientation='row'
+        style={[
+          styles.trackCard,
+          { transform: [{ scale: animation.scaleValue }] },
+          style,
+        ]}
+        gutterBottom='sm'>
+        <View style={styles.trackContent}>
+          <Typography
+            variant='body1'
+            color='lightGrey'
+            style={styles.trackNumber}>
+            {'01'}
+          </Typography>
+          <Image
+            resizeMode='contain'
+            source={profileImage}
+            style={styles.trackImage}
+          />
+          <View>
+            <Typography variant='body1' color='white'>
+              {'Be Honest'}
             </Typography>
-            <Image
-              resizeMode='contain'
-              source={profileImage}
-              style={styles.trackImage}
-            />
-            <View>
-              <Typography variant='body1' color='white'>
-                {'Be Honest'}
-              </Typography>
-              <Typography variant='body2' color='lightGrey'>
-                {'Swimming Against Waves'}
-              </Typography>
-            </View>
+            <Typography variant='body2' color='lightGrey'>
+              {'Swimming Against Waves'}
+            </Typography>
           </View>
-          <Button onPress={() => {}} variant='transparent' leftIcon='more' />
-        </Row>
-      </TouchableOpacity>
-    </>
+        </View>
+        <Button onPress={() => {}} variant='transparent' leftIcon='more' />
+      </Row>
+    </TouchableOpacity>
   );
 };
 

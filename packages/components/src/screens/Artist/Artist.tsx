@@ -15,6 +15,7 @@ import {
 } from '../../ui';
 import theme from '../../theme/theme';
 import { _generateStyles } from './_generateStyles';
+import { ArtistPopluarTracks } from './ArtistPopluarTracks/ArtistPopluarTracks';
 
 const profileImage = require('../../assets/images/me_square.png');
 
@@ -48,7 +49,6 @@ const Artist = ({ id }: ArtistProps) => {
     <>
       <StatusBar barStyle='light-content' />
       <ScrollView style={styles.page}>
-        {/* <SafeAreaView style={styles.safeAreaView}> */}
         <Image
           onLayout={getImageDimensions}
           resizeMode='contain'
@@ -59,7 +59,7 @@ const Artist = ({ id }: ArtistProps) => {
           colors={['transparent', `${DARKGREY_700}99`]}
           locations={[0, 0.5]}>
           <Row style={styles.contentContainer}>
-            <Column sm={4} md={8} lg={12} horizontalPadding='md'>
+            <Column sm={4} md={8} lg={12} spacing='md'>
               <Typography variant='h1' color='white'>
                 {name}
               </Typography>
@@ -121,22 +121,8 @@ const Artist = ({ id }: ArtistProps) => {
               </Row>
             </Column>
           </Row>
-          <Row orientation='row'>
-            <Column
-              sm={4}
-              md={8}
-              lg={12}
-              horizontalPadding='md'
-              style={styles.popularTracksSection}>
-              <Typography color='white' variant='h5' gutterBottom='sm'>
-                {'Most Popular Tracks'}
-              </Typography>
-              <TrackCard style={styles.trackCard} />
-            </Column>
-          </Row>
         </LinearGradient>
-
-        {/* </SafeAreaView> */}
+        <ArtistPopluarTracks />
         <ArtistReleases />
       </ScrollView>
     </>

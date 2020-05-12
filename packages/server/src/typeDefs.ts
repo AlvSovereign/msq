@@ -14,7 +14,7 @@ const typeDefs = gql`
     FAN
   }
 
-  enum CollectionType {
+  enum ReleaseType {
     SINGLE
     EP
     ALBUM
@@ -42,7 +42,9 @@ const typeDefs = gql`
     BRAZILIAN_ZOUK
   }
 
-  union CollectionEntry = Track | Mix
+  union ReleaseEntry = Track | Mix
+  union PerformedByEntry = Artist | String
+  union ProducedByEntry = Artist | String
 
   type Settings {
     id: ID!
@@ -56,35 +58,18 @@ const typeDefs = gql`
     url: String!
   }
 
-  type Collection {
+  type Release {
     id: ID!
     createdAt: String!
     title: String!
-    artists: [Artist!]!
-    collectionType: CollectionType!
-    tracks: [CollectionEntry!]!
+    featuring: [Artist!]!
+    releaseType: ReleaseType!
+    tracks: [ReleaseEntry!]!
     label: [String!]!
-    collectionImage: String
+    coverImage: String
     createdBy: Artist
-    yearPublished: String!
+    publishedDate: String!
     credits: String
-  }
-
-  type Artist {
-    _id: String
-    id: ID!
-    createdAt: String!
-    name: String!
-    avatar: String
-    releases: [Collection]
-    owner: User!
-    fans: [User!]
-    countries: [String!]
-    biography: String
-    tag: String
-    socialLinks: [SocialLinks!]
-    website: String
-    galleryImages: [String!]
   }
 
   type Mix {
@@ -92,7 +77,7 @@ const typeDefs = gql`
     createdAt: String!
     createdBy: [Artist!]
     producedBy: [Artist!]
-    trackImage: String
+    coverImage: String
     filename: String!
     title: String!
     likes: Int
@@ -106,13 +91,12 @@ const typeDefs = gql`
   type Track {
     id: ID!
     createdAt: String!
-    createdBy: [Artist!]
-    performedBy: [Artist!]
-    producedBy: [Artist!]
-    artists: [Artist!]
-    trackImage: String
-    filename: String!
     title: String!
+    createdBy: [Artist!]
+    performedBy: [PerformedByEntry!]
+    producedBy: [ProducedByEntry!]
+    coverImage: String
+    filename: String!
     likes: Int
     length: String!
     label: String
@@ -134,6 +118,23 @@ const typeDefs = gql`
     description: String
   }
 
+  type Artist {
+    _id: String
+    id: ID!
+    createdAt: String!
+    name: String!
+    avatar: String
+    releases: [Release]
+    owner: User!
+    fans: [User!]
+    countries: [String!]
+    biography: String
+    tag: String
+    socialLinks: [SocialLinks!]
+    website: String
+    galleryImages: [String!]
+  }
+
   type User {
     _id: ID
     id: ID!
@@ -149,10 +150,10 @@ const typeDefs = gql`
     artist: Artist
     token: String
     playlists: [Playlist!]
-    collectionsSaved: [Collection!]
+    releasesSaved: [Release!]
     following: [Artist!]
     friends: [User!]
-    likedSongs: [CollectionEntry!]
+    likedSongs: [ReleaseEntry!]
     countries: [String!]
     settings: Settings
   }
@@ -196,7 +197,7 @@ const typeDefs = gql`
     _id: ID!
     name: String
     avatar: String
-    # releases: [Collection]
+    # releases: [Release]
     countries: [String]
     biography: String
     tag: String
@@ -213,12 +214,24 @@ const typeDefs = gql`
     avatar: String
     alias: String
     # playlists: [Playlist!]
-    # collectionsSaved: [Collection!]
+    # releasesSaved: [Release!]
     # following: [Artist!]
     # friends: [User!]
-    # likedSongs: [CollectionEntry!]
+    # likedSongs: [ReleaseEntry!]
     # country: [String!]
     # settings: Settings
+  }
+
+  input CreateReleaseInput {
+    title: String!
+    artists: [Artist!]!
+    releaseType: ReleaseType!
+    tracks: [ReleaseEntry!]!
+    label: [String]!
+    coverImage: String
+    createdBy: Artist
+    publishedDate: String!
+    credits: String
   }
 
   type Query {
@@ -228,6 +241,7 @@ const typeDefs = gql`
 
   type Mutation {
     artist(input: NewArtistInput!): Artist! @isAuthenticated
+    createRelease(input: CreateReleaseInput!): Release!
     me(input: NewUserInput!): User!
     signin(input: SigninUserInput!): User!
     socialSignin(input: SocialSigninUserInput!): User!
@@ -252,10 +266,10 @@ export interface IUser {
   token: String;
   artist: Artist;
   // playlists: [Playlist!]
-  // collectionsSaved: [Collection!]
+  // releasesSaved: [Release!]
   // following: [Artist!]
   // friends: [User!]
-  // likedSongs: [CollectionEntry!]
+  // likedSongs: [ReleaseEntry!]
   // country: [String!]
   // settings: Settings
 }

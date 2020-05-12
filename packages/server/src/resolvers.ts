@@ -21,6 +21,24 @@ const resolvers: IResolvers = {
 
       return artist;
     },
+    createRelease: async (parent, args, ctx, info) => {
+      const { input } = args;
+      const {
+        title,
+        artists,
+        releaseType,
+        tracks,
+        label,
+        coverImage,
+        createdBy,
+        publishedDate,
+        credits,
+      } = input;
+
+      const release = await models.Release.createOne({ input });
+
+      return release;
+    },
     me: async (parent, args, ctx, info) => {
       const { input } = args;
       const { picture, ...rest } = input;
@@ -32,7 +50,11 @@ const resolvers: IResolvers = {
         throw new AuthenticationError('Invalid credentials, please try again');
       }
 
-      const user = await models.User.createOne({ avatar: picture, ...rest });
+      const user = await models.User.createOne({
+        avatar: picture,
+        isRegistered: true,
+        ...rest,
+      });
 
       const token = createToken(user);
 
