@@ -1,13 +1,13 @@
 import React from 'react';
 import { TouchableOpacity, View, Image } from 'react-native';
-import theme from '../../theme/theme';
-import Row from '../Row/Row';
-import Typography from '../Typography/Typography';
-import Button from '../Button/Button';
+import theme from '../../../theme/theme';
+import Row from '../../Row/Row';
+import Typography from '../../Typography/Typography';
+import Button from '../../Button/Button';
 import { _generateStyles } from './_generateStyles';
-import { _generateAnimations } from '../Button/_generateAnimations';
+import { _generateAnimations } from '../../Button/_generateAnimations';
 
-const profileImage = require('../../assets/images/me_square.png');
+const profileImage = require('../../../assets/images/me_square.png');
 
 const TrackCard = ({ style }: TrackCardProps) => {
   const styles = _generateStyles(theme);

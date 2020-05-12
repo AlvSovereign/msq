@@ -23,4 +23,12 @@ const gutterBottomStyles = StyleSheet.create({
 
 export { gutterBottomStyles };
 
-export type TGutterBottom = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type TGutterBottom =
+  | 'xxs'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | 'xxl'
+  | undefined;

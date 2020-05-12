@@ -2,11 +2,14 @@ import { StyleSheet } from 'react-native';
 import { TBreakpoint } from '../../theme/hooks/useResponsive';
 import { ITheme } from '../../theme/theme';
 import { THorizontalPadding } from './Column';
+import { TGutterBottom, gutterBottomStyles } from '../utils/commonStyles';
 
 const generateStyles = (
   breakpoint: TBreakpoint,
   horizontalPadding: THorizontalPadding,
+  gutterBottom: TGutterBottom,
   columns: number,
+  spacing: THorizontalPadding,
   theme: ITheme
 ) => {
   const { LINEAR_XXS, LINEAR_XS, LINEAR_SM, LINEAR_MD } = theme.spacing;
@@ -28,8 +31,10 @@ const generateStyles = (
   };
 
   return StyleSheet.create({
+    ...gutterBottomStyles,
     view: {
-      paddingHorizontal: horizontalPadding && paddings[horizontalPadding],
+      // paddingHorizontal: horizontalPadding && paddings[horizontalPadding],
+      padding: spacing && paddings[spacing],
       width: `${calcutaleWidth(breakpoint, columns)}%`,
     },
   });

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { generateStyles } from './_generateStyles';
 import { useResponsive } from '../../theme/hooks';
 import theme from '../../theme/theme';
+import { TGutterBottom } from '../utils/commonStyles';
 
 const Column = ({
   children,
@@ -10,6 +11,8 @@ const Column = ({
   md,
   sm,
   horizontalPadding,
+  gutterBottom,
+  spacing, // From parent Row component
   style,
 }: ColumnProps) => {
   const breakpoint = useResponsive();
@@ -18,9 +21,20 @@ const Column = ({
     (breakpoint === 'md' && md) ||
     (breakpoint === 'lg' && lg) ||
     12;
-  const styles = generateStyles(breakpoint, horizontalPadding, columns, theme);
+  const styles = generateStyles(
+    breakpoint,
+    horizontalPadding,
+    gutterBottom,
+    columns,
+    spacing,
+    theme
+  );
 
-  return <View style={[styles.view, style]}>{children}</View>;
+  return (
+    <View style={[styles.view, gutterBottom && styles[gutterBottom], style]}>
+      {children}
+    </View>
+  );
 };
 
 export default Column;
@@ -34,6 +48,8 @@ interface ColumnProps {
   md: MdColumns;
   lg: LgColumns;
   horizontalPadding?: THorizontalPadding;
+  gutterBottom?: TGutterBottom;
+  spacing?: THorizontalPadding;
   style?: any;
 }
 

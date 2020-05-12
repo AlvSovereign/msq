@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import {
-  Image,
-  Text,
-  View,
-  StatusBar,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native';
+import { Image, Text, StatusBar, SafeAreaView, ScrollView } from 'react-native';
 import { useDimensions } from 'react-native-web-hooks';
 import LinearGradient from 'react-native-linear-gradient';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_ME } from '../../graphql/queries';
-import { Typography, Button, Row, Column } from '../../ui';
+import {
+  ArtistReleases,
+  Button,
+  Column,
+  CountryFlags,
+  Row,
+  TrackCard,
+  Typography,
+} from '../../ui';
 import theme from '../../theme/theme';
 import { _generateStyles } from './_generateStyles';
-import CountryFlags from '../../ui/CountryFlags/CountryFlags';
-import TrackCard from '../../ui/TrackCard/TrackCard';
 
 const profileImage = require('../../assets/images/me_square.png');
 
@@ -136,14 +135,9 @@ const Artist = ({ id }: ArtistProps) => {
             </Column>
           </Row>
         </LinearGradient>
-        <Row orientation='row'>
-          <Column sm={4} md={8} lg={12} horizontalPadding='md'>
-            <Typography variant='h5' gutterBottom='sm'>
-              {'Releases'}
-            </Typography>
-          </Column>
-        </Row>
+
         {/* </SafeAreaView> */}
+        <ArtistReleases />
       </ScrollView>
     </>
   );

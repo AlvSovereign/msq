@@ -94,7 +94,7 @@ const input = {
   TEXT: {
     fontSize: 16,
     fontFamily: 'Geomanist-Medium',
-    lineHeight: 20,
+    lineHeight: 16,
   },
 };
 
@@ -112,33 +112,33 @@ const text = {
   LEAD: {
     fontSize: 16,
     fontFamily: 'Geomanist-Light',
-    lineHeight: 24,
+    lineHeight: 16,
   },
   BODY1: {
     fontSize: 14,
     fontFamily: 'Geomanist-Book',
-    lineHeight: 20,
+    lineHeight: 14,
   },
   BODY2: {
     fontSize: 12,
     fontFamily: 'Geomanist-Book',
-    lineHeight: 18,
+    lineHeight: 12,
   },
   SMALL: {
     fontSize: 12,
     fontFamily: 'Geomanist',
-    lineHeight: 18,
+    lineHeight: 12,
   },
   TINY: {
     fontSize: 10,
     fontFamily: 'Geomanist',
-    lineHeight: 16,
+    lineHeight: 10,
   },
   BUTTON: {
     fontSize: 12,
     fontFamily: 'Montserrat-ExtraBold',
     letterSpacing: 1.5,
-    lineHeight: 16,
+    lineHeight: 12,
     textTransform: 'uppercase',
   },
 };
