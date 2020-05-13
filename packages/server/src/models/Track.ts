@@ -12,21 +12,20 @@ const TrackSchema: Schema = new Schema(
       required: true,
       maxlength: 100,
     },
-    createdBy: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Artist',
-      required: true,
-    },
-    performedBy: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Artist',
-      required: true,
-    },
-    producedBy: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Artist',
-      required: true,
-    },
+    performedBy: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Artist',
+        required: true,
+      },
+    ],
+    producedBy: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Artist',
+        required: true,
+      },
+    ],
     coverImage: {
       type: String,
       required: true,
@@ -52,8 +51,8 @@ const TrackSchema: Schema = new Schema(
       type: Number,
       default: 0,
     },
-    trackGenre: {
-      type: String,
+    genre: {
+      type: [String],
       enum: [
         'KIZOMBA',
         'URBAN_KIZ',

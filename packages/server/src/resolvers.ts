@@ -23,19 +23,15 @@ const resolvers: IResolvers = {
     },
     createRelease: async (parent, args, ctx, info) => {
       const { input } = args;
-      const {
-        title,
-        artists,
-        releaseType,
-        tracks,
-        label,
-        coverImage,
-        createdBy,
-        publishedDate,
-        credits,
-      } = input;
+      const { tracks } = input;
 
-      const release = await models.Release.createOne({ input });
+      // first save tracks, then use the track _id's to reference the release
+      const savedTracks = await models.Track.createMany(tracks);
+
+      const release = await models.Release.createOne({
+        ...input,
+        tracks: savedTracks.map((s: any) => s._id),
+      });
 
       return release;
     },
@@ -142,12 +138,6 @@ const resolvers: IResolvers = {
       return me;
     },
   },
-  // Artist: {
-  //   _id: ({ _id }) => {
-  //     console.log('_id: ', _id);
-  //     return _id.toString();
-  //   },
-  // },
 };
 
 export default resolvers;

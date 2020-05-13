@@ -12,27 +12,33 @@ const ReleaseSchema: Schema = new Schema(
       required: true,
       maxlength: 100,
     },
-    createdBy: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Artist',
-      required: true,
-    },
-    featuring: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Artist',
-      required: true,
-    },
+    producedBy: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Artist',
+        required: true,
+      },
+    ],
+    performedBy: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Artist',
+        required: true,
+      },
+    ],
     releaseType: {
       type: String,
-      enum: ['Track', 'Mix'],
+      enum: ['SINGLE', 'EP', 'ALBUM', 'MIX'],
     },
-    tracks: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Track',
-      required: true,
-    },
+    tracks: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Track',
+        required: true,
+      },
+    ],
     label: {
-      type: String,
+      type: [String],
       required: true,
       maxlength: 100,
     },
@@ -40,13 +46,13 @@ const ReleaseSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    publishedDate: {
+    publishDate: {
       type: String,
       required: true,
     },
     credits: {
       type: String,
-      maxlength: 300,
+      maxlength: 1000,
     },
   },
   { timestamps: true }

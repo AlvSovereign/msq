@@ -1,14 +1,35 @@
 import mongoose from 'mongoose';
 
 const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
+  createMany: async (fields: any[]) => {
+    try {
+      let docs: any = await model.insertMany(fields);
+
+      // if (docs.producedBy) {
+      //   docs = await docs.populate('producedBy').execPopulate();
+      //   console.log('docs: ', docs);
+      // }
+      // if (docs.performedBy) {
+      //   docs = await docs.populate('performedBy').execPopulate();
+      //   console.log('docs: ', docs);
+      // }
+      return docs;
+    } catch (error) {
+      console.error('error: ', error);
+    }
+  },
   createOne: async (fields: any) => {
+    console.log('fields: ', fields);
     try {
       let doc: any = await model.create({ ...fields });
-      if (doc.owner) {
-        doc = await doc.populate('owner').execPopulate();
-      }
 
-      const { _id, password, __v, ...rest } = doc.toObject();
+      doc = await doc
+        .populate('owner')
+        .populate('producedBy')
+        .populate('tracks')
+        .execPopulate();
+
+      const { _id, password = null, __v, ...rest } = doc.toObject();
 
       return { _id, ...rest };
     } catch (error) {

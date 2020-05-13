@@ -43,8 +43,8 @@ const typeDefs = gql`
   }
 
   union ReleaseEntry = Track | Mix
-  union PerformedByEntry = Artist | String
-  union ProducedByEntry = Artist | String
+  # union PerformedByEntry = Artist | String
+  # union ProducedByEntry = Artist | String
 
   type Settings {
     id: ID!
@@ -59,23 +59,24 @@ const typeDefs = gql`
   }
 
   type Release {
+    _id: ID!
     id: ID!
     createdAt: String!
     title: String!
-    featuring: [Artist!]!
+    performedBy: [Artist!]!
     releaseType: ReleaseType!
-    tracks: [ReleaseEntry!]!
+    tracks: [Track!]!
     label: [String!]!
     coverImage: String
-    createdBy: Artist
-    publishedDate: String!
+    producedBy: [Artist!]!
+    publishDate: String!
     credits: String
   }
 
   type Mix {
+    _id: ID!
     id: ID!
     createdAt: String!
-    createdBy: [Artist!]
     producedBy: [Artist!]
     coverImage: String
     filename: String!
@@ -85,23 +86,23 @@ const typeDefs = gql`
     label: String
     plays: Int
     tracks: [Track]
-    trackGenre: [DanceGenre]
+    genre: [DanceGenre]
   }
 
   type Track {
+    _id: ID!
     id: ID!
     createdAt: String!
     title: String!
-    createdBy: [Artist!]
-    performedBy: [PerformedByEntry!]
-    producedBy: [ProducedByEntry!]
+    performedBy: [String!]
+    producedBy: [String!]
     coverImage: String
     filename: String!
     likes: Int
     length: String!
     label: String
     plays: Int
-    trackGenre: [DanceGenre]
+    genre: [DanceGenre]
     credits: String
   }
 
@@ -113,7 +114,7 @@ const typeDefs = gql`
     playlistImage: String
     createdBy: User!
     followers: [User!]
-    trackGenre: DanceGenre
+    genre: DanceGenre
     title: String!
     description: String
   }
@@ -182,6 +183,18 @@ const typeDefs = gql`
     url: String!
   }
 
+  input NewTrackOrMixInput {
+    filename: String!
+    title: String!
+    performedBy: [ArtistInput!]!
+    producedBy: [ArtistInput!]!
+    coverImage: String
+    label: String
+    length: String!
+    genre: [DanceGenre!]
+    credits: String
+  }
+
   input NewArtistInput {
     name: String!
     avatar: String
@@ -224,13 +237,14 @@ const typeDefs = gql`
 
   input CreateReleaseInput {
     title: String!
-    artists: [Artist!]!
+    artists: [ArtistInput!]!
     releaseType: ReleaseType!
-    tracks: [ReleaseEntry!]!
+    tracks: [NewTrackOrMixInput!]
     label: [String]!
     coverImage: String
-    createdBy: Artist
-    publishedDate: String!
+    producedBy: [ArtistInput!]!
+    performedBy: [ArtistInput!]!
+    publishDate: String!
     credits: String
   }
 
