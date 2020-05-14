@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Artist from './Artist';
 
 const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
   createMany: async (fields: any[]) => {
@@ -54,7 +55,14 @@ const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
     try {
       const doc: any = model
         .findById(id)
-        .populate('artist')
+        .populate({
+          path: 'artist',
+          model: 'Artist',
+          populate: {
+            path: 'releases',
+            model: 'Release',
+          },
+        })
         .populate('owner')
         .lean()
         .exec();
@@ -66,9 +74,10 @@ const createModel = (model: mongoose.Model<mongoose.Document, {}>) => ({
   },
   findByIdAndUpdate: async (id: string, fields: any) => {
     try {
-      const doc = await model
+      let doc: any = await model
         .findByIdAndUpdate(id, fields)
         .populate('artist')
+        .populate({ path: 'releases', model: 'Release' })
         .lean()
         .exec();
 

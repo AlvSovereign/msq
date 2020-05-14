@@ -64,6 +64,7 @@ const typeDefs = gql`
     createdAt: String!
     title: String!
     performedBy: [Artist!]!
+    owner: Artist!
     releaseType: ReleaseType!
     tracks: [Track!]!
     label: [String!]!
@@ -210,7 +211,7 @@ const typeDefs = gql`
     _id: ID!
     name: String
     avatar: String
-    # releases: [Release]
+    releases: [ID!]
     countries: [String]
     biography: String
     tag: String
@@ -235,7 +236,7 @@ const typeDefs = gql`
     # settings: Settings
   }
 
-  input CreateReleaseInput {
+  input NewReleaseInput {
     title: String!
     artists: [ArtistInput!]!
     releaseType: ReleaseType!
@@ -245,6 +246,7 @@ const typeDefs = gql`
     producedBy: [ArtistInput!]!
     performedBy: [ArtistInput!]!
     publishDate: String!
+    owner: ArtistInput!
     credits: String
   }
 
@@ -255,7 +257,8 @@ const typeDefs = gql`
 
   type Mutation {
     artist(input: NewArtistInput!): Artist! @isAuthenticated
-    createRelease(input: CreateReleaseInput!): Release!
+    updateArtist(input: ArtistInput!): Artist! @isAuthenticated
+    createRelease(input: NewReleaseInput!): Release!
     me(input: NewUserInput!): User!
     signin(input: SigninUserInput!): User!
     socialSignin(input: SocialSigninUserInput!): User!

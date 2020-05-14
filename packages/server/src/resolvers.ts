@@ -21,6 +21,22 @@ const resolvers: IResolvers = {
 
       return artist;
     },
+    updateArtist: async (parent, args, ctx, info) => {
+      const { input } = args;
+      const { user } = ctx;
+
+      if (!user.artist._id.equals(input._id)) {
+        throw new AuthenticationError('Invalid credentials, please try again');
+      }
+
+      const { _id, ...rest } = input;
+      const updatedArtist = await models.Artist.findByIdAndUpdate(
+        input._id,
+        rest
+      );
+
+      return updatedArtist;
+    },
     createRelease: async (parent, args, ctx, info) => {
       const { input } = args;
       const { tracks } = input;
@@ -133,8 +149,7 @@ const resolvers: IResolvers = {
       }
 
       const { _id, ...rest } = input;
-      const me: any = await models.User.findByIdAndUpdate(user._id, rest);
-      console.log('me: ', me);
+      const me: any = await models.User.findByIdAndUpdate(input._id, rest);
       return me;
     },
   },

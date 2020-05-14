@@ -19,11 +19,17 @@ const GET_ME = gql`
         id
         name
         createdAt
-        releases {
-          id
-        }
         countries
         biography
+        releases {
+          _id
+          title
+          tracks {
+            _id
+          }
+          coverImage
+          publishDate
+        }
         tag
         socialLinks {
           type

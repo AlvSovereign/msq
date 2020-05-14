@@ -1,0 +1,65 @@
+{
+  "input": {
+    "title": "Be Honest",
+    "artists": [
+      {
+        "_id": "5eb1b0a1b83d6fe7f415d91a"
+      }
+    ],
+    "releaseType": "SINGLE",
+    "tracks": [
+      {
+        "title": "Be Honest",
+        "producedBy": [
+          {
+            "_id": "5eb1b0a1b83d6fe7f415d91a"
+          }
+        ],
+        "performedBy": [
+          {
+            "_id": "5eb1b0a1b83d6fe7f415d91a"
+          }
+        ],
+        "coverImage": "some string",
+        "label": "some string",
+        "length": "220",
+        "filename": "Be Honest - DJ Omni.mp3",
+        "genre": ["GHETTO_ZOUK"],
+        "credits": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "title": "Be You",
+        "producedBy": [
+          {
+            "_id": "5eb1b0a1b83d6fe7f415d91a"
+          }
+        ],
+        "performedBy": [
+          {
+            "_id": "5eb1b0a1b83d6fe7f415d91a"
+          }
+        ],
+        "coverImage": "some string",
+        "label": "some string",
+        "length": "237",
+        "filename": "Be You - DJ Omni.mp3",
+        "genre": ["GHETTO_ZOUK", "URBAN_KIZ"],
+        "credits": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
+    ],
+    "label": "Omni Records",
+    "coverImage": "some string",
+    "producedBy": [
+      {
+        "_id": "5eb1b0a1b83d6fe7f415d91a"
+      }
+    ],
+    "performedBy": [
+      {
+        "_id": "5eb1b0a1b83d6fe7f415d91a"
+      }
+    ],
+    "credits": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "publishDate": "1589372052350"
+  }
+}

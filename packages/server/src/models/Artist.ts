@@ -14,7 +14,7 @@ const ArtistSchema: Schema = new Schema(
       maxlength: 80,
     },
     avatar: String,
-    releases: [String],
+    releases: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Release' }],
     owner: { type: mongoose.SchemaTypes.ObjectId, ref: 'User', required: true },
     fans: { type: [mongoose.SchemaTypes.ObjectId], ref: 'User' },
     country: {
