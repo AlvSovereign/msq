@@ -1,0 +1,21 @@
+overwrite: true
+schema: "src/typeDefs.ts"
+# documents: "src/**/*.graphql"
+generates:
+  ../components/src/graphql/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-resolvers"
+      - "typescript-react-apollo"
+      - "typescript-mongodb"
+      - "fragment-matcher"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
+  ./graphql.d.ts:
+    plugins:
+      - "typescript-graphql-files-modules"
+  ./graphql.ts:
+    plugins:
+      - "typescript-document-nodes"

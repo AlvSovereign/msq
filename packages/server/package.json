@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start:cache": "redis-server",
-    "start:dev": "nodemon -e js,ts,json build/index.js",
-    "tsc": "tsc -p tsconfig.json --watch"
+    "start:dev": "yarn run gen:schema && nodemon -e js,ts,json build/index.js",
+    "tsc": "tsc -p tsconfig.json --watch",
+    "gen:schema": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -29,6 +30,16 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@graphql-codegen/typescript": "1.13.5",
+    "@graphql-codegen/typescript-operations": "1.13.5",
+    "@graphql-codegen/typescript-resolvers": "1.13.5",
+    "@graphql-codegen/typescript-react-apollo": "1.13.5",
+    "@graphql-codegen/typescript-mongodb": "1.13.5",
+    "@graphql-codegen/typescript-graphql-files-modules": "1.13.5",
+    "@graphql-codegen/typescript-document-nodes": "1.13.5",
+    "@graphql-codegen/fragment-matcher": "1.13.5",
+    "@graphql-codegen/introspection": "1.13.5",
+    "@graphql-codegen/cli": "^1.13.5",
     "@types/mongoose": "^5.7.14",
     "nodemon": "^2.0.3"
   }
