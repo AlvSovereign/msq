@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, Text, StatusBar, SafeAreaView, ScrollView } from 'react-native';
+import { Image, Text, StatusBar, ScrollView } from 'react-native';
 import { useDimensions } from 'react-native-web-hooks';
 import LinearGradient from 'react-native-linear-gradient';
 import { useQuery } from '@apollo/react-hooks';
@@ -18,7 +18,7 @@ import { ArtistPopluarTracks } from './ArtistPopluarTracks/ArtistPopluarTracks';
 
 const profileImage = require('../../assets/images/me_square.png');
 
-const Artist = ({ id }: ArtistProps) => {
+const Artist = () => {
   const { data, loading, error } = useQuery(GET_ME);
 
   if (loading || !data) {
@@ -129,7 +129,3 @@ const Artist = ({ id }: ArtistProps) => {
 };
 
 export default Artist;
-
-interface ArtistProps {
-  id: string;
-}

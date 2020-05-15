@@ -1,11 +1,11 @@
 import { AuthenticationError, SchemaDirectiveVisitor } from 'apollo-server';
-import { defaultFieldResolver, GraphQLString } from 'graphql';
+import { defaultFieldResolver } from 'graphql';
 
 class AuthenticationDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition(field: any) {
-    const resolver = field.resolve || defaultFieldResolver;
+    const resolver: any = field.resolve || defaultFieldResolver;
 
-    field.resolve = async (root, args, ctx, info) => {
+    field.resolve = async (root: any, args: any, ctx: any, info: any) => {
       if (!ctx.user) {
         throw new AuthenticationError(
           'User is not authenticated to perform this operation'

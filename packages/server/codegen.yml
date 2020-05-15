@@ -1,21 +1,24 @@
 overwrite: true
-schema: "src/typeDefs.ts"
+schema: 'src/typeDefs.ts'
 # documents: "src/**/*.graphql"
 generates:
-  ../components/src/graphql/generated/graphql.tsx:
+  ../components/src/graphql/generated/graphql.ts:
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-resolvers"
-      - "typescript-react-apollo"
-      - "typescript-mongodb"
-      - "fragment-matcher"
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-resolvers'
+      # - 'typescript-react-apollo'
+      - 'typescript-mongodb'
+      - 'fragment-matcher'
   ./graphql.schema.json:
     plugins:
-      - "introspection"
+      - 'introspection'
   ./graphql.d.ts:
     plugins:
-      - "typescript-graphql-files-modules"
+      - 'typescript-graphql-files-modules'
   ./graphql.ts:
     plugins:
-      - "typescript-document-nodes"
+      - 'typescript-document-nodes'
+hooks:
+  afterAllFileWrite:
+    - prettier --write

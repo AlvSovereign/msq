@@ -252,7 +252,6 @@ const typeDefs = gql`
 
   type Query {
     me: User! @isAuthenticated
-    artist(input: ArtistInput!): Artist!
   }
 
   type Mutation {
@@ -267,41 +266,3 @@ const typeDefs = gql`
 `;
 
 export default typeDefs;
-
-export interface IUser {
-  _id: String;
-  id: String;
-  email: String;
-  name: String;
-  createdAt: String;
-  isVerified: Boolean;
-  isRegistered: Boolean;
-  accountType: EAccountType;
-  role: ERole;
-  avatar: String;
-  alias: String;
-  token: String;
-  artist: Artist;
-  // playlists: [Playlist!]
-  // releasesSaved: [Release!]
-  // following: [Artist!]
-  // friends: [User!]
-  // likedSongs: [ReleaseEntry!]
-  // country: [String!]
-  // settings: Settings
-}
-
-export interface Artist {
-  [key: string]: any;
-}
-
-export enum EAccountType {
-  BASIC,
-  PREMIUM,
-  SUPER,
-}
-
-export enum ERole {
-  ARTIST,
-  FAN,
-}

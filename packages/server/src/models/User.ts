@@ -1,8 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
 import { nanoid } from 'nanoid';
 import bcrypt from 'bcrypt';
+import { AccountType, Role } from 'components/src/graphql/generated/graphql';
 
-const UserSchema: Schema = new Schema(
+const UserSchema = new Schema(
   {
     id: {
       type: String,
@@ -84,7 +85,7 @@ const UserSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre<IUser>('save', function(next) {
   if (!this.isModified('password')) {
     return next();
   }
@@ -113,9 +114,20 @@ UserSchema.methods.checkPassword = function(password: string) {
   });
 };
 
-const User: mongoose.Model<mongoose.Document, {}> = mongoose.model(
-  'User',
-  UserSchema
-);
+const User: mongoose.Model<IUser> = mongoose.model('User', UserSchema);
 
 export default User;
+
+export interface IUser extends mongoose.Document {
+  id: string;
+  email: string;
+  password: string;
+  name: string;
+  isVerified: boolean;
+  isRegistered: boolean;
+  accountType: AccountType;
+  role: Role;
+  avatar: string;
+  alias: string;
+  artist: string;
+}

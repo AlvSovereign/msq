@@ -5,7 +5,6 @@ import { createToken } from './utils/auth';
 
 const resolvers: IResolvers = {
   Query: {
-    artist: async (parent, args, ctx, info) => {},
     me: async (parent, args, ctx, info) => {
       return ctx.user;
     },
@@ -95,7 +94,7 @@ const resolvers: IResolvers = {
         // No User is synonymous with invalid/no auth token. In this case check if this
         // user is in the database
         foundUser = await models.User.findOne({ email });
-        const passwordMethod =
+        const passwordMethod: any =
           foundUser && (await schemas.User.findOne({ email }));
 
         const match =
