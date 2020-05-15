@@ -5,7 +5,7 @@ import Artist from '../Artist/Artist';
 const Discovery = ({  }: DiscoveryProps) => {
   return (
     <Page>
-      <Artist id='333' />
+      <Artist />
     </Page>
   );
 };

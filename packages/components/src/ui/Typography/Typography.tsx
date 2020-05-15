@@ -53,5 +53,6 @@ interface ITypography {
     | 'h5'
     | 'h6'
     | 'label'
-    | 'small';
+    | 'small'
+    | 'title';
 }

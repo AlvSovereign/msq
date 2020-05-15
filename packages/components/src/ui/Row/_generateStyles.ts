@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { Orientation } from './Row';
+import { Alignment, Orientation } from './Row';
 import { gutterBottomStyles } from '../utils/commonStyles';
 import { THorizontalPadding } from '../Column/Column';
 import { ITheme } from '../../theme/theme';
 
 const generateStyles = (
+  align: Alignment,
   horizontalPadding: THorizontalPadding,
   orientation: Orientation,
   spacing: THorizontalPadding,
@@ -20,7 +21,7 @@ const generateStyles = (
 
   return StyleSheet.create({
     gridContainer: {
-      alignItems: 'center',
+      alignItems: align && align,
       flexDirection: orientation,
       paddingHorizontal: horizontalPadding && paddings[horizontalPadding],
     },

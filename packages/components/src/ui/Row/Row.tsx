@@ -6,6 +6,7 @@ import { TGutterBottom } from '../utils/commonStyles';
 import { THorizontalPadding } from '../Column/Column';
 
 const Row = ({
+  align,
   animated = false,
   children,
   gutterBottom,
@@ -16,7 +17,13 @@ const Row = ({
   wrap,
 }: GridProps) => {
   const theme = useContext(MsqThemeContext);
-  const styles = generateStyles(horizontalPadding, orientation, spacing, theme);
+  const styles = generateStyles(
+    align,
+    horizontalPadding,
+    orientation,
+    spacing,
+    theme
+  );
 
   const clonedElement = () => {
     return React.Children.map(children, (c: any, i: number) =>
@@ -58,6 +65,7 @@ const Row = ({
 export default Row;
 
 interface GridProps {
+  align?: Alignment;
   animated?: boolean;
   children: ReactNode;
   gutterBottom?: TGutterBottom;
@@ -68,4 +76,5 @@ interface GridProps {
   wrap?: boolean;
 }
 
+export type Alignment = 'center' | 'flex-start' | 'flex-end' | undefined;
 export type Orientation = 'row' | 'column';

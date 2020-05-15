@@ -13,11 +13,12 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { theme, MsqThemeContext } from 'components/src/theme/ThemeContext';
 import Auth from 'components/src/screens/Auth/Auth';
-import Welcome from 'components/src/screens/Welcome/Welcome';
+import Artist from 'components/src/screens/Artist/Artist';
 import firebaseConfig from './utils/firebaseConfig';
 import { bootstrapFB } from './utils/loadFBSDK';
 import { getFromStorage } from 'components/src/utils/_storageHelper';
 import resolvers from 'components/src/graphql/resolvers';
+import { AppFrame } from 'components/src/ui';
 
 const cache = new InMemoryCache();
 const link = createHttpLink({ uri: process.env.REACT_APP_GRAPHQL_URL });
@@ -60,21 +61,23 @@ const App = () => {
     <ApolloProvider client={client}>
       <MsqThemeContext.Provider value={theme}>
         <StatusBar barStyle='dark-content' />
-        <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName={'Auth'}
-            screenOptions={{
-              headerShown: false,
-            }}>
-            {isSignedIn ? (
-              <Stack.Screen name='Welcome' component={Welcome} />
-            ) : (
-              <Stack.Screen name='Auth'>
-                {(props) => <Auth {...props} setIsSignedIn={setIsSignedIn} />}
-              </Stack.Screen>
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
+        <AppFrame>
+          <NavigationContainer>
+            <Stack.Navigator
+              initialRouteName={'Auth'}
+              screenOptions={{
+                headerShown: false,
+              }}>
+              {isSignedIn ? (
+                <Stack.Screen name='Welcome' component={Artist} />
+              ) : (
+                <Stack.Screen name='Auth'>
+                  {(props) => <Auth {...props} setIsSignedIn={setIsSignedIn} />}
+                </Stack.Screen>
+              )}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </AppFrame>
       </MsqThemeContext.Provider>
     </ApolloProvider>
   );

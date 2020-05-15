@@ -26,6 +26,7 @@ const _generateStyles = (theme: ITheme, windowSize: TBreakpoint) => {
     H5,
     H6,
     SMALL,
+    TITLE,
   } = theme.typography;
 
   const displayStyles = {
@@ -93,6 +94,9 @@ const _generateStyles = (theme: ITheme, windowSize: TBreakpoint) => {
     label: { ...LABEL },
     small: {
       ...SMALL,
+    },
+    title: {
+      ...TITLE,
     },
   };
 

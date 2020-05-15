@@ -1,6 +1,6 @@
 import { Platform, StyleSheet } from 'react-native';
 import { ITheme } from '../../theme/theme';
-import { TGutterBottom, gutterBottomStyles } from '../utils/commonStyles';
+import { gutterBottomStyles } from '../utils/commonStyles';
 import { IconKey } from '../../assets/icons/_renderIcon';
 import { Variant } from './Button';
 
@@ -19,14 +19,14 @@ const _generateStyles = (
     LIGHTGREY_100,
     WHITE,
   } = theme.color;
-  const { LINEAR_SM, LINEAR_XXS, RADIUS_SM } = theme.spacing;
+  const { LINEAR_SM, LINEAR_XXS } = theme.spacing;
 
   return StyleSheet.create({
-    ...gutterBottomStyles,
+    // ...gutterBottomStyles,
     buttonBase: {
       borderRadius: 4,
       height: 40,
-      // width: '100%',
+      width: '100%',
     },
     button: {
       alignItems: 'center',
@@ -129,6 +129,7 @@ const _generateStyles = (
     typographyDisabed: {
       color: WHITE,
     },
+    ...gutterBottomStyles,
   });
 };
 

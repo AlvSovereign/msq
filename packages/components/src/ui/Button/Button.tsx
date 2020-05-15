@@ -52,7 +52,6 @@ const Button = ({
           variant === 'transparent' && styles.transparentButton,
           variant === 'facebook' && styles.facebookButton,
           variant === 'google' && styles.googleButton,
-          gutterBottom && styles[gutterBottom],
           !isDisabled && isHovered && styles.buttonHovered,
           !isDisabled &&
             isHovered &&

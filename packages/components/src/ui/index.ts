@@ -1,3 +1,4 @@
+import AppFrame from './molecules/AppFrame/AppFrame';
 import ArtistReleases from '../screens/Artist/ArtistReleases/ArtistReleases';
 import Button from './Button/Button';
 import Checkbox from './Checkbox/Checkbox';
@@ -11,6 +12,7 @@ import TrackCard from './molecules/TrackCard/TrackCard';
 import Typography from './Typography/Typography';
 
 export {
+  AppFrame,
   ArtistReleases,
   Button,
   Checkbox,

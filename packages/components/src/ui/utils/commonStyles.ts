@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import theme from '../../theme/theme';
 
 const {
@@ -11,7 +11,9 @@ const {
   LINEAR_XXL,
 } = theme.spacing;
 
-const gutterBottomStyles = StyleSheet.create({
+const { DARKGREY_700 } = theme.color;
+
+const gutterBottomStyles = StyleSheet.flatten({
   xxs: { marginBottom: LINEAR_XXS },
   xs: { marginBottom: LINEAR_XS },
   sm: { marginBottom: LINEAR_SM },
@@ -21,7 +23,37 @@ const gutterBottomStyles = StyleSheet.create({
   xxl: { marginBottom: LINEAR_XXL },
 });
 
-export { gutterBottomStyles };
+const shadowStyles = (
+  color,
+  opacity,
+  radius,
+  offsetWidth,
+  offsetHeight,
+  elevation
+) => {
+  return Platform.select({
+    ios: {
+      shadowColor: color,
+      shadowOpacity: opacity,
+      shadowRadius: radius,
+      shadowOffset: {
+        width: offsetWidth,
+        height: offsetHeight,
+      },
+    },
+    android: {
+      elevation,
+    },
+    web: {
+      boxShadow: `${offsetWidth}px ${offsetHeight}px ${radius}px`,
+    },
+  });
+};
+
+const basicElevation = shadowStyles(DARKGREY_700, 1, 24, 0, 8, 4);
+const largeElevation = shadowStyles(DARKGREY_700, 1, 48, 0, 24, 16);
+
+export { basicElevation, largeElevation, gutterBottomStyles };
 
 export type TGutterBottom =
   | 'xxs'
