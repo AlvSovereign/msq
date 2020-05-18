@@ -2,7 +2,6 @@ import { StyleSheet, Platform } from 'react-native';
 import { ITheme } from '../../../theme/theme';
 
 const _generateStyles = (theme: ITheme) => {
-  const { DARKGREY_400 } = theme.color;
   const { LINEAR_XS, LINEAR_SM, RADIUS_SM } = theme.spacing;
 
   return StyleSheet.create({

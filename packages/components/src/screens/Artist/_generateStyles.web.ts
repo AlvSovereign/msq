@@ -1,14 +1,19 @@
 import { StyleSheet, Platform } from 'react-native';
 import { ITheme } from '../../theme/theme';
 
-const _generateStyles = (theme: ITheme, gradientStart: number) => {
+const _generateStyles = (theme: ITheme) => {
   const { DARKGREY_400, DARKGREY_700, LIGHTGREY_200, WHITE } = theme.color;
   const { LINEAR_XXS, LINEAR_SM, LINEAR_LG } = theme.spacing;
 
   return StyleSheet.create({
     contentContainer: {
-      paddingTop: gradientStart && gradientStart - 44,
-      paddingBottom: LINEAR_SM,
+      flex: 1,
+      height: 600,
+      justifyContent: 'flex-end',
+    },
+    heroContainer: {
+      backgroundColor: DARKGREY_700,
+      height: 600,
     },
     inactiveTabFont: {
       color: `${WHITE}99`,
@@ -18,18 +23,15 @@ const _generateStyles = (theme: ITheme, gradientStart: number) => {
       width: '100%',
       flexDirection: 'column',
     },
-    playButton: {
-      flex: 1,
-      width: '100%',
-    },
     playButtonContainer: {
       flexDirection: 'row',
     },
     profileImage: {
+      flexDirection: 'column',
       position: 'absolute',
-      left: 0,
       right: 0,
-      width: '100%',
+      height: 600,
+      width: 600,
     },
     shareButton: { marginRight: LINEAR_XXS },
     popularTracksSection: {

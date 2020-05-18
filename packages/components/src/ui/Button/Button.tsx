@@ -73,6 +73,7 @@ const Button = ({
             styles.googleHovered,
           !isDisabled && isFocused && styles.buttonFocused,
           isDisabled && styles.buttonDisabled,
+          style,
         ]}>
         {leftIcon &&
           _renderIcon({

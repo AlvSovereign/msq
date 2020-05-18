@@ -8,12 +8,7 @@ const ArtistPopluarTracks = ({  }: ArtistPopluarTracksProps) => {
 
   return (
     <Row orientation='row'>
-      <Column
-        sm={4}
-        md={8}
-        lg={12}
-        spacing='md'
-        style={styles.popularTracksSection}>
+      <Column sm={4} md={8} lg={12}>
         <Typography color='white' variant='h5' gutterBottom='sm'>
           {'Most Popular Tracks'}
         </Typography>

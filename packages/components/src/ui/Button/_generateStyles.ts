@@ -19,14 +19,15 @@ const _generateStyles = (
     LIGHTGREY_100,
     WHITE,
   } = theme.color;
-  const { LINEAR_SM, LINEAR_XXS } = theme.spacing;
+  const { LINEAR_SM, LINEAR_MD, LINEAR_XXS } = theme.spacing;
 
   return StyleSheet.create({
-    // ...gutterBottomStyles,
     buttonBase: {
       borderRadius: 4,
       height: 40,
-      width: '100%',
+      // paddingHorizontal: LINEAR_MD,
+      // paddingVertical: LINEAR_XXS,
+      width: 'auto',
     },
     button: {
       alignItems: 'center',
@@ -34,8 +35,9 @@ const _generateStyles = (
       borderWidth: 2,
       flexDirection: 'row',
       justifyContent: 'center',
-      padding: LINEAR_XXS,
-      paddingHorizontal: !leftIcon ? LINEAR_SM : LINEAR_XXS,
+      paddingHorizontal: LINEAR_MD,
+      // paddingVertical: LINEAR_XXS,
+      width: 'auto',
     },
     buttonHovered: {
       ...Platform.select({
@@ -113,8 +115,8 @@ const _generateStyles = (
     },
     typographyBase: {
       flex: 1,
-      marginRight: leftIcon && LINEAR_XXS,
-      marginLeft: leftIcon && 12,
+      marginRight: rightIcon && LINEAR_MD,
+      marginLeft: leftIcon && LINEAR_MD,
       textAlign: 'center',
     },
     primaryTypography: {

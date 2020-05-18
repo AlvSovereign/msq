@@ -21,6 +21,7 @@ const TrackCard = ({ style }: TrackCardProps) => {
       onPress={() => {}}>
       <Row
         animated={true}
+        align='center'
         orientation='row'
         style={[
           styles.trackCard,

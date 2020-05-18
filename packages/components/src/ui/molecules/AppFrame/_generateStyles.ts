@@ -7,7 +7,7 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
   return StyleSheet.create({
     appFrameContainer: { flex: 1, flexDirection: 'row' },
     sideDrawerContainer: {
-      width: breakpoint === 'md' ? 240 : 264,
+      width: 240,
       paddingLeft: LINEAR_XL,
       paddingTop: LINEAR_XL,
       paddingBOTTOM: 64,
