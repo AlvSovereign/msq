@@ -24,12 +24,12 @@ const gutterBottomStyles = StyleSheet.flatten({
 });
 
 const shadowStyles = (
-  color,
-  opacity,
-  radius,
-  offsetWidth,
-  offsetHeight,
-  elevation
+  color: any,
+  opacity: any,
+  radius: any,
+  offsetWidth: any,
+  offsetHeight: any,
+  elevation: any
 ) => {
   return Platform.select({
     ios: {

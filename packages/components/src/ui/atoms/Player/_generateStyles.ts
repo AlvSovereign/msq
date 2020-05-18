@@ -5,9 +5,15 @@ import { largeElevation } from '../../utils/commonStyles';
 
 const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
   const { WHITE } = theme.color;
+  const { LINEAR_SM } = theme.spacing;
 
   return StyleSheet.create({
+    contentContainer: {
+      flex: 1,
+      justifyContent: 'space-between',
+    },
     coverImage: { height: '100%', width: 64 },
+    icon: { flex: 1 },
     playerContainer: {
       backgroundColor: WHITE,
       bottom: 0,
@@ -18,6 +24,7 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
       zIndex: 1000,
       ...largeElevation,
     },
+    trackDetails: {},
   });
 };
 

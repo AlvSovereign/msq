@@ -24,14 +24,16 @@ const Button = ({
   const theme = useContext(MsqThemeContext);
   const animation = _generateAnimations();
   const styles = _generateStyles(theme, variant, leftIcon, rightIcon);
-  const { BLUE_500, WHITE } = theme.color;
+  const { BLUE_500, LIGHTGREY_500, WHITE } = theme.color;
 
-  let fillColor;
-  if (isDisabled) {
-    fillColor = WHITE;
-  } else {
-    variant === 'primary' ? (fillColor = WHITE) : (fillColor = BLUE_500);
-  }
+  const fillColor = {
+    primary: WHITE,
+    secondary: BLUE_500,
+    transparent: LIGHTGREY_500,
+    isDisabled: LIGHTGREY_500,
+    facebook: WHITE,
+    google: '',
+  };
 
   return (
     <TouchableOpacity
@@ -72,7 +74,11 @@ const Button = ({
           !isDisabled && isFocused && styles.buttonFocused,
           isDisabled && styles.buttonDisabled,
         ]}>
-        {leftIcon && _renderIcon(WHITE, leftIcon, styles)}
+        {leftIcon &&
+          _renderIcon({
+            fill: isDisabled ? fillColor.isDisabled : fillColor[variant],
+            icon: leftIcon,
+          })}
         {label && (
           <Typography
             style={[
@@ -86,7 +92,11 @@ const Button = ({
             {label}
           </Typography>
         )}
-        {rightIcon && _renderIcon(fillColor, rightIcon, styles)}
+        {rightIcon &&
+          _renderIcon({
+            fill: isDisabled ? fillColor.isDisabled : fillColor[variant],
+            icon: rightIcon,
+          })}
       </Animated.View>
     </TouchableOpacity>
   );

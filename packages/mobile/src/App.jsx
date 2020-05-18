@@ -18,11 +18,20 @@ const AppTabs = () => {
         tabBarIcon: ({ focused, color, size }) => {
             switch (route.name) {
                 case 'Discovery':
-                    return _renderIcon(focused ? WHITE : BLUE_300, 'news');
+                    return _renderIcon({
+                        fill: focused ? WHITE : BLUE_300,
+                        icon: 'news',
+                    });
                 case 'Feed':
-                    return _renderIcon(focused ? WHITE : BLUE_300, 'library');
+                    return _renderIcon({
+                        fill: focused ? WHITE : BLUE_300,
+                        icon: 'library',
+                    });
                 case 'Search':
-                    return _renderIcon(focused ? WHITE : BLUE_300, 'search');
+                    return _renderIcon({
+                        fill: focused ? WHITE : BLUE_300,
+                        icon: 'search',
+                    });
                 default:
                     return null;
             }

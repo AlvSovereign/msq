@@ -100,9 +100,9 @@ const input = {
 
 const text = {
   TITLE: {
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: 'Geomanist-Bold',
-    lineHeight: 12,
+    lineHeight: 14,
   },
   SUBTITLE: {
     fontSize: 12,

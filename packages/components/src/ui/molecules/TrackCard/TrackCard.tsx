@@ -41,7 +41,7 @@ const TrackCard = ({ style }: TrackCardProps) => {
             style={styles.trackImage}
           />
           <View>
-            <Typography variant='body1' color='white'>
+            <Typography variant='body1' color='white' gutterBottom='xxs'>
               {'Be Honest'}
             </Typography>
             <Typography variant='body2' color='lightGrey'>

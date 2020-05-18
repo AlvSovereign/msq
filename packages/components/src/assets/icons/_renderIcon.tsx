@@ -8,13 +8,20 @@ import {
   GLogo,
   Library,
   MoreHorizontal,
+  PlayCircleOutline,
+  PlaylistAdd,
   PlayOutline,
+  Repeat,
   Search,
   Settings,
   ShareFilled,
+  Shuffle,
+  SkipNext,
+  SkipPrevious,
+  VolumeUp,
 } from '.';
 
-const _renderIcon = (fill: string, icon: IconKey, styles?: any) => {
+const _renderIcon = ({ fill, icon, styles }: IRenderIcon) => {
   switch (icon) {
     case 'bookmark':
       return <BookmarkOutline fill={fill} style={styles} />;
@@ -34,18 +41,38 @@ const _renderIcon = (fill: string, icon: IconKey, styles?: any) => {
       return <Discovery fill={fill} style={styles} />;
     case 'play':
       return <PlayOutline fill={fill} style={styles} />;
+    case 'playerPlay':
+      return <PlayCircleOutline fill={fill} style={styles} />;
+    case 'playlistAdd':
+      return <PlaylistAdd fill={fill} style={styles} />;
+    case 'repeat':
+      return <Repeat fill={fill} style={styles} />;
     case 'search':
       return <Search fill={fill} style={styles} />;
     case 'settings':
       return <Settings fill={fill} style={styles} />;
     case 'share':
       return <ShareFilled fill={fill} style={styles} />;
+    case 'shuffle':
+      return <Shuffle fill={fill} style={styles} />;
+    case 'skipNext':
+      return <SkipNext fill={fill} style={styles} />;
+    case 'skipPrevious':
+      return <SkipPrevious fill={fill} style={styles} />;
+    case 'volumeUp':
+      return <VolumeUp fill={fill} style={styles} />;
     default:
       return null;
   }
 };
 
 export { _renderIcon };
+
+interface IRenderIcon {
+  fill: string;
+  icon: IconKey;
+  styles?: any;
+}
 
 export type IconKey =
   | 'bookmark'
@@ -57,6 +84,13 @@ export type IconKey =
   | 'more'
   | 'news'
   | 'play'
+  | 'playerPlay'
+  | 'playlistAdd'
+  | 'repeat'
   | 'search'
   | 'settings'
-  | 'share';
+  | 'share'
+  | 'shuffle'
+  | 'skipNext'
+  | 'skipPrevious'
+  | 'volumeUp';

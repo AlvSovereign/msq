@@ -63,10 +63,11 @@ const Input = ({
         {leftIcon && (
           <TouchableWithoutFeedback onPress={onLeftIconPress}>
             <View style={styles.leftIcon}>
-              {_renderIcon(
-                isError || isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
-                leftIcon
-              )}
+              {_renderIcon({
+                fill: isError || isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
+                icon: leftIcon,
+                styles: styles.leftIcon,
+              })}
             </View>
           </TouchableWithoutFeedback>
         )}
@@ -86,11 +87,11 @@ const Input = ({
         {rightIcon && (
           <TouchableWithoutFeedback onPress={onRightIconPress}>
             <View style={styles.rightIcon}>
-              {_renderIcon(
-                isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
-                rightIcon,
-                styles
-              )}
+              {_renderIcon({
+                fill: isFocused ? LIGHTGREY_200 : LIGHTGREY_100,
+                icon: rightIcon,
+                styles: styles.rightIcon,
+              })}
             </View>
           </TouchableWithoutFeedback>
         )}

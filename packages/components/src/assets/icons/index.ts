@@ -7,12 +7,19 @@ import FBLogo from './FBLogo';
 import GLogo from './GLogo';
 import Library from './Library';
 import MoreHorizontal from './MoreHorizontal';
+import PlayCircleOutline from './PlayCircleOutline';
+import PlaylistAdd from './PlaylistAdd';
 import PlayOutline from './PlayOutline';
 import RadioChecked from './RadioChecked';
 import RadioUnchecked from './RadioUnchecked';
+import Repeat from './Repeat';
 import Search from './Search';
 import Settings from './Settings';
 import ShareFilled from './ShareFilled';
+import Shuffle from './Shuffle';
+import SkipNext from './SkipNext';
+import SkipPrevious from './SkipPrevious';
+import VolumeUp from './VolumeUp';
 import { _renderIcon } from './_renderIcon';
 
 export {
@@ -25,13 +32,20 @@ export {
   GLogo,
   Library,
   MoreHorizontal,
+  PlayCircleOutline,
+  PlaylistAdd,
   PlayOutline,
   RadioChecked,
   RadioUnchecked,
+  Repeat,
   _renderIcon,
   Search,
   Settings,
   ShareFilled,
+  Shuffle,
+  SkipNext,
+  SkipPrevious,
+  VolumeUp,
 };
 
 export interface IIcon extends React.SVGProps<SVGSVGElement> {
