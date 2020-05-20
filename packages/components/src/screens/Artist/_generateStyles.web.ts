@@ -8,8 +8,11 @@ const _generateStyles = (theme: ITheme) => {
   return StyleSheet.create({
     contentContainer: {
       flex: 1,
-      height: 600,
+      height: '100%',
       justifyContent: 'flex-end',
+    },
+    controlsContainer: {
+      alignItems: 'center',
     },
     heroContainer: {
       backgroundColor: DARKGREY_700,
@@ -27,11 +30,12 @@ const _generateStyles = (theme: ITheme) => {
       flexDirection: 'row',
     },
     profileImage: {
-      flexDirection: 'column',
+      // flexDirection: 'z',
       position: 'absolute',
-      right: 0,
+      top: 0,
+      left: 0,
       height: 600,
-      width: 600,
+      width: '100%',
     },
     shareButton: { marginRight: LINEAR_XXS },
     popularTracksSection: {

@@ -34,7 +34,7 @@ export { color };
 
 export type TColor = { [key in TPalette]: string };
 
-type TPalette =
+export type TPalette =
   | 'RED_50'
   | 'RED_500'
   | 'LIGHT_BLUE'

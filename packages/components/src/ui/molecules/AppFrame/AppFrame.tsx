@@ -3,8 +3,7 @@ import { View } from 'react-native';
 import { useResponsive } from '../../../theme/hooks';
 import { _generateStyles } from './_generateStyles';
 import { MsqThemeContext } from 'components/src/theme/ThemeContext';
-import SideDrawer from '../../atoms/SideDrawer/SideDrawer';
-import Player from '../../atoms/Player/Player';
+import { Player, SideDrawer } from '../../';
 
 const AppFrame = ({ children }: AppFrameProps) => {
   const breakpoint = useResponsive();

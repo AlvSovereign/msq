@@ -1,11 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, View, Image } from 'react-native';
 import theme from '../../../theme/theme';
-import Row from '../../Row/Row';
-import Typography from '../../Typography/Typography';
-import Button from '../../Button/Button';
+import { Button, Row, Typography } from '../..';
 import { _generateStyles } from './_generateStyles';
-import { _generateAnimations } from '../../Button/_generateAnimations';
+import { _generateAnimations } from '../../atom/Button/_generateAnimations';
 
 const profileImage = require('../../../assets/images/me_square.png');
 

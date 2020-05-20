@@ -57,27 +57,37 @@ const App = () => {
     firebase.initializeApp(firebaseConfig);
   }, []);
 
+  const Main = () => (
+    <AppFrame>
+      <Stack.Navigator
+        initialRouteName={'Artist'}
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name='Artist' component={Artist} />
+      </Stack.Navigator>
+    </AppFrame>
+  );
+
   return (
     <ApolloProvider client={client}>
       <MsqThemeContext.Provider value={theme}>
         <StatusBar barStyle='dark-content' />
-        <AppFrame>
-          <NavigationContainer>
-            <Stack.Navigator
-              initialRouteName={'Auth'}
-              screenOptions={{
-                headerShown: false,
-              }}>
-              {isSignedIn ? (
-                <Stack.Screen name='Welcome' component={Artist} />
-              ) : (
-                <Stack.Screen name='Auth'>
-                  {(props) => <Auth {...props} setIsSignedIn={setIsSignedIn} />}
-                </Stack.Screen>
-              )}
-            </Stack.Navigator>
-          </NavigationContainer>
-        </AppFrame>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName={'Auth'}
+            screenOptions={{
+              headerShown: false,
+            }}>
+            {isSignedIn ? (
+              <Stack.Screen name='Main' component={Main} />
+            ) : (
+              <Stack.Screen name='Auth'>
+                {(props) => <Auth {...props} setIsSignedIn={setIsSignedIn} />}
+              </Stack.Screen>
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
       </MsqThemeContext.Provider>
     </ApolloProvider>
   );

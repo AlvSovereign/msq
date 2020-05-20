@@ -3,7 +3,7 @@ import { Image, View, TouchableOpacity, Animated } from 'react-native';
 import { Row, Column, Typography } from '../../../ui';
 import theme from '../../../theme/theme';
 import { _generateStyles } from './_generateStyles';
-import { _generateAnimations } from '../../../ui/Button/_generateAnimations';
+import { _generateAnimations } from '../../../ui/atom/Button/_generateAnimations';
 
 const Image1 = require('../../../assets/images/cover-bg.png');
 const Image2 = require('../../../assets/images/cover-bg-1.png');

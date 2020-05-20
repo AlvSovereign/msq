@@ -1,15 +1,18 @@
 import AppFrame from './molecules/AppFrame/AppFrame';
 import ArtistReleases from '../screens/Artist/ArtistReleases/ArtistReleases';
-import Button from './Button/Button';
-import Checkbox from './Checkbox/Checkbox';
-import Column from './Column/Column';
-import CountryFlags from './CountryFlags/CountryFlags';
-import Input from './Input/Input';
-import Page from './Page/Page';
-import RadioGroup from './RadioGroup/RadioGroup';
-import Row from './Row/Row';
+import Button from './atom/Button/Button';
+import Checkbox from './atom/Checkbox/Checkbox';
+import Column from './atom/Column/Column';
+import CountryFlags from './atom/CountryFlags/CountryFlags';
+import Input from './atom/Input/Input';
+import Page from './organism/Page/Page';
+import Player from './organism/Player/Player';
+import RadioGroup from './atom/RadioGroup/RadioGroup';
+import Row from './atom/Row/Row';
+import SideDrawer from './organism/SideDrawer/SideDrawer';
 import TrackCard from './molecules/TrackCard/TrackCard';
-import Typography from './Typography/Typography';
+import Typography from './atom/Typography/Typography';
+import TouchableSvg from './atom/TouchableSvg/TouchableSvg';
 
 export {
   AppFrame,
@@ -20,8 +23,11 @@ export {
   CountryFlags,
   Input,
   Page,
+  Player,
   RadioGroup,
   Row,
+  SideDrawer,
   TrackCard,
   Typography,
+  TouchableSvg,
 };

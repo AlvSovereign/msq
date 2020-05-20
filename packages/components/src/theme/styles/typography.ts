@@ -3,12 +3,12 @@ const heading = {
     {
       fontSize: 48,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 56,
+      lineHeight: 48,
     },
     {
       fontSize: 64,
       fontFamily: 'Geomanist-Medium',
-      lineHeight: 72,
+      lineHeight: 64,
     },
   ],
   H1: [
@@ -141,6 +141,11 @@ const text = {
     lineHeight: 12,
     textTransform: 'uppercase',
   },
+  STATS: {
+    fontSize: 30,
+    fontFamily: 'Geomanist-Light',
+    lineHeight: 30,
+  },
 };
 
 const typography = {
@@ -169,5 +174,6 @@ type TTextTypes =
   | 'BODY1'
   | 'BODY2'
   | 'SMALL'
+  | 'STATS'
   | 'TINY'
   | 'BUTTON';
