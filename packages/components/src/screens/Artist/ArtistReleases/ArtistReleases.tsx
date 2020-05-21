@@ -23,20 +23,18 @@ const ArtistReleases = ({  }: ArtistReleasesProps) => {
 
   const data: any = [
     {
-      data: [
-        {
-          img: Image1,
-          title: 'Be You',
-          artists: 'DJ Omni, DJ Ruivo',
-          noOfTracks: 13,
-        },
-        {
-          img: Image2,
-          title: 'Be There',
-          artists: 'DJ Omni',
-          noOfTracks: 6,
-        },
-      ],
+      _id: 1,
+      img: Image1,
+      title: 'Be You',
+      artists: 'DJ Omni, DJ Ruivo',
+      noOfTracks: 13,
+    },
+    {
+      _id: 2,
+      img: Image2,
+      title: 'Be There',
+      artists: 'DJ Omni',
+      noOfTracks: 6,
     },
   ];
 
@@ -84,21 +82,18 @@ const ArtistReleases = ({  }: ArtistReleasesProps) => {
           {'Artist Releases'}
         </Typography>
       </Column>
-      <Row orientation='row' wrap spacing='xs'>
-        <SectionList
-          sections={data}
-          keyExtractor={(item, index) => item.title + index}
-          renderItem={({ item }) => (
-            <Column
-              sm={2}
-              md={4}
-              lg={3}
-              gutterBottom='xs'
-              style={styles.cardContainer}>
-              <ReleaseCard {...item} />
-            </Column>
-          )}
-        />
+      <Row orientation='row' spacing='xs'>
+        {data.map((item) => (
+          <Column
+            key={item._id}
+            sm={2}
+            md={4}
+            lg={3}
+            gutterBottom='xs'
+            style={styles.cardContainer}>
+            <ReleaseCard key={} {...item} />
+          </Column>
+        ))}
       </Row>
     </Row>
   );
