@@ -1,4 +1,4 @@
 REACT NATIVE CHECKBOX ->
   iOS pods cannot find dependency 'ReactCommon/jscallinvoker'
-  - Rename Pod in Podfile to ''ReactCommon/callinvoker
+  - Rename Pod in Podfile to 'ReactCommon/callinvoker'
   - SOURCE: https://stackoverflow.com/questions/60880105/cocoapods-could-not-find-compatible-versions-for-pod-reactcommon-jscallinvoker
