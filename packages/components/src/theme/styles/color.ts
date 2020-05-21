@@ -13,6 +13,7 @@ const palette = {
   LIGHT_BLUE: '#F5F9FB',
   LIGHTGREY_100: '#E5EBF0',
   LIGHTGREY_200: '#BCCAD0',
+  LIGHTGREY_300: '#94A7AF',
   LIGHTGREY_500: '#5D6E76',
   BLUE_100: '#B0C6FA',
   BLUE_300: '#4F81FC',
@@ -40,6 +41,7 @@ export type TPalette =
   | 'LIGHT_BLUE'
   | 'LIGHTGREY_100'
   | 'LIGHTGREY_200'
+  | 'LIGHTGREY_300'
   | 'LIGHTGREY_500'
   | 'BLUE_100'
   | 'BLUE_300'

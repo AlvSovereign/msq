@@ -25,6 +25,7 @@ const _generateStyles = (theme: ITheme) => {
       height: '100%',
       width: '100%',
       flexDirection: 'column',
+      marginBottom: 104, // Player PADDING
     },
     playButtonContainer: {
       flexDirection: 'row',

@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext } from 'react';
-import { View, Animated } from 'react-native';
+import { View, Animated, FlexAlignType } from 'react-native';
 import { MsqThemeContext } from '../../../theme/ThemeContext';
 import { generateStyles } from './_generateStyles';
 import { TGutterBottom } from '../../utils/commonStyles';
@@ -67,7 +67,7 @@ const Row = ({
 export default Row;
 
 interface RowProps {
-  align?: Alignment;
+  align?: FlexAlignType | undefined;
   animated?: boolean;
   children: ReactNode;
   gutterBottom?: TGutterBottom;
@@ -79,13 +79,6 @@ interface RowProps {
   wrap?: boolean;
 }
 
-export type Alignment =
-  | 'center'
-  | 'flex-start'
-  | 'flex-end'
-  | 'space-around'
-  | 'space-between'
-  | undefined;
 export type Orientation = 'row' | 'column';
 export type Justify =
   | 'center'

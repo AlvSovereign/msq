@@ -14,7 +14,7 @@ const Player = ({  }: PlayerProps) => {
   const breakpoint = useResponsive();
   const theme = useContext(MsqThemeContext);
   const styles = _generateStyles(breakpoint, theme);
-  const { BLUE_500, LIGHTGREY_500 } = theme.color;
+  const { BLUE_500, LIGHTGREY_300 } = theme.color;
   // const { LINEA } = theme.spacing;
 
   return (
@@ -36,19 +36,19 @@ const Player = ({  }: PlayerProps) => {
         <View>
           <Row orientation='row' align='center' justify='space-between'>
             <TouchableSvg
-              fill={LIGHTGREY_500}
+              fill={LIGHTGREY_300}
               icon='skipNext'
               onPress={() => {}}
               interactionFill={BLUE_500}
             />
             <TouchableSvg
-              fill={LIGHTGREY_500}
+              fill={LIGHTGREY_300}
               icon='playerPlay'
               onPress={() => {}}
               interactionFill={BLUE_500}
             />
             <TouchableSvg
-              fill={LIGHTGREY_500}
+              fill={LIGHTGREY_300}
               icon='skipPrevious'
               onPress={() => {}}
               interactionFill={BLUE_500}
@@ -62,27 +62,27 @@ const Player = ({  }: PlayerProps) => {
         </View>
         <Row orientation='row'>
           <TouchableSvg
-            fill={LIGHTGREY_500}
+            fill={LIGHTGREY_300}
             icon='shuffle'
             interactionFill={BLUE_500}
             onPress={() => {}}
           />
           <TouchableSvg
-            fill={LIGHTGREY_500}
+            fill={LIGHTGREY_300}
             icon='repeat'
             interactionFill={BLUE_500}
             onPress={() => {}}
           />
           <TouchableSvg
-            fill={LIGHTGREY_500}
+            fill={LIGHTGREY_300}
             icon='volumeUp'
             interactionFill={BLUE_500}
             onPress={() => {}}
           />
           <TouchableSvg
-            fill={LIGHTGREY_500}
+            fill={LIGHTGREY_300}
             icon='playlistAdd'
-            // interactionFill={BLUE_500}
+            interactionFill={BLUE_500}
             onPress={() => {}}
           />
         </Row>

@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
-import { Alignment, Orientation, Justify } from './Row';
+import { StyleSheet, FlexAlignType } from 'react-native';
+import { Orientation, Justify } from './Row';
 import { gutterBottomStyles } from '../../utils/commonStyles';
 import { THorizontalPadding } from '../Column/Column';
 import { ITheme } from '../../../theme/theme';
 
 const generateStyles = (
-  align: Alignment,
+  align: FlexAlignType | undefined,
   horizontalPadding: THorizontalPadding,
   justify: Justify,
   orientation: Orientation,
@@ -33,7 +33,7 @@ const generateStyles = (
       flexDirection: orientation,
       justifyContent: justify && justify,
       paddingHorizontal: horizontalPadding && paddings[horizontalPadding],
-      width: '100%' + (spacing && 2 * paddings[spacing]),
+      width: '100%' + (spacing ? 2 * paddings[spacing] : 0),
       margin: spacing && -paddings[spacing],
     },
     wrap: {

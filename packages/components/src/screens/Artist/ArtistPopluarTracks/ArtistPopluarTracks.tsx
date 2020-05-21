@@ -7,7 +7,7 @@ const ArtistPopluarTracks = ({  }: ArtistPopluarTracksProps) => {
   const styles = _generateStyles(theme);
 
   return (
-    <Row orientation='row' horizontalPadding='md'>
+    <Row orientation='row'>
       <Column sm={4} md={8} lg={12}>
         <Typography color='white' variant='h5' gutterBottom='sm'>
           {'Most Popular Tracks'}

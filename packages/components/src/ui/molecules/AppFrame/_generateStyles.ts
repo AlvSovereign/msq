@@ -4,13 +4,14 @@ import { ITheme } from '../../../theme/theme';
 
 const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
   const { LINEAR_XL } = theme.spacing;
+
   return StyleSheet.create({
     appFrameContainer: { flex: 1, flexDirection: 'row' },
     sideDrawerContainer: {
-      width: breakpoint === 'md' ? 200 : 240,
+      width: breakpoint === 'md' ? 160 : 200,
       paddingLeft: LINEAR_XL,
       paddingTop: LINEAR_XL,
-      paddingBOTTOM: 64,
+      paddingBottom: 104,
     },
   });
 };

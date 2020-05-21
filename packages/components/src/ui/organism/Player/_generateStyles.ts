@@ -19,7 +19,7 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
       bottom: 0,
       flex: 1,
       height: 80,
-      position: 'absolute',
+      position: 'fixed',
       width: '100%',
       zIndex: 1000,
       ...largeElevation,

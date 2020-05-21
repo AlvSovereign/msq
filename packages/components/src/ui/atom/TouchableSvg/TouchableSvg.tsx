@@ -20,7 +20,7 @@ const TouchableSvg = ({
   const isFocused = useFocus(ref);
   const isHovered = useHover(ref);
   const animation = _generateAnimations();
-  const { LIGHTGREY_500 } = theme.color;
+  const { LIGHTGREY_200 } = theme.color;
 
   return (
     <TouchableOpacity
@@ -33,11 +33,7 @@ const TouchableSvg = ({
       <Animated.View
         style={[{ transform: [{ scale: animation.scaleValue }] }, style]}>
         {_renderIcon({
-          fill: isDisabled
-            ? LIGHTGREY_500
-            : interactionFill
-            ? interactionFill
-            : fill,
+          fill: isDisabled ? LIGHTGREY_200 : isHovered ? interactionFill : fill,
           icon: icon,
         })}
       </Animated.View>
@@ -50,7 +46,7 @@ export default TouchableSvg;
 interface TouchableSvgProps {
   fill: string;
   icon: IconKey;
-  interactionFill?: string;
+  interactionFill: string;
   isDisabled?: boolean;
   onPress: () => void;
   style?: string;
