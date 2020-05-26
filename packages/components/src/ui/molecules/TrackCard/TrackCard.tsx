@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TouchableOpacity, View, Image } from 'react-native';
-import theme from '../../../theme/theme';
-import { Button, Row, Typography } from '../..';
+import { Button, Row, TouchableSvg, Typography } from '../..';
 import { _generateStyles } from './_generateStyles';
 import { _generateAnimations } from '../../atom/Button/_generateAnimations';
+import { MsqThemeContext } from '../../../theme/ThemeContext';
 
 const profileImage = require('../../../assets/images/me_square.png');
 
 const TrackCard = ({ style }: TrackCardProps) => {
+  const theme = useContext(MsqThemeContext);
   const styles = _generateStyles(theme);
+  const { WHITE } = theme.color;
   const animation = _generateAnimations();
 
   return (
@@ -48,7 +50,12 @@ const TrackCard = ({ style }: TrackCardProps) => {
             </Typography>
           </View>
         </View>
-        <Button onPress={() => {}} variant='transparent' leftIcon='more' />
+        <TouchableSvg
+          onPress={() => {}}
+          fill={WHITE}
+          interactionFill={WHITE}
+          icon='more'
+        />
       </Row>
     </TouchableOpacity>
   );

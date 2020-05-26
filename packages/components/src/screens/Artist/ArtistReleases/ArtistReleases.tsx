@@ -38,7 +38,7 @@ const ArtistReleases = ({  }: ArtistReleasesProps) => {
     },
   ];
 
-  const ReleaseCard = (item) => {
+  const ReleaseCard = (item: any) => {
     const { artists, img, noOfTracks, title } = item;
 
     return (
@@ -83,7 +83,7 @@ const ArtistReleases = ({  }: ArtistReleasesProps) => {
         </Typography>
       </Column>
       <Row orientation='row' spacing='xs'>
-        {data.map((item) => (
+        {data.map((item: any) => (
           <Column
             key={item._id}
             sm={2}
@@ -91,7 +91,7 @@ const ArtistReleases = ({  }: ArtistReleasesProps) => {
             lg={3}
             gutterBottom='xs'
             style={styles.cardContainer}>
-            <ReleaseCard key={} {...item} />
+            <ReleaseCard {...item} />
           </Column>
         ))}
       </Row>

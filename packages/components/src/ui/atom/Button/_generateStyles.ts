@@ -25,7 +25,7 @@ const _generateStyles = (
       borderWidth: 2,
       flexDirection: 'row',
       justifyContent: 'center',
-      // paddingHorizontal: LINEAR_MD,
+      paddingHorizontal: LINEAR_MD,
       // paddingVertical: LINEAR_XXS,
       width: 'auto',
     },
