@@ -8,6 +8,7 @@ import GLogo from './GLogo';
 import Library from './Library';
 import MoreHorizontal from './MoreHorizontal';
 import PlayCircleOutline from './PlayCircleOutline';
+import PauseCircleOutline from './PauseCircleOutline';
 import PlaylistAdd from './PlaylistAdd';
 import PlayOutline from './PlayOutline';
 import RadioChecked from './RadioChecked';
@@ -35,6 +36,7 @@ export {
   PlayCircleOutline,
   PlaylistAdd,
   PlayOutline,
+  PauseCircleOutline,
   RadioChecked,
   RadioUnchecked,
   Repeat,

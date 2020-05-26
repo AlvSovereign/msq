@@ -6,7 +6,7 @@ import Column from './atom/Column/Column';
 import CountryFlags from './atom/CountryFlags/CountryFlags';
 import Input from './atom/Input/Input';
 import Page from './organism/Page/Page';
-import Player from './organism/Player/Player';
+import MsqPlayer from './organism/MsqPlayer/MsqPlayer';
 import RadioGroup from './atom/RadioGroup/RadioGroup';
 import Row from './atom/Row/Row';
 import SideDrawer from './organism/SideDrawer/SideDrawer';
@@ -23,7 +23,7 @@ export {
   CountryFlags,
   Input,
   Page,
-  Player,
+  MsqPlayer,
   RadioGroup,
   Row,
   SideDrawer,

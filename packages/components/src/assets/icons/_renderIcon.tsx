@@ -8,6 +8,7 @@ import {
   GLogo,
   Library,
   MoreHorizontal,
+  PauseCircleOutline,
   PlayCircleOutline,
   PlaylistAdd,
   PlayOutline,
@@ -39,6 +40,8 @@ const _renderIcon = ({ fill, icon, styles }: IRenderIcon) => {
       return <MoreHorizontal fill={fill} style={styles} />;
     case 'news':
       return <Discovery fill={fill} style={styles} />;
+    case 'playerPause':
+      return <PauseCircleOutline fill={fill} style={styles} />;
     case 'play':
       return <PlayOutline fill={fill} style={styles} />;
     case 'playerPlay':
@@ -83,6 +86,7 @@ export type IconKey =
   | 'library'
   | 'more'
   | 'news'
+  | 'playerPause'
   | 'play'
   | 'playerPlay'
   | 'playlistAdd'
