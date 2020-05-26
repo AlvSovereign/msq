@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Image, View } from 'react-native';
+import ReactAudioPlayer from 'react-audio-player';
 import {
   MsqThemeContext,
   useResponsive,
@@ -9,13 +10,14 @@ import { _generateStyles } from './_generateStyles';
 import { _renderIcon } from '../../../assets/icons';
 
 const coverImage = require('../../../assets/images/cover-bg-2.png');
+const track = require('../../../assets/audio/Prubulema Tarraxa - DJ NiceLife.mp3');
 
 const Player = ({  }: PlayerProps) => {
   const breakpoint = useResponsive();
   const theme = useContext(MsqThemeContext);
   const styles = _generateStyles(breakpoint, theme);
   const { BLUE_500, LIGHTGREY_300 } = theme.color;
-  // const { LINEA } = theme.spacing;
+  const playerRef = useRef(null);
 
   return (
     <Row orientation='row' style={styles.playerContainer}>
@@ -55,9 +57,7 @@ const Player = ({  }: PlayerProps) => {
             />
           </Row>
           <Row orientation='row' align='center' justify='center'>
-            <Typography variant='body2' color='lightGrey'>
-              {'Swimming Against Waves'}
-            </Typography>
+            <ReactAudioPlayer ref={playerRef} src={track} autoPlay controls />
           </Row>
         </View>
         <Row orientation='row'>
