@@ -12,6 +12,15 @@ const TrackSchema: Schema = new Schema(
       required: true,
       maxlength: 100,
     },
+    number: {
+      type: String,
+      required: true,
+      default: 1,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
     performedBy: [
       {
         type: mongoose.SchemaTypes.ObjectId,

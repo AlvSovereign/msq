@@ -3,6 +3,8 @@ import { gql } from 'apollo-server';
 const typeDefs = gql`
   directive @isAuthenticated on FIELD_DEFINITION
 
+  scalar URL
+
   enum AccountType {
     BASIC
     PREMIUM
@@ -66,7 +68,7 @@ const typeDefs = gql`
     performedBy: [Artist!]!
     owner: Artist!
     releaseType: ReleaseType!
-    tracks: [Track!]!
+    tracks: [CollectionofTracks!]!
     label: [String!]!
     coverImage: String
     producedBy: [Artist!]!
@@ -83,7 +85,7 @@ const typeDefs = gql`
     filename: String!
     title: String!
     likes: Int
-    length: String!
+    length: Int!
     label: String
     plays: Int
     tracks: [Track]
@@ -100,18 +102,24 @@ const typeDefs = gql`
     coverImage: String
     filename: String!
     likes: Int
-    length: String!
+    length: Int!
     label: String
     plays: Int
     genre: [DanceGenre]
     credits: String
+    url: URL!
+  }
+
+  type CollectionofTracks {
+    number: Int!
+    track: Track
   }
 
   type Playlist {
     id: ID!
     createdAt: String!
     isPrivate: Boolean!
-    tracks: [Track!]!
+    tracks: [CollectionofTracks!]!
     playlistImage: String
     createdBy: User!
     followers: [User!]
@@ -191,7 +199,7 @@ const typeDefs = gql`
     producedBy: [ArtistInput!]!
     coverImage: String
     label: String
-    length: String!
+    length: Int!
     genre: [DanceGenre!]
     credits: String
   }

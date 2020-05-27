@@ -15,7 +15,28 @@ import {
 } from '../../molecules/AppFrame/AppFrame';
 
 const coverImage = require('../../../assets/images/cover-bg-2.png');
-const track = require('../../../assets/audio/Prubulema Tarraxa - DJ NiceLife.mp3');
+const tracks = [
+  {
+    number: 1,
+    _id: '',
+    id: '',
+    createdAt: '',
+    filename: '',
+    title: 'Prubulema Tarraxa',
+    length: '',
+    url: require('../../../assets/audio/Prubulema Tarraxa - DJ NiceLife.mp3'),
+  },
+  {
+    number: 2,
+    _id: '',
+    id: '',
+    createdAt: '',
+    filename: '',
+    title: 'Yalla Bina',
+    length: '',
+    url: require('../../../assets/audio/YALLA BINA.mp3'),
+  },
+];
 
 const MsqPlayer = ({  }: PlayerProps) => {
   const breakpoint = useResponsive();
@@ -24,14 +45,19 @@ const MsqPlayer = ({  }: PlayerProps) => {
   const theme = useContext(MsqThemeContext);
   const styles = _generateStyles(breakpoint, theme);
   const { BLUE_500, LIGHTGREY_300 } = theme.color;
-  const playerRef = React.createRef<HTMLAudioElement>();
 
   const play = () => {
+    dispatch({ type: PlayerActionTypes.SET_PLAYLIST, payload: tracks });
+    dispatch({ type: PlayerActionTypes.SET_NOW_PLAYING, payload: tracks[0] });
     dispatch({ type: PlayerActionTypes.PLAY });
   };
 
   const pause = () => {
     dispatch({ type: PlayerActionTypes.PAUSE });
+  };
+
+  const skipPrev = () => {
+    dispatch({ type: PlayerActionTypes.PREV });
   };
 
   return (
@@ -55,7 +81,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
             <TouchableSvg
               fill={LIGHTGREY_300}
               icon='skipNext'
-              onPress={() => {}}
+              onPress={() => skipPrev}
               interactionFill={BLUE_500}
             />
             <TouchableSvg
@@ -82,7 +108,10 @@ const MsqPlayer = ({  }: PlayerProps) => {
             />
           </Row>
           <Row orientation='row' align='center' justify='center'>
-            <Player currentState={playerState} ref={playerRef} src={track} />
+            <Player
+              currentState={playerState}
+              src={internalState.nowPlaying.url}
+            />
           </Row>
         </View>
         <Row orientation='row'>

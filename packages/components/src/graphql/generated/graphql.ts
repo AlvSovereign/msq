@@ -1,4 +1,8 @@
-import { GraphQLResolveInfo } from "graphql";
+import {
+  GraphQLResolveInfo,
+  GraphQLScalarType,
+  GraphQLScalarTypeConfig
+} from "graphql";
 export type Maybe<T> = T | null;
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type RequireFields<T, K extends keyof T> = {
@@ -12,6 +16,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  URL: any;
 };
 
 export enum AccountType {
@@ -78,7 +83,7 @@ export type Release = {
   performedBy: Array<Artist>;
   owner: Artist;
   releaseType: ReleaseType;
-  tracks: Array<Track>;
+  tracks: Array<CollectionofTracks>;
   label: Array<Scalars["String"]>;
   coverImage?: Maybe<Scalars["String"]>;
   producedBy: Array<Artist>;
@@ -119,6 +124,13 @@ export type Track = {
   plays?: Maybe<Scalars["Int"]>;
   genre?: Maybe<Array<Maybe<DanceGenre>>>;
   credits?: Maybe<Scalars["String"]>;
+  url: Scalars["URL"];
+};
+
+export type CollectionofTracks = {
+  __typename?: "CollectionofTracks";
+  number: Scalars["Int"];
+  track?: Maybe<Track>;
 };
 
 export type Playlist = {
@@ -126,7 +138,7 @@ export type Playlist = {
   id: Scalars["ID"];
   createdAt: Scalars["String"];
   isPrivate: Scalars["Boolean"];
-  tracks: Array<Track>;
+  tracks: Array<CollectionofTracks>;
   playlistImage?: Maybe<Scalars["String"]>;
   createdBy: User;
   followers?: Maybe<Array<User>>;
@@ -418,6 +430,7 @@ export type DirectiveResolverFn<
 export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars["String"]>;
   Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
+  URL: ResolverTypeWrapper<Scalars["URL"]>;
   AccountType: AccountType;
   Role: Role;
   ReleaseType: ReleaseType;
@@ -431,6 +444,7 @@ export type ResolversTypes = {
   Mix: ResolverTypeWrapper<Mix>;
   Int: ResolverTypeWrapper<Scalars["Int"]>;
   Track: ResolverTypeWrapper<Track>;
+  CollectionofTracks: ResolverTypeWrapper<CollectionofTracks>;
   Playlist: ResolverTypeWrapper<Playlist>;
   Artist: ResolverTypeWrapper<Artist>;
   User: ResolverTypeWrapper<
@@ -456,6 +470,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   String: Scalars["String"];
   Boolean: Scalars["Boolean"];
+  URL: Scalars["URL"];
   AccountType: AccountType;
   Role: Role;
   ReleaseType: ReleaseType;
@@ -469,6 +484,7 @@ export type ResolversParentTypes = {
   Mix: Mix;
   Int: Scalars["Int"];
   Track: Track;
+  CollectionofTracks: CollectionofTracks;
   Playlist: Playlist;
   Artist: Artist;
   User: Omit<User, "likedSongs"> & {
@@ -578,6 +594,11 @@ export type MapDirectiveResolver<
   Args = MapDirectiveArgs
 > = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export interface UrlScalarConfig
+  extends GraphQLScalarTypeConfig<ResolversTypes["URL"], any> {
+  name: "URL";
+}
+
 export type ReleaseEntryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["ReleaseEntry"] = ResolversParentTypes["ReleaseEntry"]
@@ -632,7 +653,11 @@ export type ReleaseResolvers<
     ParentType,
     ContextType
   >;
-  tracks?: Resolver<Array<ResolversTypes["Track"]>, ParentType, ContextType>;
+  tracks?: Resolver<
+    Array<ResolversTypes["CollectionofTracks"]>,
+    ParentType,
+    ContextType
+  >;
   label?: Resolver<Array<ResolversTypes["String"]>, ParentType, ContextType>;
   coverImage?: Resolver<
     Maybe<ResolversTypes["String"]>,
@@ -719,6 +744,16 @@ export type TrackResolvers<
     ContextType
   >;
   credits?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
+  url?: Resolver<ResolversTypes["URL"], ParentType, ContextType>;
+  __isTypeOf?: isTypeOfResolverFn<ParentType>;
+};
+
+export type CollectionofTracksResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["CollectionofTracks"] = ResolversParentTypes["CollectionofTracks"]
+> = {
+  number?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
+  track?: Resolver<Maybe<ResolversTypes["Track"]>, ParentType, ContextType>;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
@@ -729,7 +764,11 @@ export type PlaylistResolvers<
   id?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   isPrivate?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
-  tracks?: Resolver<Array<ResolversTypes["Track"]>, ParentType, ContextType>;
+  tracks?: Resolver<
+    Array<ResolversTypes["CollectionofTracks"]>,
+    ParentType,
+    ContextType
+  >;
   playlistImage?: Resolver<
     Maybe<ResolversTypes["String"]>,
     ParentType,
@@ -915,12 +954,14 @@ export type MutationResolvers<
 };
 
 export type Resolvers<ContextType = any> = {
+  URL?: GraphQLScalarType;
   ReleaseEntry?: ReleaseEntryResolvers;
   Settings?: SettingsResolvers<ContextType>;
   SocialLinks?: SocialLinksResolvers<ContextType>;
   Release?: ReleaseResolvers<ContextType>;
   Mix?: MixResolvers<ContextType>;
   Track?: TrackResolvers<ContextType>;
+  CollectionofTracks?: CollectionofTracksResolvers<ContextType>;
   Playlist?: PlaylistResolvers<ContextType>;
   Artist?: ArtistResolvers<ContextType>;
   User?: UserResolvers<ContextType>;

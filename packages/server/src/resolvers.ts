@@ -1,5 +1,6 @@
 import { AuthenticationError, IResolvers } from 'apollo-server';
 import mongoose from 'mongoose';
+import { URLResolver } from 'graphql-scalars';
 import models, { schemas } from './models';
 import { createToken } from './utils/auth';
 
@@ -152,6 +153,7 @@ const resolvers: IResolvers = {
       return me;
     },
   },
+  URL: URLResolver,
 };
 
 export default resolvers;

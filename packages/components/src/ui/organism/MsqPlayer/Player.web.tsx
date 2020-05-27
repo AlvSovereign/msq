@@ -3,31 +3,34 @@ import ReactAudioPlayer, { ReactAudioPlayerProps } from 'react-audio-player';
 import { PlayerState } from '../../molecules/AppFrame/AppFrame';
 
 const Player = ({ currentState, src }: PlayerProps) => {
-  console.log('currentState: ', currentState);
   const ref = useRef<HTMLAudioElement | null>(null);
 
-  const controls: PlayerControls = {
+  const audioControls: PlayerControls = {
     IS_PLAYING: async () => {
-      console.log(111);
       await ref.current!.play();
     },
     IS_PAUSED: () => ref.current!.pause(),
+    // IS_SKIPPED_PREV: () => ref.current!.pre,
   };
 
   useEffect(() => {
-    controls[currentState];
+    if (audioControls[currentState]) {
+      let control;
+      control = audioControls[currentState];
+
+      control();
+    }
   }, [currentState]);
 
-  return <audio ref={ref} src={src} />;
+  return <audio ref={ref} preload='auto' src={src} />;
 };
 
 export default Player;
 
 interface PlayerProps extends ReactAudioPlayerProps {
   currentState: PlayerState;
-  ref: React.MutableRefObject<null>;
 }
 
 interface PlayerControls {
-  [key: PlayerState]: Promise<any> | any;
+  [key: string]: Promise<any> | any;
 }
