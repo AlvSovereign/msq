@@ -68,7 +68,7 @@ const typeDefs = gql`
     performedBy: [Artist!]!
     owner: Artist!
     releaseType: ReleaseType!
-    tracks: [CollectionofTracks!]!
+    tracks: [Track!]!
     label: [String!]!
     coverImage: String
     producedBy: [Artist!]!
@@ -110,16 +110,16 @@ const typeDefs = gql`
     url: URL!
   }
 
-  type CollectionofTracks {
-    number: Int!
-    track: Track
-  }
+  # type CollectionofTracks {
+  #   number: Int!
+  #   track: Track
+  # }
 
   type Playlist {
     id: ID!
     createdAt: String!
     isPrivate: Boolean!
-    tracks: [CollectionofTracks!]!
+    tracks: [Track!]!
     playlistImage: String
     createdBy: User!
     followers: [User!]

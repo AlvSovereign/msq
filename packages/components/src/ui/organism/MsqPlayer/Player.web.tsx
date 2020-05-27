@@ -6,11 +6,10 @@ const Player = ({ currentState, src }: PlayerProps) => {
   const ref = useRef<HTMLAudioElement | null>(null);
 
   const audioControls: PlayerControls = {
-    IS_PLAYING: async () => {
-      await ref.current!.play();
-    },
+    IS_PLAYING: async () => await ref.current!.play(),
     IS_PAUSED: () => ref.current!.pause(),
-    // IS_SKIPPED_PREV: () => ref.current!.pre,
+    IS_SKIPPED_PREV: () => null,
+    IS_SKIPPED_NEXT: () => null,
   };
 
   useEffect(() => {

@@ -527,7 +527,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "CollectionofTracks",
+                    "name": "Track",
                     "ofType": null
                   }
                 }
@@ -768,7 +768,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -1005,7 +1005,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -1088,45 +1088,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CollectionofTracks",
-        "description": null,
-        "fields": [
-          {
-            "name": "number",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "track",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Track",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "Playlist",
         "description": null,
         "fields": [
@@ -1193,7 +1154,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "CollectionofTracks",
+                    "name": "Track",
                     "ofType": null
                   }
                 }
@@ -2156,7 +2117,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },

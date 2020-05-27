@@ -5,6 +5,7 @@ const _handleGoogleAuth = async (callback: any) => {
   try {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/userinfo.email');
+
     const {
       additionalUserInfo,
       credential,

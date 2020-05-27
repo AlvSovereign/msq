@@ -30,6 +30,7 @@ const server = new ApolloServer({
   context: async ({ req }) => {
     const token: any = req.headers.authorization;
     const user = await getUserFromToken(token);
+    console.log('user: ', user);
 
     return { redis, user };
   },

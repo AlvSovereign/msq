@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { Image, View } from 'react-native';
 import {
   MsqThemeContext,
@@ -17,8 +17,7 @@ import {
 const coverImage = require('../../../assets/images/cover-bg-2.png');
 const tracks = [
   {
-    number: 1,
-    _id: '',
+    _id: '1',
     id: '',
     createdAt: '',
     filename: '',
@@ -27,8 +26,7 @@ const tracks = [
     url: require('../../../assets/audio/Prubulema Tarraxa - DJ NiceLife.mp3'),
   },
   {
-    number: 2,
-    _id: '',
+    _id: '2',
     id: '',
     createdAt: '',
     filename: '',
@@ -41,14 +39,25 @@ const tracks = [
 const MsqPlayer = ({  }: PlayerProps) => {
   const breakpoint = useResponsive();
   const { dispatch, internalState } = useContext(MsqPlayerContext);
-  const { playerState } = internalState;
+  const { nowPlaying, playlist, playerState } = internalState;
   const theme = useContext(MsqThemeContext);
   const styles = _generateStyles(breakpoint, theme);
   const { BLUE_500, LIGHTGREY_300 } = theme.color;
 
-  const play = () => {
+  useEffect(() => {
     dispatch({ type: PlayerActionTypes.SET_PLAYLIST, payload: tracks });
     dispatch({ type: PlayerActionTypes.SET_NOW_PLAYING, payload: tracks[0] });
+  }, []);
+
+  useLayoutEffect(() => {
+    console.log('playerState: ', playerState);
+  }, [playerState]);
+
+  const nowPlayingIndex = playlist.findIndex(
+    (item) => item._id === nowPlaying._id
+  );
+
+  const play = () => {
     dispatch({ type: PlayerActionTypes.PLAY });
   };
 
@@ -56,8 +65,28 @@ const MsqPlayer = ({  }: PlayerProps) => {
     dispatch({ type: PlayerActionTypes.PAUSE });
   };
 
-  const skipPrev = () => {
-    dispatch({ type: PlayerActionTypes.PREV });
+  const skipPrev = async () => {
+    await dispatch({ type: PlayerActionTypes.PREV });
+
+    await dispatch({
+      type: PlayerActionTypes.SET_NOW_PLAYING,
+      payload: tracks[nowPlayingIndex - 1],
+    });
+
+    await dispatch({ type: PlayerActionTypes.PLAY });
+  };
+
+  const skipNext = async () => {
+    await dispatch({
+      type: PlayerActionTypes.NEXT,
+    });
+
+    await dispatch({
+      type: PlayerActionTypes.SET_NOW_PLAYING,
+      payload: tracks[nowPlayingIndex + 1],
+    });
+
+    await dispatch({ type: PlayerActionTypes.PLAY });
   };
 
   return (
@@ -73,15 +102,15 @@ const MsqPlayer = ({  }: PlayerProps) => {
             {'Be Honest'}
           </Typography>
           <Typography variant='body2' color='lightGrey'>
-            {'Swimming Against Waves'}
+            {nowPlaying.title}
           </Typography>
         </View>
         <View>
           <Row orientation='row' align='center' justify='space-between'>
             <TouchableSvg
               fill={LIGHTGREY_300}
-              icon='skipNext'
-              onPress={() => skipPrev}
+              icon='skipPrevious'
+              onPress={skipPrev}
               interactionFill={BLUE_500}
             />
             <TouchableSvg
@@ -102,8 +131,8 @@ const MsqPlayer = ({  }: PlayerProps) => {
             />
             <TouchableSvg
               fill={LIGHTGREY_300}
-              icon='skipPrevious'
-              onPress={() => {}}
+              icon='skipNext'
+              onPress={skipNext}
               interactionFill={BLUE_500}
             />
           </Row>

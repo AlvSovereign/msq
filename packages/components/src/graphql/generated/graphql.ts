@@ -83,7 +83,7 @@ export type Release = {
   performedBy: Array<Artist>;
   owner: Artist;
   releaseType: ReleaseType;
-  tracks: Array<CollectionofTracks>;
+  tracks: Array<Track>;
   label: Array<Scalars["String"]>;
   coverImage?: Maybe<Scalars["String"]>;
   producedBy: Array<Artist>;
@@ -101,7 +101,7 @@ export type Mix = {
   filename: Scalars["String"];
   title: Scalars["String"];
   likes?: Maybe<Scalars["Int"]>;
-  length: Scalars["String"];
+  length: Scalars["Int"];
   label?: Maybe<Scalars["String"]>;
   plays?: Maybe<Scalars["Int"]>;
   tracks?: Maybe<Array<Maybe<Track>>>;
@@ -119,7 +119,7 @@ export type Track = {
   coverImage?: Maybe<Scalars["String"]>;
   filename: Scalars["String"];
   likes?: Maybe<Scalars["Int"]>;
-  length: Scalars["String"];
+  length: Scalars["Int"];
   label?: Maybe<Scalars["String"]>;
   plays?: Maybe<Scalars["Int"]>;
   genre?: Maybe<Array<Maybe<DanceGenre>>>;
@@ -127,18 +127,12 @@ export type Track = {
   url: Scalars["URL"];
 };
 
-export type CollectionofTracks = {
-  __typename?: "CollectionofTracks";
-  number: Scalars["Int"];
-  track?: Maybe<Track>;
-};
-
 export type Playlist = {
   __typename?: "Playlist";
   id: Scalars["ID"];
   createdAt: Scalars["String"];
   isPrivate: Scalars["Boolean"];
-  tracks: Array<CollectionofTracks>;
+  tracks: Array<Track>;
   playlistImage?: Maybe<Scalars["String"]>;
   createdBy: User;
   followers?: Maybe<Array<User>>;
@@ -220,7 +214,7 @@ export type NewTrackOrMixInput = {
   producedBy: Array<ArtistInput>;
   coverImage?: Maybe<Scalars["String"]>;
   label?: Maybe<Scalars["String"]>;
-  length: Scalars["String"];
+  length: Scalars["Int"];
   genre?: Maybe<Array<DanceGenre>>;
   credits?: Maybe<Scalars["String"]>;
 };
@@ -444,7 +438,6 @@ export type ResolversTypes = {
   Mix: ResolverTypeWrapper<Mix>;
   Int: ResolverTypeWrapper<Scalars["Int"]>;
   Track: ResolverTypeWrapper<Track>;
-  CollectionofTracks: ResolverTypeWrapper<CollectionofTracks>;
   Playlist: ResolverTypeWrapper<Playlist>;
   Artist: ResolverTypeWrapper<Artist>;
   User: ResolverTypeWrapper<
@@ -484,7 +477,6 @@ export type ResolversParentTypes = {
   Mix: Mix;
   Int: Scalars["Int"];
   Track: Track;
-  CollectionofTracks: CollectionofTracks;
   Playlist: Playlist;
   Artist: Artist;
   User: Omit<User, "likedSongs"> & {
@@ -653,11 +645,7 @@ export type ReleaseResolvers<
     ParentType,
     ContextType
   >;
-  tracks?: Resolver<
-    Array<ResolversTypes["CollectionofTracks"]>,
-    ParentType,
-    ContextType
-  >;
+  tracks?: Resolver<Array<ResolversTypes["Track"]>, ParentType, ContextType>;
   label?: Resolver<Array<ResolversTypes["String"]>, ParentType, ContextType>;
   coverImage?: Resolver<
     Maybe<ResolversTypes["String"]>,
@@ -694,7 +682,7 @@ export type MixResolvers<
   filename?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   title?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   likes?: Resolver<Maybe<ResolversTypes["Int"]>, ParentType, ContextType>;
-  length?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  length?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   label?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
   plays?: Resolver<Maybe<ResolversTypes["Int"]>, ParentType, ContextType>;
   tracks?: Resolver<
@@ -735,7 +723,7 @@ export type TrackResolvers<
   >;
   filename?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   likes?: Resolver<Maybe<ResolversTypes["Int"]>, ParentType, ContextType>;
-  length?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  length?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   label?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
   plays?: Resolver<Maybe<ResolversTypes["Int"]>, ParentType, ContextType>;
   genre?: Resolver<
@@ -748,15 +736,6 @@ export type TrackResolvers<
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type CollectionofTracksResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["CollectionofTracks"] = ResolversParentTypes["CollectionofTracks"]
-> = {
-  number?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
-  track?: Resolver<Maybe<ResolversTypes["Track"]>, ParentType, ContextType>;
-  __isTypeOf?: isTypeOfResolverFn<ParentType>;
-};
-
 export type PlaylistResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["Playlist"] = ResolversParentTypes["Playlist"]
@@ -764,11 +743,7 @@ export type PlaylistResolvers<
   id?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   isPrivate?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
-  tracks?: Resolver<
-    Array<ResolversTypes["CollectionofTracks"]>,
-    ParentType,
-    ContextType
-  >;
+  tracks?: Resolver<Array<ResolversTypes["Track"]>, ParentType, ContextType>;
   playlistImage?: Resolver<
     Maybe<ResolversTypes["String"]>,
     ParentType,
@@ -961,7 +936,6 @@ export type Resolvers<ContextType = any> = {
   Release?: ReleaseResolvers<ContextType>;
   Mix?: MixResolvers<ContextType>;
   Track?: TrackResolvers<ContextType>;
-  CollectionofTracks?: CollectionofTracksResolvers<ContextType>;
   Playlist?: PlaylistResolvers<ContextType>;
   Artist?: ArtistResolvers<ContextType>;
   User?: UserResolvers<ContextType>;

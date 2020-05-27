@@ -15,6 +15,7 @@ import { Track } from '../../../graphql/generated/graphql';
 export enum PlayerState {
   IS_PLAYING = 'IS_PLAYING',
   IS_PAUSED = 'IS_PAUSED',
+  IS_SKIPPED_NEXT = 'IS_SKIPPED_NEXT',
   IS_SKIPPED_PREV = 'IS_SKIPPED_PREV',
   IS_STOPPED = 'IS_STOPPED',
 }
@@ -37,6 +38,7 @@ export interface MsqPlayerState {
 }
 
 export enum PlayerActionTypes {
+  NEXT = 'NEXT',
   PAUSE = 'PAUSE',
   PLAY = 'PLAY',
   PREV = 'PREV',
@@ -54,7 +56,7 @@ const initialState: MsqPlayerState = {
       createdAt: '',
       filename: '',
       title: '',
-      length: '',
+      length: 0,
       url: '',
     },
     playlist: [],
@@ -68,6 +70,13 @@ const reducer = (state: MsqPlayerState, action: Action) => {
   const { payload = null, type } = action;
 
   const actionTypes = {
+    NEXT: {
+      ...state,
+      internalState: {
+        ...internalState,
+        playerState: PlayerState.IS_SKIPPED_NEXT,
+      },
+    },
     PAUSE: {
       ...state,
       internalState: { ...internalState, playerState: PlayerState.IS_PAUSED },
@@ -92,7 +101,7 @@ const reducer = (state: MsqPlayerState, action: Action) => {
       internalState: {
         ...internalState,
         nowPlaying: payload,
-        playerState: PlayerState.IS_STOPPED,
+        // playerState: PlayerState.IS_STOPPED,
       },
     },
     SET_PLAYLIST: {
@@ -106,7 +115,7 @@ const reducer = (state: MsqPlayerState, action: Action) => {
 
   if (process.env.NODE_ENV === 'development') {
     console.log('type: ', type);
-    console.table(internalState);
+    console.log('prev state', state.internalState);
   }
 
   return actionTypes[type];
@@ -125,7 +134,7 @@ const AppFrame = ({ children }: AppFrameProps) => {
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      console.table(internalState);
+      console.log('new state', internalState);
     }
   }, [internalState]);
 
