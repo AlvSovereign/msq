@@ -13,6 +13,7 @@ import {
   PlayerActionTypes,
   PlayerState,
 } from '../../molecules/AppFrame/AppFrame';
+import useMsqPlayer from '../../../hooks/useMsqPlayer/useMsqPlayer.web';
 
 const coverImage = require('../../../assets/images/cover-bg-2.png');
 const tracks = [
@@ -35,43 +36,53 @@ const tracks = [
     url: require('../../../assets/audio/YALLA BINA.mp3'),
   },
 ];
+// let counter = 0;
 
 const MsqPlayer = ({  }: PlayerProps) => {
+  // counter += 1;
   const breakpoint = useResponsive();
-  const { dispatch, internalState } = useContext(MsqPlayerContext);
-  const { nowPlaying, playlist, playerState } = internalState;
   const theme = useContext(MsqThemeContext);
   const styles = _generateStyles(breakpoint, theme);
   const { BLUE_500, LIGHTGREY_300 } = theme.color;
 
+  const { dispatch, internalState } = useContext(MsqPlayerContext);
+  // console.log('counter: ', counter);
+
   useEffect(() => {
-    dispatch({ type: PlayerActionTypes.SET_PLAYLIST, payload: tracks });
-    dispatch({ type: PlayerActionTypes.SET_NOW_PLAYING, payload: tracks[0] });
+    dispatch({
+      type: PlayerActionTypes.SET_PLAYLIST,
+      payload: {
+        playlist: tracks,
+        playerState: PlayerState.IS_PAUSED,
+      },
+    });
   }, []);
 
-  useLayoutEffect(() => {
-    console.log('playerState: ', playerState);
-  }, [playerState]);
+  const { playlist, playerState } = internalState;
+  const [play, { isPlaying, skip, nowPlaying, pause }] = useMsqPlayer(playlist);
 
-  const nowPlayingIndex = playlist.findIndex(
-    (item) => item._id === nowPlaying._id
-  );
+  // const nowPlayingIndex = playlist.findIndex(
+  //   (item) => item._id === nowPlaying._id
+  // );
 
-  const play = () => {
+  const playAudio = () => {
     dispatch({ type: PlayerActionTypes.PLAY });
+    play();
   };
 
-  const pause = () => {
+  const pauseAudio = () => {
     dispatch({ type: PlayerActionTypes.PAUSE });
+    pause();
   };
 
   const skipPrev = async () => {
     await dispatch({ type: PlayerActionTypes.PREV });
 
-    await dispatch({
-      type: PlayerActionTypes.SET_NOW_PLAYING,
-      payload: tracks[nowPlayingIndex - 1],
-    });
+    // await dispatch({
+    //   type: PlayerActionTypes.SET_NOW_PLAYING,
+    //   payload: tracks[nowPlayingIndex - 1],
+    // });
+    skip('prev');
 
     await dispatch({ type: PlayerActionTypes.PLAY });
   };
@@ -81,10 +92,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
       type: PlayerActionTypes.NEXT,
     });
 
-    await dispatch({
-      type: PlayerActionTypes.SET_NOW_PLAYING,
-      payload: tracks[nowPlayingIndex + 1],
-    });
+    skip('next');
 
     await dispatch({ type: PlayerActionTypes.PLAY });
   };
@@ -102,7 +110,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
             {'Be Honest'}
           </Typography>
           <Typography variant='body2' color='lightGrey'>
-            {nowPlaying.title}
+            {nowPlaying?.title}
           </Typography>
         </View>
         <View>
@@ -116,16 +124,14 @@ const MsqPlayer = ({  }: PlayerProps) => {
             <TouchableSvg
               fill={LIGHTGREY_300}
               icon={
-                playerState === PlayerState.IS_PAUSED ||
-                playerState === PlayerState.IS_STOPPED
-                  ? 'playerPlay'
-                  : 'playerPause'
+                isPlaying
+                  ? 'playerPause'
+                  : 'playerPlay'
               }
               onPress={
-                playerState === PlayerState.IS_PAUSED ||
-                playerState === PlayerState.IS_STOPPED
-                  ? play
-                  : pause
+                isPlaying
+                  ? pauseAudio
+                  : playAudio
               }
               interactionFill={BLUE_500}
             />
@@ -134,12 +140,6 @@ const MsqPlayer = ({  }: PlayerProps) => {
               icon='skipNext'
               onPress={skipNext}
               interactionFill={BLUE_500}
-            />
-          </Row>
-          <Row orientation='row' align='center' justify='center'>
-            <Player
-              currentState={playerState}
-              src={internalState.nowPlaying.url}
             />
           </Row>
         </View>

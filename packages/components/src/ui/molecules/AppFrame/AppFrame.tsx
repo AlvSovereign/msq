@@ -26,7 +26,6 @@ interface Action {
 }
 
 export interface PlayerInternalState {
-  nowPlaying: Track;
   playlist: Track[];
   playerReady: boolean;
   playerState: PlayerState;
@@ -50,15 +49,6 @@ export enum PlayerActionTypes {
 const initialState: MsqPlayerState = {
   dispatch: () => null,
   internalState: {
-    nowPlaying: {
-      _id: '',
-      id: '',
-      createdAt: '',
-      filename: '',
-      title: '',
-      length: 0,
-      url: '',
-    },
     playlist: [],
     playerReady: false,
     playerState: PlayerState.IS_STOPPED,
@@ -100,7 +90,6 @@ const reducer = (state: MsqPlayerState, action: Action) => {
       ...state,
       internalState: {
         ...internalState,
-        nowPlaying: payload,
         // playerState: PlayerState.IS_STOPPED,
       },
     },
@@ -108,15 +97,15 @@ const reducer = (state: MsqPlayerState, action: Action) => {
       ...state,
       internalState: {
         ...internalState,
-        playlist: payload,
+        ...payload,
       },
     },
   };
 
-  if (process.env.NODE_ENV === 'development') {
-    console.log('type: ', type);
-    console.log('prev state', state.internalState);
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   console.log('type: ', type);
+  //   console.log('prev state', state.internalState);
+  // }
 
   return actionTypes[type];
 };
@@ -133,9 +122,9 @@ const AppFrame = ({ children }: AppFrameProps) => {
   const styles = _generateStyles(breakpoint, theme);
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('new state', internalState);
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    //   console.log('new state', internalState);
+    // }
   }, [internalState]);
 
   return (
