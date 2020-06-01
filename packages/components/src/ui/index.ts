@@ -5,8 +5,9 @@ import Checkbox from './atom/Checkbox/Checkbox';
 import Column from './atom/Column/Column';
 import CountryFlags from './atom/CountryFlags/CountryFlags';
 import Input from './atom/Input/Input';
-import Page from './organism/Page/Page';
 import MsqPlayer from './organism/MsqPlayer/MsqPlayer';
+import Page from './organism/Page/Page';
+import ProgressBar from './molecules/ProgresBar/ProgressBar';
 import RadioGroup from './atom/RadioGroup/RadioGroup';
 import Row from './atom/Row/Row';
 import SideDrawer from './organism/SideDrawer/SideDrawer';
@@ -23,6 +24,7 @@ export {
   CountryFlags,
   Input,
   Page,
+  ProgressBar,
   MsqPlayer,
   RadioGroup,
   Row,

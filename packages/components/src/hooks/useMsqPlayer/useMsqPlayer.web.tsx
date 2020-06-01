@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Howl, Howler } from 'howler';
 import { Track } from '../../graphql/generated/graphql';
+import useInterval from '../useInterval';
+
 
 // A React Hook extending `useSound` hook to include playlist functionality with custom audio player
 const useMsqPlayer = (
@@ -15,12 +17,11 @@ const useMsqPlayer = (
 ) => {
   const HowlConstructor = React.useRef<HowlStatic | null>(null);
 
-  const [soundPlaylist, setSoundPlaylist] = React.useState<Howl[]>([])
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [nowPlaying, setNowPlaying] = React.useState<Track| {}>({});
-  const [playlistIndex, setPlaylistIndex] = React.useState<number>(0)
-  const [duration, setDuration] = React.useState<number | null>(null);
-  const [sound, setSound] = React.useState<Howl | null>(null);
+  const [soundPlaylist, setSoundPlaylist] = useState<Howl[]>([])
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [nowPlaying, setNowPlaying] = useState<Track| null>(null);
+  const [playlistIndex, setPlaylistIndex] = useState<number>(0)
+  const [duration, setDuration] = useState<number | null>(null);
 
   const handleLoad = function() {
     if (typeof onload === 'function') {
@@ -29,8 +30,17 @@ const useMsqPlayer = (
     }
 
     // @ts-ignore
-    setDuration(this.duration() * 1000);
+    setDuration(this.duration());
   };
+
+    const [seek, setSeek] = useState<any>(0)
+  const seekCallback = () => {
+    const currentTrack = soundPlaylist[playlistIndex];
+    const currentSeek = currentTrack.seek()
+    setSeek(currentSeek)
+  }
+  const delay = 1000;
+      useInterval(seekCallback, delay);
 
   // When the URL changes, we have to do a whole thing where we recreate
   // the Howl instance. This is because Howler doesn't expose a way to
@@ -44,7 +54,7 @@ const useMsqPlayer = (
 
 
     const soundPlaylist = playlist.map((element) => (
-      new HowlConstructor.current({
+      new HowlConstructor.current!({
         src: [element.url],
         volume,
         onload: handleLoad,
@@ -55,21 +65,22 @@ const useMsqPlayer = (
     setSoundPlaylist(soundPlaylist)
     setPlaylistIndex(0)
     setNowPlaying(playlist[playlistIndex])
+
   }, [playlist]);
 
 
   // Whenever volume is changed, change those properties
   // on the sound instance.
   React.useEffect(() => {
-    if (sound) {
-      sound.volume(volume);
+    if (soundPlaylist[playlistIndex]) {
+      soundPlaylist[playlistIndex].volume(volume);
     }
     // A weird bug means that including the `sound` here can trigger an
     // error on unmount, where the state loses track of the sprites??
     // No idea, but anyway I don't need to re-run this if only the `sound`
     // changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [volume]);
+  }, [soundPlaylist[playlistIndex]]);
 
   const skip = (direction: SkipDirection) => {
     if ((direction === 'prev' && playlistIndex - 1 === playlist.length) || (direction === 'next' &&playlistIndex + 1 === playlist.length )) {
@@ -114,14 +125,14 @@ const useMsqPlayer = (
 
   const stop = React.useCallback(
     (id) => {
-      if (!sound) {
+      if (!soundPlaylist[playlistIndex]) {
         return;
       }
-      sound.stop(id);
+      soundPlaylist[playlistIndex].stop(id);
       setIsPlaying(false);
-      setNowPlaying({})
+      setNowPlaying(null)
     },
-    [sound]
+    [soundPlaylist[playlistIndex]]
   );
 
   const pause = React.useCallback(
@@ -135,15 +146,14 @@ const useMsqPlayer = (
     [soundPlaylist[playlistIndex]]
   );
 
-  const prev = () => {
 
-  }
+
 
   const returnedValue: ReturnedValue = [
     play,
     {
-      sound,
       stop,
+      seek,
       pause,
       isPlaying,
       skip,
@@ -156,8 +166,6 @@ const useMsqPlayer = (
 };
 
 export default useMsqPlayer;
-
-interface useMsqPlayerProps {}
 
 export interface HookOptions {
   volume?: number;
@@ -179,12 +187,12 @@ export interface PlayOptions {
 export type PlayFunction = (options?: PlayOptions) => void;
 
 export interface ExposedData {
-  sound: Howl | null;
+  seek: number
   stop: (id?: string) => void;
   skip: (direction: SkipDirection) => void;
   pause: (id?: string) => void;
   isPlaying: boolean;
-  nowPlaying: Track | {};
+  nowPlaying: Track | null;
   duration: number | null;
 }
 

@@ -4,7 +4,7 @@ import {
   MsqThemeContext,
   useResponsive,
 } from 'components/src/theme/ThemeContext';
-import { Row, TouchableSvg, Typography } from '../..';
+import {ProgressBar,  Row, TouchableSvg, Typography } from '../..';
 import { _generateStyles } from './_generateStyles';
 import { _renderIcon } from '../../../assets/icons';
 import Player from './Player.web';
@@ -14,6 +14,7 @@ import {
   PlayerState,
 } from '../../molecules/AppFrame/AppFrame';
 import useMsqPlayer from '../../../hooks/useMsqPlayer/useMsqPlayer.web';
+import { IconKey } from '../../../assets/icons/_renderIcon';
 
 const coverImage = require('../../../assets/images/cover-bg-2.png');
 const tracks = [
@@ -59,7 +60,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
   }, []);
 
   const { playlist, playerState } = internalState;
-  const [play, { isPlaying, skip, nowPlaying, pause }] = useMsqPlayer(playlist);
+  const [play, { duration, isPlaying,seek, skip, nowPlaying, pause }] = useMsqPlayer(playlist);
 
   // const nowPlayingIndex = playlist.findIndex(
   //   (item) => item._id === nowPlaying._id
@@ -97,6 +98,8 @@ const MsqPlayer = ({  }: PlayerProps) => {
     await dispatch({ type: PlayerActionTypes.PLAY });
   };
 
+  const icons: IconKey[] = ['shuffle', 'repeat', 'volumeUp', 'playlistAdd'];
+
   return (
     <Row orientation='row' style={styles.playerContainer}>
       <Image source={coverImage} style={styles.coverImage} />
@@ -113,7 +116,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
             {nowPlaying?.title}
           </Typography>
         </View>
-        <View>
+        <View style={styles.controlsContainer}>
           <Row orientation='row' align='center' justify='space-between'>
             <TouchableSvg
               fill={LIGHTGREY_300}
@@ -142,32 +145,21 @@ const MsqPlayer = ({  }: PlayerProps) => {
               interactionFill={BLUE_500}
             />
           </Row>
+          <Row orientation='row' align='center' justify='space-between'>
+            <ProgressBar duration={duration} seek={seek} />
+          </Row>
         </View>
         <Row orientation='row'>
-          <TouchableSvg
-            fill={LIGHTGREY_300}
-            icon='shuffle'
-            interactionFill={BLUE_500}
-            onPress={() => {}}
-          />
-          <TouchableSvg
-            fill={LIGHTGREY_300}
-            icon='repeat'
-            interactionFill={BLUE_500}
-            onPress={() => {}}
-          />
-          <TouchableSvg
-            fill={LIGHTGREY_300}
-            icon='volumeUp'
-            interactionFill={BLUE_500}
-            onPress={() => {}}
-          />
-          <TouchableSvg
-            fill={LIGHTGREY_300}
-            icon='playlistAdd'
-            interactionFill={BLUE_500}
-            onPress={() => {}}
-          />
+          {icons.map((icon: IconKey, i: number) => (
+            <TouchableSvg
+              key={i}
+              fill={LIGHTGREY_300}
+              icon={icon}
+              interactionFill={BLUE_500}
+              onPress={() => { }}
+              style={{marginRight: i === icons.length ? 0 : 12 }}
+            />
+          ))}
         </Row>
       </Row>
     </Row>

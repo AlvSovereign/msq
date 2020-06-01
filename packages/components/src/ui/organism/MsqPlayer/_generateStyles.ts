@@ -12,6 +12,10 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
       flex: 1,
       justifyContent: 'space-between',
     },
+    controlsContainer: {
+      flex: 1,
+      maxWidth: 400,
+    },
     coverImage: { height: '100%', width: 80 },
     icon: { flex: 1 },
     playerContainer: {
@@ -24,7 +28,9 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
       zIndex: 1000,
       ...largeElevation,
     },
-    trackDetails: {},
+    trackDetails: {
+      maxWidth: 300,
+    },
   });
 };
 
