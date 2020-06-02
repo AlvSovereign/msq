@@ -1,25 +1,31 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Animated } from 'react-native';
 import { ITheme } from '../../../theme/theme';
 
-const _generateStyles = (tickerWidth: string, theme: ITheme) => {
+const _generateStyles = (
+  tickerWidth: Animated.AnimatedInterpolation,
+  theme: ITheme
+) => {
   const { BLUE_500, LIGHTGREY_100, WHITE } = theme.color;
+  const { LINEAR_SM } = theme.spacing;
 
   return StyleSheet.create({
     point: {
-      height: 6,
-      width: 6,
+      height: 12,
+      width: 12,
       borderRadius: 9990,
       backgroundColor: BLUE_500,
-      borderWidth: 2,
+      borderWidth: 3,
       borderColor: WHITE,
       position: 'absolute',
-      right: 0,
+      right: -4,
+      top: -4,
     },
     progressBar: {
       height: 4,
       width: '100%',
       backgroundColor: LIGHTGREY_100,
       borderRadius: 9999,
+      marginHorizontal: LINEAR_SM,
     },
     progressContainer: {
       height: 6,

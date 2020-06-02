@@ -9,6 +9,7 @@
     "@react-native-community/hooks": "^2.4.8",
     "@types/howler": "^2.1.2",
     "@types/react-native-fbsdk": "^1.1.0",
+    "date-fns": "^2.14.0",
     "firebase": "^7.14.1",
     "graphql-tag": "^2.10.3",
     "howler": "^2.2.0",

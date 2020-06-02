@@ -49,5 +49,5 @@ interface TouchableSvgProps {
   interactionFill: string;
   isDisabled?: boolean;
   onPress: () => void;
-  style?: string;
+  style?: any;
 }

@@ -60,7 +60,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
   }, []);
 
   const { playlist, playerState } = internalState;
-  const [play, { duration, isPlaying,seek, skip, nowPlaying, pause }] = useMsqPlayer(playlist);
+  const [play, { duration, isPlaying, seek, skip, nowPlaying, pause }] = useMsqPlayer(playlist);
 
   // const nowPlayingIndex = playlist.findIndex(
   //   (item) => item._id === nowPlaying._id
@@ -117,7 +117,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
           </Typography>
         </View>
         <View style={styles.controlsContainer}>
-          <Row orientation='row' align='center' justify='space-between'>
+          <Row orientation='row' align='center' justify='center' gutterBottom='xs'>
             <TouchableSvg
               fill={LIGHTGREY_300}
               icon='skipPrevious'
@@ -125,7 +125,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
               interactionFill={BLUE_500}
             />
             <TouchableSvg
-              fill={LIGHTGREY_300}
+              fill={isPlaying ? BLUE_500 : LIGHTGREY_300}
               icon={
                 isPlaying
                   ? 'playerPause'
@@ -137,6 +137,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
                   : playAudio
               }
               interactionFill={BLUE_500}
+              style={styles.playIcon}
             />
             <TouchableSvg
               fill={LIGHTGREY_300}
@@ -157,7 +158,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
               icon={icon}
               interactionFill={BLUE_500}
               onPress={() => { }}
-              style={{marginRight: i === icons.length ? 0 : 12 }}
+              style={i !== icons.length ? styles.secondaryControlIcon: null}
             />
           ))}
         </Row>

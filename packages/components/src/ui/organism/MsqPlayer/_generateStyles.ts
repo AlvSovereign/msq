@@ -13,8 +13,7 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
       justifyContent: 'space-between',
     },
     controlsContainer: {
-      flex: 1,
-      maxWidth: 400,
+      width: '50%',
     },
     coverImage: { height: '100%', width: 80 },
     icon: { flex: 1 },
@@ -27,6 +26,12 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
       width: '100%',
       zIndex: 1000,
       ...largeElevation,
+    },
+    playIcon: {
+      marginHorizontal: LINEAR_SM,
+    },
+    secondaryControlIcon: {
+      marginRight: LINEAR_SM,
     },
     trackDetails: {
       maxWidth: 300,

@@ -33,14 +33,14 @@ const useMsqPlayer = (
     setDuration(this.duration());
   };
 
-    const [seek, setSeek] = useState<any>(0)
+  const [seek, setSeek] = useState<any>(0)
   const seekCallback = () => {
     const currentTrack = soundPlaylist[playlistIndex];
     const currentSeek = currentTrack.seek()
     setSeek(currentSeek)
   }
   const delay = 1000;
-      useInterval(seekCallback, delay);
+  useInterval(seekCallback, delay);
 
   // When the URL changes, we have to do a whole thing where we recreate
   // the Howl instance. This is because Howler doesn't expose a way to
@@ -145,9 +145,6 @@ const useMsqPlayer = (
     },
     [soundPlaylist[playlistIndex]]
   );
-
-
-
 
   const returnedValue: ReturnedValue = [
     play,
