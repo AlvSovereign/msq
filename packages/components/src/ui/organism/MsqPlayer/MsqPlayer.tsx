@@ -146,11 +146,9 @@ const MsqPlayer = ({  }: PlayerProps) => {
               interactionFill={BLUE_500}
             />
           </Row>
-          <Row orientation='row' align='center' justify='space-between'>
-            <ProgressBar duration={duration} seek={seek} />
-          </Row>
+          <ProgressBar duration={duration} seek={seek} />
         </View>
-        <Row orientation='row'>
+        <Row orientation='row' justify='flex-end' style={styles.secondaryControlsContainer}>
           {icons.map((icon: IconKey, i: number) => (
             <TouchableSvg
               key={i}

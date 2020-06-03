@@ -13,7 +13,7 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
       justifyContent: 'space-between',
     },
     controlsContainer: {
-      width: '50%',
+      flex: 2,
     },
     coverImage: { height: '100%', width: 80 },
     icon: { flex: 1 },
@@ -30,11 +30,14 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
     playIcon: {
       marginHorizontal: LINEAR_SM,
     },
+    secondaryControlsContainer: {
+      flex: 1,
+    },
     secondaryControlIcon: {
       marginRight: LINEAR_SM,
     },
     trackDetails: {
-      maxWidth: 300,
+      flex: 1,
     },
   });
 };

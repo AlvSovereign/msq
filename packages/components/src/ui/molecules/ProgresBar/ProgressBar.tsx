@@ -22,21 +22,30 @@ const ProgressBar = ({ duration, seek }: ProgressBarProps) => {
   });
 
   const theme = useContext(MsqThemeContext);
-  const { point, progressBar, progressContainer, ticker } = _generateStyles(
-    tickerWidth,
-    theme
-  );
+  const {
+    durationDisplay,
+    point,
+    progressBar,
+    progressContainer,
+    ticker,
+  } = _generateStyles(tickerWidth, theme);
   const secsToDuration: any = (seconds: number) => {
-    const valueDisplay = (value: number) => (value < 10 ? `0${value}` : value);
-    var hoursDisplay = valueDisplay(Math.floor(seconds / 3600));
-    var minsDisplay = valueDisplay(Math.floor((seconds % 3600) / 60));
-    var secsDisplay = valueDisplay(Math.floor((seconds % 3600) % 60));
-    const returnedValue =
-      hoursDisplay === '00'
-        ? `${minsDisplay}:${secsDisplay}`
-        : `${hoursDisplay}:${minsDisplay}:${secsDisplay}`;
+    if (typeof seconds === 'number') {
+      console.log('seconds: ', seconds);
+      const valueDisplay = (value: number) =>
+        value < 10 ? `0${value}` : value;
+      var hoursDisplay = valueDisplay(Math.floor(seconds / 3600));
+      var minsDisplay = valueDisplay(Math.floor((seconds % 3600) / 60));
+      var secsDisplay = valueDisplay(Math.floor((seconds % 3600) % 60));
+      const returnedValue =
+        hoursDisplay === '00'
+          ? `${minsDisplay}:${secsDisplay}`
+          : `${hoursDisplay}:${minsDisplay}:${secsDisplay}`;
 
-    return seconds ? returnedValue : '00:00';
+      return seconds ? returnedValue : '00:00';
+    } else {
+      return '00:00';
+    }
   };
 
   const endTime = useCallback(secsToDuration(duration || 0), [duration]);
@@ -45,7 +54,11 @@ const ProgressBar = ({ duration, seek }: ProgressBarProps) => {
   return (
     <Row orientation='row' align='center' style={progressContainer}>
       {currentTime && (
-        <Typography variant='body2' color='lightGrey'>
+        <Typography
+          textAlign='right'
+          variant='body2'
+          color='lightGrey'
+          style={durationDisplay}>
           {currentTime}
         </Typography>
       )}
@@ -55,7 +68,7 @@ const ProgressBar = ({ duration, seek }: ProgressBarProps) => {
         </Animated.View>
       </View>
       {endTime && (
-        <Typography variant='body2' color='lightGrey'>
+        <Typography variant='body2' color='lightGrey' style={durationDisplay}>
           {endTime}
         </Typography>
       )}
