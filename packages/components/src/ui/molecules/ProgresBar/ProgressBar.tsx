@@ -18,8 +18,8 @@ import Typography from '../../atom/Typography/Typography';
 import Row from '../../atom/Row/Row';
 import { secsToDuration } from '../../../utils';
 
-const ProgressBar = ({ duration, seek, seekTo }: ProgressBarProps) => {
-  const progress: number = (seek / duration!) * 100 || 0;
+const ProgressBar = ({ duration, seekTime, seekTo }: ProgressBarProps) => {
+  const progress: number = (seekTime / duration!) * 100 || 0;
   const animation = useRef(new Animated.Value(0));
   useEffect(() => {
     Animated.timing(animation.current, {
@@ -44,7 +44,7 @@ const ProgressBar = ({ duration, seek, seekTo }: ProgressBarProps) => {
   } = _generateStyles(tickerWidth, theme);
 
   const endTime = useCallback(secsToDuration(duration || 0), [duration]);
-  const currentTime = useCallback(secsToDuration(seek || 0), [seek]);
+  const currentTime = useCallback(secsToDuration(seekTime || 0), [seekTime]);
 
   const [seekBarWidth, setSeekBarWidth] = useState<number>(0);
   const handleOnLayout = (event: LayoutChangeEvent) => {
@@ -86,6 +86,6 @@ export default ProgressBar;
 
 interface ProgressBarProps {
   duration: number | null;
-  seek: number;
+  seekTime: number;
   seekTo: (time: number) => void;
 }

@@ -21,7 +21,7 @@ const tracks = [
     _id: '1',
     id: '',
     createdAt: '',
-    filename: '',
+    filename: 'Prubulema Tarraxa - DJ NiceLife.mp3',
     title: 'Prubulema Tarraxa',
     duration: 183.7714375,
     url: require('../../../assets/audio/Prubulema Tarraxa - DJ NiceLife.mp3'),
@@ -30,7 +30,7 @@ const tracks = [
     _id: '2',
     id: '',
     createdAt: '',
-    filename: '',
+    filename: 'YALLA BINA.mp3',
     title: 'Yalla Bina',
     duration: 187.062875,
     url: require('../../../assets/audio/YALLA BINA.mp3'),
@@ -44,7 +44,6 @@ const MsqPlayer = ({  }: PlayerProps) => {
   const { BLUE_500, LIGHTGREY_300 } = theme.color;
   const { dispatch, internalState } = useContext(MsqPlayerContext);
 
-
   useEffect(() => {
     dispatch({
       type: PlayerActionTypes.SET_PLAYLIST,
@@ -56,7 +55,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
   }, []);
 
   const { playlist, playerState } = internalState;
-  const [play, { isPlaying, seek, seekTo, skip, nowPlaying, pause }] = useMsqPlayer(playlist);
+  const [currentTrack, { isPlaying, play, seekTime, seekTo, skip, pause }] = useMsqPlayer(playlist);
 
   const playAudio = () => {
     dispatch({ type: PlayerActionTypes.PLAY });
@@ -105,7 +104,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
             {'Be Honest'}
           </Typography>
           <Typography variant='body2' color='lightGrey'>
-            {nowPlaying?.title}
+            {currentTrack?.title}
           </Typography>
         </View>
         <View style={styles.controlsContainer}>
@@ -139,8 +138,8 @@ const MsqPlayer = ({  }: PlayerProps) => {
             />
           </Row>
           {
-            nowPlaying &&
-          <ProgressBar duration={nowPlaying.duration} seek={seek} seekTo={seekTo}/>
+            currentTrack &&
+          <ProgressBar duration={currentTrack.duration} seekTime={seekTime} seekTo={seekTo}/>
           }
         </View>
         <Row orientation='row' justify='flex-end' style={styles.secondaryControlsContainer}>
