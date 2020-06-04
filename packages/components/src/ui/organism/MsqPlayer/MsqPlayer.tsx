@@ -7,7 +7,6 @@ import {
 import {ProgressBar,  Row, TouchableSvg, Typography } from '../..';
 import { _generateStyles } from './_generateStyles';
 import { _renderIcon } from '../../../assets/icons';
-import Player from './Player.web';
 import {
   MsqPlayerContext,
   PlayerActionTypes,
@@ -24,7 +23,7 @@ const tracks = [
     createdAt: '',
     filename: '',
     title: 'Prubulema Tarraxa',
-    length: '',
+    duration: 183.7714375,
     url: require('../../../assets/audio/Prubulema Tarraxa - DJ NiceLife.mp3'),
   },
   {
@@ -33,21 +32,18 @@ const tracks = [
     createdAt: '',
     filename: '',
     title: 'Yalla Bina',
-    length: '',
+    duration: 187.062875,
     url: require('../../../assets/audio/YALLA BINA.mp3'),
   },
 ];
-// let counter = 0;
 
 const MsqPlayer = ({  }: PlayerProps) => {
-  // counter += 1;
   const breakpoint = useResponsive();
   const theme = useContext(MsqThemeContext);
   const styles = _generateStyles(breakpoint, theme);
   const { BLUE_500, LIGHTGREY_300 } = theme.color;
-
   const { dispatch, internalState } = useContext(MsqPlayerContext);
-  // console.log('counter: ', counter);
+
 
   useEffect(() => {
     dispatch({
@@ -60,11 +56,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
   }, []);
 
   const { playlist, playerState } = internalState;
-  const [play, { duration, isPlaying, seek, skip, nowPlaying, pause }] = useMsqPlayer(playlist);
-
-  // const nowPlayingIndex = playlist.findIndex(
-  //   (item) => item._id === nowPlaying._id
-  // );
+  const [play, { isPlaying, seek, seekTo, skip, nowPlaying, pause }] = useMsqPlayer(playlist);
 
   const playAudio = () => {
     dispatch({ type: PlayerActionTypes.PLAY });
@@ -146,7 +138,10 @@ const MsqPlayer = ({  }: PlayerProps) => {
               interactionFill={BLUE_500}
             />
           </Row>
-          <ProgressBar duration={duration} seek={seek} />
+          {
+            nowPlaying &&
+          <ProgressBar duration={nowPlaying.duration} seek={seek} seekTo={seekTo}/>
+          }
         </View>
         <Row orientation='row' justify='flex-end' style={styles.secondaryControlsContainer}>
           {icons.map((icon: IconKey, i: number) => (

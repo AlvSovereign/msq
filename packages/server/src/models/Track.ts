@@ -47,7 +47,7 @@ const TrackSchema: Schema = new Schema(
       type: Number,
       default: 0,
     },
-    length: {
+    duration: {
       type: Number,
       required: true,
     },

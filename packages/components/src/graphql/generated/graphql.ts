@@ -119,7 +119,7 @@ export type Track = {
   coverImage?: Maybe<Scalars["String"]>;
   filename: Scalars["String"];
   likes?: Maybe<Scalars["Int"]>;
-  length: Scalars["Int"];
+  duration: Scalars["Int"];
   label?: Maybe<Scalars["String"]>;
   plays?: Maybe<Scalars["Int"]>;
   genre?: Maybe<Array<Maybe<DanceGenre>>>;
@@ -723,7 +723,7 @@ export type TrackResolvers<
   >;
   filename?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   likes?: Resolver<Maybe<ResolversTypes["Int"]>, ParentType, ContextType>;
-  length?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
+  duration?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   label?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
   plays?: Resolver<Maybe<ResolversTypes["Int"]>, ParentType, ContextType>;
   genre?: Resolver<

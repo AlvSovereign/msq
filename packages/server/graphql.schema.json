@@ -997,7 +997,7 @@
             "deprecationReason": null
           },
           {
-            "name": "length",
+            "name": "duration",
             "description": null,
             "args": [],
             "type": {

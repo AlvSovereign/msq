@@ -102,7 +102,7 @@ const typeDefs = gql`
     coverImage: String
     filename: String!
     likes: Int
-    length: Int!
+    duration: Int!
     label: String
     plays: Int
     genre: [DanceGenre]

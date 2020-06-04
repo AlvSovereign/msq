@@ -1,11 +1,24 @@
-import React, { useContext, useCallback, useEffect, useRef } from 'react';
-import { View, Animated, StyleSheet } from 'react-native';
+import React, {
+  useContext,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import {
+  View,
+  Animated,
+  TouchableWithoutFeedback,
+  GestureResponderEvent,
+  LayoutChangeEvent,
+} from 'react-native';
 import { _generateStyles } from './_generateStyles';
 import { MsqThemeContext } from '../../../theme/ThemeContext';
 import Typography from '../../atom/Typography/Typography';
 import Row from '../../atom/Row/Row';
+import { secsToDuration } from '../../../utils';
 
-const ProgressBar = ({ duration, seek }: ProgressBarProps) => {
+const ProgressBar = ({ duration, seek, seekTo }: ProgressBarProps) => {
   const progress: number = (seek / duration!) * 100 || 0;
   const animation = useRef(new Animated.Value(0));
   useEffect(() => {
@@ -29,27 +42,18 @@ const ProgressBar = ({ duration, seek }: ProgressBarProps) => {
     progressContainer,
     ticker,
   } = _generateStyles(tickerWidth, theme);
-  const secsToDuration: any = (seconds: number) => {
-    if (typeof seconds === 'number') {
-      console.log('seconds: ', seconds);
-      const valueDisplay = (value: number) =>
-        value < 10 ? `0${value}` : value;
-      var hoursDisplay = valueDisplay(Math.floor(seconds / 3600));
-      var minsDisplay = valueDisplay(Math.floor((seconds % 3600) / 60));
-      var secsDisplay = valueDisplay(Math.floor((seconds % 3600) % 60));
-      const returnedValue =
-        hoursDisplay === '00'
-          ? `${minsDisplay}:${secsDisplay}`
-          : `${hoursDisplay}:${minsDisplay}:${secsDisplay}`;
-
-      return seconds ? returnedValue : '00:00';
-    } else {
-      return '00:00';
-    }
-  };
 
   const endTime = useCallback(secsToDuration(duration || 0), [duration]);
   const currentTime = useCallback(secsToDuration(seek || 0), [seek]);
+
+  const [seekBarWidth, setSeekBarWidth] = useState<number>(0);
+  const handleOnLayout = (event: LayoutChangeEvent) => {
+    const { width } = event.nativeEvent.layout;
+    setSeekBarWidth(width);
+  };
+  const handleOnPress = (event: GestureResponderEvent) => {
+    seekTo(event.nativeEvent.locationX / seekBarWidth);
+  };
 
   return (
     <Row orientation='row' align='center' style={progressContainer}>
@@ -62,11 +66,13 @@ const ProgressBar = ({ duration, seek }: ProgressBarProps) => {
           {currentTime}
         </Typography>
       )}
-      <View style={progressBar}>
-        <Animated.View style={ticker}>
-          <View style={point} />
-        </Animated.View>
-      </View>
+      <TouchableWithoutFeedback onPress={handleOnPress}>
+        <View onLayout={handleOnLayout} style={progressBar}>
+          <Animated.View style={ticker}>
+            <View style={point} />
+          </Animated.View>
+        </View>
+      </TouchableWithoutFeedback>
       {endTime && (
         <Typography variant='body2' color='lightGrey' style={durationDisplay}>
           {endTime}
@@ -81,4 +87,5 @@ export default ProgressBar;
 interface ProgressBarProps {
   duration: number | null;
   seek: number;
+  seekTo: (time: number) => void;
 }

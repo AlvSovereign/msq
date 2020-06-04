@@ -3,7 +3,6 @@ import { Howl, Howler } from 'howler';
 import { Track } from '../../graphql/generated/graphql';
 import useInterval from '../useInterval';
 
-
 // A React Hook extending `useSound` hook to include playlist functionality with custom audio player
 const useMsqPlayer = (
   playlist: Track[],
@@ -17,10 +16,10 @@ const useMsqPlayer = (
 ) => {
   const HowlConstructor = React.useRef<HowlStatic | null>(null);
 
-  const [soundPlaylist, setSoundPlaylist] = useState<Howl[]>([])
+  const [soundPlaylist, setSoundPlaylist] = useState<Howl[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [nowPlaying, setNowPlaying] = useState<Track| null>(null);
-  const [playlistIndex, setPlaylistIndex] = useState<number>(0)
+  const [nowPlaying, setNowPlaying] = useState<Track | null>(null);
+  const [playlistIndex, setPlaylistIndex] = useState<number>(0);
   const [duration, setDuration] = useState<number | null>(null);
 
   const handleLoad = function() {
@@ -33,13 +32,13 @@ const useMsqPlayer = (
     setDuration(this.duration());
   };
 
-  const [seek, setSeek] = useState<any>(0)
+  const [seek, setSeek] = useState<any>(0);
   const seekCallback = () => {
     const currentTrack = soundPlaylist[playlistIndex];
-    const currentSeek = currentTrack.seek()
-    setSeek(currentSeek)
-  }
-  const delay = 1000;
+    const currentSeek = currentTrack.seek();
+    setSeek(currentSeek);
+  };
+  const delay = 200;
   useInterval(seekCallback, delay);
 
   // When the URL changes, we have to do a whole thing where we recreate
@@ -50,24 +49,22 @@ const useMsqPlayer = (
     // was defined DURING the import and setup of HowlerConstructor. Opted to import
     // the normal way 'not importing `howler` ' and just having the `new HowlerConstructor`
     // new up whenever url changes
-      HowlConstructor.current = Howl;
+    HowlConstructor.current = Howl;
 
+    const soundPlaylist = playlist.map(
+      (element) =>
+        new HowlConstructor.current!({
+          src: [element.url],
+          volume,
+          onload: handleLoad,
+          ...delegated,
+        })
+    );
 
-    const soundPlaylist = playlist.map((element) => (
-      new HowlConstructor.current!({
-        src: [element.url],
-        volume,
-        onload: handleLoad,
-        ...delegated,
-      })
-    ));
-
-    setSoundPlaylist(soundPlaylist)
-    setPlaylistIndex(0)
-    setNowPlaying(playlist[playlistIndex])
-
+    setSoundPlaylist(soundPlaylist);
+    setPlaylistIndex(0);
+    setNowPlaying(playlist[playlistIndex]);
   }, [playlist]);
-
 
   // Whenever volume is changed, change those properties
   // on the sound instance.
@@ -83,22 +80,36 @@ const useMsqPlayer = (
   }, [soundPlaylist[playlistIndex]]);
 
   const skip = (direction: SkipDirection) => {
-    if ((direction === 'prev' && playlistIndex - 1 === playlist.length) || (direction === 'next' &&playlistIndex + 1 === playlist.length )) {
+    if (
+      (direction === 'prev' && playlistIndex - 1 === -1) ||
+      (direction === 'next' && playlistIndex + 1 === playlist.length)
+    ) {
       return;
     }
-    soundPlaylist[playlistIndex]?.stop();
+    soundPlaylist[playlistIndex].stop();
 
     if (direction === 'prev') {
-      setPlaylistIndex(playlistIndex => playlistIndex - 1)
+      if (seek < 3) {
+        // if seek is less that 3 secs, then skip to previous track
+        setPlaylistIndex((playlistIndex) => playlistIndex - 1);
+      } else {
+        // else set `seek` to `0` and replay the track
+        setSeek(0);
+      }
     } else {
-      setPlaylistIndex(playlistIndex => playlistIndex + 1)
+      setPlaylistIndex((playlistIndex) => playlistIndex + 1);
     }
-  }
+  };
 
   React.useEffect(() => {
-    setNowPlaying(playlist[playlistIndex])
-    play()
-  }, [playlistIndex])
+    setNowPlaying(playlist[playlistIndex]);
+    play();
+  }, [playlistIndex]);
+
+  const seekTo = (percentage: number) => {
+    // use horizontal position as percentage to seek to that point in the track
+    soundPlaylist[playlistIndex].seek(duration! * percentage);
+  };
 
   const play: PlayFunction = React.useCallback(
     (options?: PlayOptions) => {
@@ -106,7 +117,10 @@ const useMsqPlayer = (
         options = {};
       }
 
-      if (!soundPlaylist[playlistIndex] || (!soundEnabled && !options.forceSoundEnabled)) {
+      if (
+        !soundPlaylist[playlistIndex] ||
+        (!soundEnabled && !options.forceSoundEnabled)
+      ) {
         return;
       }
 
@@ -130,7 +144,7 @@ const useMsqPlayer = (
       }
       soundPlaylist[playlistIndex].stop(id);
       setIsPlaying(false);
-      setNowPlaying(null)
+      setNowPlaying(null);
     },
     [soundPlaylist[playlistIndex]]
   );
@@ -151,11 +165,11 @@ const useMsqPlayer = (
     {
       stop,
       seek,
+      seekTo,
       pause,
       isPlaying,
       skip,
       nowPlaying,
-      duration,
     },
   ];
 
@@ -184,15 +198,15 @@ export interface PlayOptions {
 export type PlayFunction = (options?: PlayOptions) => void;
 
 export interface ExposedData {
-  seek: number
+  seek: number;
+  seekTo: (percentage: number) => void;
   stop: (id?: string) => void;
   skip: (direction: SkipDirection) => void;
   pause: (id?: string) => void;
   isPlaying: boolean;
   nowPlaying: Track | null;
-  duration: number | null;
 }
 
-export type SkipDirection = 'next' | 'prev'
+export type SkipDirection = 'next' | 'prev';
 
 export type ReturnedValue = [PlayFunction, ExposedData];
