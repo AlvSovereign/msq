@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { TBreakpoint } from '../../../theme/hooks/useResponsive';
 import { ITheme } from '../../../theme/theme';
 import { largeElevation } from '../../utils/commonStyles';
@@ -31,7 +31,7 @@ const _generateStyles = (breakpoint: TBreakpoint, theme: ITheme) => {
       marginHorizontal: LINEAR_SM,
     },
     secondaryControlsContainer: {
-      flex: 1,
+      flex: breakpoint !== 'sm' ? 1 : undefined,
     },
     secondaryControlIcon: {
       marginRight: LINEAR_SM,

@@ -8,13 +8,14 @@ import useInterval from '../useInterval';
 // hook will return what is playing (i.e. currentTrack from Playlist) and controls/state of the player.
 const useMsqPlayer = (
   playlist: Track[],
-  { volume = 1, onload, ...delegated }: HookOptions = {}
+  { onload, ...delegated }: HookOptions = {}
 ) => {
   const HowlConstructor = React.useRef<HowlStatic | null>(null);
 
   // Set up playlist
   const [soundPlaylist, setSoundPlaylist] = useState<TrackWithSound[]>([]);
   const [playlistIndex, setPlaylistIndex] = useState<number>(0);
+  const [volume, setVolume] = useState<any>(1);
 
   // let currentTrack = soundPlaylist[playlistIndex];
   // console.log('currentTrack: ', currentTrack);
@@ -93,12 +94,12 @@ const useMsqPlayer = (
         } else {
           // ELSE restart the track
           soundPlaylist[playlistIndex].sound.seek(0);
-          play();
+          isPlaying && play();
         }
       } else {
         // ELSE restart the track
         soundPlaylist[playlistIndex].sound.seek(0);
-        play();
+        isPlaying && play();
       }
     } else {
       // skip to next track
@@ -109,7 +110,7 @@ const useMsqPlayer = (
   // we need to make sure that the sound is played AFTER playlistIndex has changed.
   // The easiest way to guarentee this is to set up this useEffect
   useEffect(() => {
-    play();
+    isPlaying && play();
   }, [playlistIndex]);
 
   // Display Seek Position
@@ -130,18 +131,26 @@ const useMsqPlayer = (
     );
   };
 
-  // Whenever volume is changed, change those properties
-  // on the sound instance.
-  React.useEffect(() => {
-    if (soundPlaylist[playlistIndex]) {
-      soundPlaylist[playlistIndex].sound.volume(volume);
-    }
-    // A weird bug means that including the `sound` here can trigger an
-    // error on unmount, where the state loses track of the sprites??
-    // No idea, but anyway I don't need to re-run this if only the `sound`
-    // changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [soundPlaylist[playlistIndex]]);
+  const volumeTo = (percentage: number) => {
+    console.log('percentage: ', percentage);
+    // use horizontal position as percentage to seek to that point in the track
+    soundPlaylist[playlistIndex].sound.volume(percentage);
+    setVolume(percentage);
+  };
+
+  // // Whenever volume is changed, change those properties
+  // // on the sound instance.
+  // React.useEffect(() => {
+  //   if (soundPlaylist[playlistIndex]) {
+  //     soundPlaylist[playlistIndex].sound.volume(volume);
+  //   }
+
+  //   // A weird bug means that including the `sound` here can trigger an
+  //   // error on unmount, where the state loses track of the sprites??
+  //   // No idea, but anyway I don't need to re-run this if only the `sound`
+  //   // changes.
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [volume]);
 
   const stop = React.useCallback(
     (id) => {
@@ -155,7 +164,11 @@ const useMsqPlayer = (
   );
 
   const returnedValue: ReturnedValue = [
-    soundPlaylist[playlistIndex], // currentTrack
+    soundPlaylist[playlistIndex] || {
+      duration: null,
+      performedBy: null,
+      title: null,
+    }, // currentTrack
     {
       isPlaying,
       pause,
@@ -164,6 +177,8 @@ const useMsqPlayer = (
       seekTo,
       skip,
       stop,
+      volume,
+      volumeTo,
     }, // playlist controls which are methods wrapping Howler.js
   ];
 
@@ -203,6 +218,8 @@ export interface ExposedData {
   seekTo: (percentage: number) => void;
   stop: (id?: string) => void;
   skip: (direction: SkipDirection) => void;
+  volume: number;
+  volumeTo: (percentage: number) => void;
 }
 
 export type SkipDirection = 'next' | 'prev';

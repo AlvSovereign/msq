@@ -28,12 +28,15 @@ const Row = ({
   );
 
   const clonedElement = () => {
-    return React.Children.map(children, (c: any, i: number) =>
-      React.cloneElement(c, {
-        key: i,
-        spacing: spacing,
-        ...c.props,
-      })
+    return React.Children.map(
+      children,
+      (c: any, i: number) =>
+        c &&
+        React.cloneElement(c, {
+          key: i,
+          spacing: spacing,
+          ...c.props,
+        })
     );
   };
 

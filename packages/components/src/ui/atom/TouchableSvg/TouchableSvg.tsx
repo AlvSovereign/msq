@@ -13,6 +13,8 @@ const TouchableSvg = ({
   interactionFill,
   isDisabled,
   onPress,
+  onPressIn,
+  onPressOut,
   style,
 }: TouchableSvgProps) => {
   const ref = useRef(null);
@@ -22,14 +24,24 @@ const TouchableSvg = ({
   const animation = _generateAnimations();
   const { LIGHTGREY_200 } = theme.color;
 
+  const handlePressIn = () => {
+    animation.handlePressIn;
+    onPressIn && onPressIn();
+  };
+
+  const handlePressOut = () => {
+    animation.handlePressOut;
+    onPressOut && onPressOut();
+  };
+
   return (
     <TouchableOpacity
       ref={ref}
       activeOpacity={0.7}
       disabled={isDisabled}
       onPress={onPress}
-      onPressIn={animation.handlePressIn}
-      onPressOut={animation.handlePressOut}>
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}>
       <Animated.View
         style={[{ transform: [{ scale: animation.scaleValue }] }, style]}>
         {_renderIcon({
@@ -48,6 +60,8 @@ interface TouchableSvgProps {
   icon: IconKey;
   interactionFill: string;
   isDisabled?: boolean;
-  onPress: () => void;
+  onPress?: () => void;
+  onPressIn?: () => void;
+  onPressOut?: () => void;
   style?: any;
 }

@@ -1,10 +1,16 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
-import { Image, View } from 'react-native';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
+import {
+  Image,
+  View,
+  TouchableWithoutFeedback,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 import {
   MsqThemeContext,
   useResponsive,
 } from 'components/src/theme/ThemeContext';
-import {ProgressBar,  Row, TouchableSvg, Typography } from '../..';
+import { ProgressBar, Row, TouchableSvg, Typography } from '../..';
 import { _generateStyles } from './_generateStyles';
 import { _renderIcon } from '../../../assets/icons';
 import {
@@ -14,6 +20,7 @@ import {
 } from '../../molecules/AppFrame/AppFrame';
 import useMsqPlayer from '../../../hooks/useMsqPlayer/useMsqPlayer.web';
 import { IconKey } from '../../../assets/icons/_renderIcon';
+import { VolumeControl } from './VolumeControls/VolumeControl';
 
 const coverImage = require('../../../assets/images/cover-bg-2.png');
 const tracks = [
@@ -21,6 +28,7 @@ const tracks = [
     _id: '1',
     id: '',
     createdAt: '',
+    performedBy: 'DJ Omni',
     filename: 'Prubulema Tarraxa - DJ NiceLife.mp3',
     title: 'Prubulema Tarraxa',
     duration: 183.7714375,
@@ -30,6 +38,7 @@ const tracks = [
     _id: '2',
     id: '',
     createdAt: '',
+    performedBy: 'DJ Omni',
     filename: 'YALLA BINA.mp3',
     title: 'Yalla Bina',
     duration: 187.062875,
@@ -55,7 +64,10 @@ const MsqPlayer = ({  }: PlayerProps) => {
   }, []);
 
   const { playlist, playerState } = internalState;
-  const [currentTrack, { isPlaying, play, seekTime, seekTo, skip, pause }] = useMsqPlayer(playlist);
+  const [
+    { duration, performedBy, title },
+    { isPlaying, play, pause, seekTime, seekTo, skip, volume, volumeTo },
+  ] = useMsqPlayer(playlist);
 
   const playAudio = () => {
     dispatch({ type: PlayerActionTypes.PLAY });
@@ -89,7 +101,7 @@ const MsqPlayer = ({  }: PlayerProps) => {
     await dispatch({ type: PlayerActionTypes.PLAY });
   };
 
-  const icons: IconKey[] = ['shuffle', 'repeat', 'volumeUp', 'playlistAdd'];
+  const [showVolumeControls, setShowVolumeControls] = useState<boolean>(false);
 
   return (
     <Row orientation='row' style={styles.playerContainer}>
@@ -101,58 +113,96 @@ const MsqPlayer = ({  }: PlayerProps) => {
         horizontalPadding='sm'>
         <View style={styles.trackDetails}>
           <Typography variant='title' color='black' gutterBottom='xxs'>
-            {'Be Honest'}
+            {title}
           </Typography>
           <Typography variant='body2' color='lightGrey'>
-            {currentTrack?.title}
+            {performedBy}
           </Typography>
         </View>
-        <View style={styles.controlsContainer}>
-          <Row orientation='row' align='center' justify='center' gutterBottom='xs'>
-            <TouchableSvg
-              fill={LIGHTGREY_300}
-              icon='skipPrevious'
-              onPress={skipPrev}
-              interactionFill={BLUE_500}
+        {breakpoint !== 'sm' && (
+          <View style={styles.controlsContainer}>
+            <Row
+              orientation='row'
+              align='center'
+              justify='center'
+              gutterBottom='xs'>
+              <TouchableSvg
+                fill={LIGHTGREY_300}
+                icon='skipPrevious'
+                onPress={skipPrev}
+                interactionFill={BLUE_500}
+              />
+              <TouchableSvg
+                fill={isPlaying ? BLUE_500 : LIGHTGREY_300}
+                icon={isPlaying ? 'playerPause' : 'playerPlay'}
+                onPress={isPlaying ? pauseAudio : playAudio}
+                interactionFill={BLUE_500}
+                style={styles.playIcon}
+              />
+              <TouchableSvg
+                fill={LIGHTGREY_300}
+                icon='skipNext'
+                onPress={skipNext}
+                interactionFill={BLUE_500}
+              />
+            </Row>
+            <ProgressBar
+              duration={duration}
+              seekTime={seekTime}
+              seekTo={seekTo}
             />
+          </View>
+        )}
+        <Row
+          orientation='row'
+          justify='flex-end'
+          style={styles.secondaryControlsContainer}>
+          {breakpoint !== 'sm' ? (
+            <>
+              <TouchableSvg
+                fill={LIGHTGREY_300}
+                icon={'shuffle'}
+                interactionFill={BLUE_500}
+                onPress={() => {}}
+                style={styles.secondaryControlIcon}
+              />
+              <TouchableSvg
+                fill={LIGHTGREY_300}
+                icon={'repeat'}
+                interactionFill={BLUE_500}
+                onPress={() => {}}
+                style={styles.secondaryControlIcon}
+              />
+              <TouchableHighlight onPress={() => setShowVolumeControls(true)}>
+                <>
+                  {showVolumeControls && (
+                    <VolumeControl volume={volume} volumeTo={volumeTo} />
+                  )}
+                  {/* <TouchableSvg
+                    fill={LIGHTGREY_300}
+                    icon={'volumeUp'}
+                    interactionFill={BLUE_500}
+                    style={styles.secondaryControlIcon}
+                  /> */}
+                  <Text>Loading</Text>
+                </>
+              </TouchableHighlight>
+              <TouchableSvg
+                fill={LIGHTGREY_300}
+                icon={'playlistAdd'}
+                interactionFill={BLUE_500}
+                onPress={() => {}}
+              />
+            </>
+          ) : (
             <TouchableSvg
               fill={isPlaying ? BLUE_500 : LIGHTGREY_300}
-              icon={
-                isPlaying
-                  ? 'playerPause'
-                  : 'playerPlay'
-              }
-              onPress={
-                isPlaying
-                  ? pauseAudio
-                  : playAudio
-              }
+              icon={isPlaying ? 'playerPause' : 'playerPlay'}
+              onPress={isPlaying ? pauseAudio : playAudio}
               interactionFill={BLUE_500}
               style={styles.playIcon}
             />
-            <TouchableSvg
-              fill={LIGHTGREY_300}
-              icon='skipNext'
-              onPress={skipNext}
-              interactionFill={BLUE_500}
-            />
-          </Row>
-          {
-            currentTrack &&
-          <ProgressBar duration={currentTrack.duration} seekTime={seekTime} seekTo={seekTo}/>
-          }
-        </View>
-        <Row orientation='row' justify='flex-end' style={styles.secondaryControlsContainer}>
-          {icons.map((icon: IconKey, i: number) => (
-            <TouchableSvg
-              key={i}
-              fill={LIGHTGREY_300}
-              icon={icon}
-              interactionFill={BLUE_500}
-              onPress={() => { }}
-              style={i !== icons.length ? styles.secondaryControlIcon: null}
-            />
-          ))}
+          )}
         </Row>
       </Row>
     </Row>
